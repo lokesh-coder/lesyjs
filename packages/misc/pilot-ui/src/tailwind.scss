@@ -1,0 +1,139 @@
+html {
+  font-size: 14px;
+}
+@import "~remixicon/fonts/remixicon.css";
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:400,500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* purgecss start ignore */
+
+.tooltip {
+  @apply bg-gray-700 text-white p-1 px-2 text-sm rounded font-semibold mb-2;
+}
+
+.fit {
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ansi-black-fg {
+  @apply text-gray-600;
+}
+.ansi-red-fg {
+  @apply text-red-300;
+}
+.ansi-green-fg {
+  @apply text-green-300;
+}
+.ansi-yellow-fg {
+  @apply text-yellow-300;
+}
+.ansi-blue-fg {
+  @apply text-blue-300;
+}
+.ansi-magenta-fg {
+  @apply text-pink-300;
+}
+.ansi-cyan-fg {
+  @apply text-teal-300;
+}
+.ansi-white-fg {
+  @apply text-white;
+}
+.ansi-gray-fg {
+  @apply text-gray-300;
+}
+.ansi-grey-fg {
+  @apply text-gray-300;
+}
+
+.ansi-bright-black-fg {
+  @apply text-gray-500;
+}
+.ansi-bright-red-fg {
+  @apply text-red-500;
+}
+.ansi-bright-green-fg {
+  @apply text-green-500;
+}
+.ansi-bright-yellow-fg {
+  @apply text-yellow-500;
+}
+.ansi-bright-blue-fg {
+  @apply text-blue-500;
+}
+.ansi-bright-magenta-fg {
+  @apply text-pink-500;
+}
+.ansi-bright-cyan-fg {
+  @apply text-teal-500;
+}
+.ansi-bright-white-fg {
+  @apply text-white;
+}
+
+.ansi-black-bg {
+  @apply bg-gray-600 text-white;
+}
+.ansi-red-bg {
+  @apply bg-red-400 text-white;
+}
+.ansi-green-bg {
+  @apply bg-green-400 text-white;
+}
+.ansi-yellow-bg {
+  @apply bg-yellow-400 text-yellow-900;
+}
+.ansi-blue-bg {
+  @apply bg-blue-400 text-white;
+}
+.ansi-magenta-bg {
+  @apply bg-pink-400 text-pink-900;
+}
+.ansi-cyan-bg {
+  @apply bg-teal-400 text-white;
+}
+.ansi-white-bg {
+  @apply bg-white text-gray-700;
+}
+.ansi-gray-bg {
+  @apply bg-gray-400 text-white;
+}
+.ansi-grey-bg {
+  @apply bg-gray-400 text-white;
+}
+
+.ansi-bright-black-bg {
+  @apply bg-gray-500 text-white;
+}
+.ansi-bright-red-bg {
+  @apply bg-red-500 text-white;
+}
+.ansi-bright-green-bg {
+  @apply bg-green-500 text-white;
+}
+.ansi-bright-yellow-bg {
+  @apply bg-yellow-500 text-yellow-900;
+}
+.ansi-bright-blue-bg {
+  @apply bg-blue-500 text-white;
+}
+.ansi-bright-magenta-bg {
+  @apply bg-pink-500 text-white;
+}
+.ansi-bright-cyan-bg {
+  @apply bg-teal-500 text-white;
+}
+.ansi-bright-white-bg {
+  @apply bg-white text-gray-700;
+}
+/* purgecss end ignore */

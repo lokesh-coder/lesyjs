@@ -1,0 +1,25 @@
+{
+  "name": "@lesy/test-utils",
+  "version": "1.0.0-beta.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": {
+    "email": "mexican.dirtyfellow@gmail.com",
+    "name": "Lokesh Rajendran"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "del": "^5.1.0",
+    "delete": "^1.1.0",
+    "execa": "^4.0.0",
+    "fast-glob": "^3.2.2",
+    "flat": "^5.0.0",
+    "mkdirp": "^1.0.4",
+    "write": "^2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

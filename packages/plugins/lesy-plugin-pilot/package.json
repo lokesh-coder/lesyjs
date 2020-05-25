@@ -1,0 +1,40 @@
+{
+  "name": "@lesy/lesy-plugin-pilot",
+  "version": "1.0.0-beta.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rm -rf ./dist ./public",
+    "build:ui": "lerna run build:ui --scope @lesy/lesy-pilot-ui",
+    "build": "npm run clean && tsc --build && npm run build:ui"
+  },
+  "keywords": [
+    "lesy",
+    "lesy-plugin",
+    "pilot",
+    "web ui",
+    "UI"
+  ],
+  "author": {
+    "email": "mexican.dirtyfellow@gmail.com",
+    "name": "Lokesh Rajendran"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "ansi_up": "^4.0.4",
+    "boxen": "^4.1.0",
+    "execa": "^3.2.0",
+    "finalhandler": "^1.1.2",
+    "intercept-stdout": "^0.1.2",
+    "json-stringify-safe": "^5.0.1",
+    "rxjs": "^6.5.3",
+    "serve-static": "^1.14.1",
+    "ws": "^7.1.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/ws": "^6.0.4"
+  }
+}

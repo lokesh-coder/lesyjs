@@ -1,0 +1,53 @@
+<div class="container mx-auto my-10 px-5 sm:px-0">
+  <div
+    class="flex flex-wrap items-stretch w-full mb-4 relative focus-within:border-gray-500 border border-gray-400 rounded-sm bg-white p-6 rounded-lg"
+  >
+    <div class="flex">
+      <span
+        class="flex items-center leading-normal bg-white rounded rounded-r-none  px-2 whitespace-no-wrap text-grey-dark text-sm"
+        ><i class="ri-terminal-box-fill text-3xl text-vio-500 mr-5"></i
+      ></span>
+    </div>
+    <input
+      type="text"
+      placeholder="run shell command..."
+      #val
+      (keydown.enter)="runCommand(val)"
+      class="flex-shrink flex-grow flex-auto leading-normal w-px flex-1 border-0 h-10 rounded rounded-l-none pl-0 pr-2 relative outline-none bg-white font-semibold"
+    />
+  </div>
+</div>
+<div class="runners-container row">
+  <div
+    class="col-md-4"
+    *ngFor="let runner of runners$ | async; let i = index"
+    (click)="runCommand(runner.script)"
+  >
+    <div
+      class="card shadow-lg border-0"
+      [style.backgroundColor]="colors[i]"
+      [style.backgroundImage]="
+          'linear-gradient(135deg,' +
+          colors[i][0] +
+          ' 0%, ' +
+          colors[i][1] +
+          ' 100%)'
+        "
+      [style.cursor]="'pointer'"
+    >
+      <h5 class="card-header card-title border-0 text-white d-flex">
+        <i class="material-icons mr-2" [style.opacity]="0.5">
+          play_arrow
+        </i>
+        {{ runner.name }}
+      </h5>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+          <footer class="blockquote-footer text-white">
+            {{ runner.description }}
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./dist",
+    "noEmit": false,
+    "importHelpers": false,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": ["node_modules", "__tests__"],
+  "compileOnSave": false
+}

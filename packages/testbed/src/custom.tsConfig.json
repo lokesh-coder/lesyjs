@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "paths": {
+      "@lesy/core": ["../../core/src/index.ts"],
+      "@lesy/validator": ["../../helpers/validator/src/index.ts"]
+    }
+  }
+}

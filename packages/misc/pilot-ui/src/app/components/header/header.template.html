@@ -1,0 +1,42 @@
+<nav
+  class="bg-white flex border-bottom-2 border-b border-gray-300 mb-5"
+  *ngIf="webConfig$ | async as config"
+>
+  <div class="container mx-auto">
+    <div class="flex flex-wrap items-center">
+      <div class="w-full sm:w-1/3 flex items-center p-5 sm:p-0 justify-center">
+        <i class="ri-dashboard-line mr-3 text-xl text-violet"></i>
+        <a class="font-semibold text-gray-700" href="#"
+          >{{ config.pilot.appName }}</a
+        >
+        <span
+          class="border border-gray-400 text-gray-600 rounded ml-4 px-3 py-1 text-sm font-semibold"
+          >v{{config.pilot.appVersion}}</span
+        >
+      </div>
+      <div
+        class="w-full sm:w-2/3 flex justify-even sm:justify-end bg-gray-200 sticky top-0 sm:bg-transparent"
+      >
+        <ul class="flex w-full  sm:w-auto justify-between items-center">
+          <li
+            *ngFor="let menuItem of menuItems"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="px-3 border-r border-gray-300 w-full sm:w-20 flex justify-center"
+          >
+            <a
+              class="group block py-2 hover:no-underline hover:text-violet items-center text-xs text-gray-500 uppercase w-full sm:w-auto text-center"
+              [routerLink]="menuItem.path"
+            >
+              <i
+                [class]="menuItem.icon"
+                class="{{menuItem.icon+' mr-1 text-xl text-gray-900 group-hover:text-vio-500 block text-center'}}"
+              ></i>
+              {{menuItem.name}}</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

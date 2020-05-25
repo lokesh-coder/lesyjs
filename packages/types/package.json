@@ -1,0 +1,17 @@
+{
+  "name": "@lesy/types",
+  "version": "1.0.0-beta.0",
+  "types": "index",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "lesy",
+    "typings"
+  ],
+  "author": {
+    "email": "mexican.dirtyfellow@gmail.com",
+    "name": "Lokesh Rajendran"
+  },
+  "license": "MIT"
+}

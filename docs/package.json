@@ -1,0 +1,68 @@
+{
+  "name": "@lesy/docs",
+  "private": true,
+  "version": "1.0.0-beta.0",
+  "author": "Lokesh Rajendran <mexican.dirtyfellow@gmail.com>",
+  "dependencies": {
+    "@mdx-js/mdx": "^1.6.1",
+    "@mdx-js/react": "^1.6.1",
+    "@nivo/bar": "^0.61.1",
+    "babel-plugin-prismjs": "^2.0.1",
+    "babel-preset-gatsby": "^0.4.1",
+    "flexboxgrid": "^6.3.1",
+    "gatsby": "^2.21.13",
+    "gatsby-image": "^2.4.1",
+    "gatsby-plugin-breadcrumb": "^9.0.2",
+    "gatsby-plugin-manifest": "^2.4.2",
+    "gatsby-plugin-mdx": "^1.2.6",
+    "gatsby-plugin-offline": "^3.2.1",
+    "gatsby-plugin-postcss": "^2.3.1",
+    "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
+    "gatsby-plugin-react-helmet": "^3.3.1",
+    "gatsby-plugin-sass": "^2.3.1",
+    "gatsby-plugin-sharp": "^2.6.1",
+    "gatsby-remark-autolink-headers": "^2.3.1",
+    "gatsby-remark-copy-linked-files": "^2.3.2",
+    "gatsby-remark-images": "^3.3.1",
+    "gatsby-remark-prismjs": "^3.5.1",
+    "gatsby-source-filesystem": "^2.3.1",
+    "gatsby-source-github-api": "^0.2.1",
+    "gatsby-transformer-remark": "^2.8.6",
+    "gatsby-transformer-sharp": "^2.5.1",
+    "lodash-es": "^4.17.15",
+    "node-sass": "^4.14.1",
+    "prismjs": "^1.20.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.0.0",
+    "react-particles-js": "^3.2.1",
+    "remixicon": "^2.4.0",
+    "unist-util-visit": "^2.0.2"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "prettier": "2.0.5",
+    "tailwindcss": "^1.4.4"
+  },
+  "keywords": [
+    "lesy",
+    "docs"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop -H 0.0.0.0",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lokesh-coder/lesyjs"
+  },
+  "bugs": {
+    "url": "https://github.com/lokesh-coder/lesyjs/issues"
+  }
+}

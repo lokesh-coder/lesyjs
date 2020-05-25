@@ -1,0 +1,85 @@
+<ul class="flex fixed bottom-0 w-full bg-white px-5">
+  <li class="flex">
+    <a class="p-3" (click)="toggleConsole()">Console</a>
+  </li>
+  <ng-container *ngIf="consoleStatus$|async as consoleStatus">
+    <li
+      (click)="toggleConsole()"
+      class="flex items-center p-3 cursor-pointer  text-gray-600 hover:text-vio-500"
+      [class.hidden]="consoleStatus=='OPEN'"
+      tooltip="open console"
+    >
+      <i class="ri-eye-line leading-none text-xl"></i>
+    </li>
+    <li
+      (click)="toggleConsole()"
+      class="flex items-center p-3 cursor-pointer text-gray-600 hover:text-vio-500"
+      [class.hidden]="consoleStatus=='CLOSED'"
+      tooltip="close console"
+    >
+      <i class="ri-eye-off-line leading-none text-xl "></i>
+    </li>
+    <li
+      (click)="clearLogs()"
+      tooltip="clear"
+      class="flex items-center p-3 cursor-pointer text-gray-600 hover:text-vio-500"
+      [class.hidden]="consoleStatus=='CLOSED'"
+    >
+      <i class="ri-delete-bin-line leading-none text-xl"></i>
+    </li>
+
+    <li
+      (click)="reverseLogs()"
+      tooltip="reverse logs"
+      class="flex items-center p-3 cursor-pointer text-gray-600 hover:text-vio-500"
+      [class.hidden]="consoleStatus=='CLOSED'"
+    >
+      <i class="ri-exchange-box-line rotate-90 leading-none text-xl"></i>
+    </li>
+  </ng-container>
+  <li class="flex items-center ml-auto">
+    <a
+      class="flex items-center p-3 cursor-pointer"
+      [popover]="shortcutsTpl"
+      [popoverPos]="'TOP_RIGHT'"
+      [popoverOn]="'CLICK'"
+    >
+      <i class="ri-command-line leading-none text-xl mr-2"></i>
+    </a>
+  </li>
+  <li class="flex items-center" *ngIf="selectedCommand$|async as cmd">
+    <a
+      class="flex items-center p-3"
+      [tooltip]="cmd.src=='__OBJ__'?'declared as a direct object':cmd.src"
+      tooltipPos="TOP_RIGHT"
+    >
+      <i class="ri-file-list-2-line leading-none text-xl mr-2"></i>
+      {{fileName(cmd.src)}}</a
+    >
+  </li>
+</ul>
+
+<ng-template #shortcutsTpl>
+  <div class="p-5">
+    <div class="bg-white p-4 shadow-lg rounded-lg">
+      <h5
+        class="text-gray-600 uppercase text-sm mb-2 border-b border-gray-300 pb-2"
+      >
+        Shortcuts keys
+      </h5>
+      <ul class="list-inline">
+        <li
+          *ngFor="let keys of getRegisteredHotKeys()"
+          class="flex items-center"
+        >
+          <span
+            class="font-bold text-yellow-900 bg-yellow-500 text-xs rounded px-2 py-1 mr-2 uppercase"
+            style="line-height: 14px"
+            >{{keys[0]}}{{keys[1]}}
+          </span>
+          <span class="text-gray-500 text-base"> {{keys[2]}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-template>

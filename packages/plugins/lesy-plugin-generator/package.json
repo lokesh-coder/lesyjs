@@ -1,0 +1,29 @@
+{
+  "name": "@lesy/lesy-plugin-generator",
+  "version": "1.0.0-beta.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "npm run clean && tsc --build"
+  },
+  "keywords": [
+    "lesy",
+    "lesy-plugin",
+    "generator",
+    "scaffold"
+  ],
+  "author": {
+    "email": "mexican.dirtyfellow@gmail.com",
+    "name": "Lokesh Rajendran"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "case": "^1.6.3",
+    "handlebars": "^4.7.6",
+    "scaffold-generator": "^3.0.4"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

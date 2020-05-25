@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./dist",
+    "noEmit": false,
+    "importHelpers": false,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@lesy/core": ["../core/src/index.ts"],
+      "@lesy/testbed": ["../testbed/src/index.ts"],
+      "@lesy/validator": ["../helpers/validator/src/index.ts"],
+      "@lesy/lesy-plugin-sidekick": [
+        "../plugins/lesy-plugin-sidekick/src/index.ts"
+      ],
+      "@lesy/lesy-plugin-config": [
+        "../plugins/lesy-plugin-config/src/index.ts"
+      ],
+      "@lesy/lesy-plugin-generator": [
+        "../plugins/lesy-plugin-generator/src/index.ts"
+      ],
+      "@lesy/lesy-plugin-store": ["../plugins/lesy-plugin-store/src/index.ts"],
+      "@lesy/lesy-plugin-prompt": [
+        "../plugins/lesy-plugin-prompt/src/index.ts"
+      ],
+      "@lesy/lesy-plugin-pilot": ["../plugins/lesy-plugin-pilot/src/index.ts"],
+      "@lesy/lesy-plugin-help": ["../plugins/lesy-plugin-help/src/index.ts"],
+      "@lesy/lesy-plugin-validator": [
+        "../plugins/lesy-plugin-validator/src/index.ts"
+      ],
+      "@lesy/lesy-plugin-demo": ["../plugins/lesy-plugin-demo/src/index.ts"],
+      "@lesy/lesy-validator": ["../helpers/lesy-validator/src/index.ts"]
+    },
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": ["node_modules", "__tests__", "src/templates", "dist"],
+  "compileOnSave": false
+}

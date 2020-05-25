@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LesyValidator should succeed if required param is truthy 1`] = `
+Array [
+  Object {
+    "error": null,
+    "name": "name",
+    "passed": true,
+    "validator": "required",
+  },
+]
+`;
+
+exports[`LesyValidator should throw err if required param is falsy 1`] = `
+Array [
+  Object {
+    "error": "<required> validation failed for [name]",
+    "name": "name",
+    "passed": false,
+    "validator": "required",
+  },
+]
+`;
+
+exports[`LesyValidator should throw errs as array if multiple props failed 1`] = `
+Array [
+  Object {
+    "error": "<required> validation failed for [name]",
+    "name": "name",
+    "passed": false,
+    "validator": "required",
+  },
+  Object {
+    "error": "<required> validation failed for [age]",
+    "name": "age",
+    "passed": false,
+    "validator": "required",
+  },
+]
+`;
