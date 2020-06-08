@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "allowJs": false,
+    "declaration": true,
+    "declarationDir": "../types",
+    "declarationMap": true,
+    "sourceMap": false,
+    "outDir": "./dist",
+    "removeComments": true,
+    "noEmit": false,
+    "importHelpers": false,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "paths": {
+      "@lesy/validator": ["../helpers/validator/src/index.ts"],
+      "@lesy/test-utils": ["../misc/test-utils"]
+    }
+  },
+  "exclude": ["node_modules", "__tests__"],
+  "compileOnSave": false
+}

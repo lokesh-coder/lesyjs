@@ -1,0 +1,27 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3868372, 2020-02-18T12:23:02-0500
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Gilroy-ExtraBold by Radomir Tinkov
+ * URL: https://www.myfonts.com/fonts/radomir-tinkov/gilroy/extra-bold/
+ * Copyright: Copyright &#x00A9; 2016 by Radomir Tinkov. All rights reserved.
+ * Licensed pageviews: 500,000
+ * 
+ * 
+ * 
+ * © 2020 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/3b06d4");
+
+  
+@font-face {font-family: 'Gilroy-ExtraBold';src:url('webfonts/3B06D4_0_unhinted_0.woff2') format('woff2'),url('webfonts/3B06D4_0_unhinted_0.woff') format('woff'),url('webfonts/3B06D4_0_unhinted_0.ttf') format('truetype');}
+ 

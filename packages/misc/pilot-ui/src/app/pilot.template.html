@@ -1,0 +1,17 @@
+<div style="height: 100vh;padding-bottom:42px">
+  <as-split
+    direction="vertical"
+    *ngIf="panelHeights$ | async as heights"
+    (dragEnd)="onDragEnd($event)"
+  >
+    <as-split-area [size]="heights[0]">
+      <pilot-header></pilot-header>
+      <router-outlet></router-outlet>
+    </as-split-area>
+    <as-split-area [size]="heights[1]">
+      <pilot-console></pilot-console>
+    </as-split-area>
+  </as-split>
+</div>
+
+<pilot-footer></pilot-footer>

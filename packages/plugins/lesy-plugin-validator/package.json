@@ -1,0 +1,26 @@
+{
+  "name": "@lesy/lesy-plugin-validator",
+  "version": "1.0.0-beta.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "npm run clean && tsc --build"
+  },
+  "keywords": [
+    "lesy",
+    "lesy-plugin",
+    "validator"
+  ],
+  "author": {
+    "email": "mexican.dirtyfellow@gmail.com",
+    "name": "Lokesh Rajendran"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@lesy/testbed": "^1.0.0-beta.0"
+  }
+}

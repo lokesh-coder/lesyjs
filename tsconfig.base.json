@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "allowJs": false,
+    "noEmit": false,
+    "importHelpers": false,
+    "strict": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "baseUrl": "./packages/",
+    "paths": {
+      "@lesy/core": ["core/src/index.ts"],
+      "@lesy/validator": ["helpers/validator/src/index.ts"],
+      "@lesy/lesy-plugin-config": ["plugins/lesy-plugin-config/src/index.ts"],
+      "@lesy/lesy-plugin-demo": ["plugins/lesy-plugin-demo/src/index.ts"],
+      "@lesy/lesy-plugin-generator": [
+        "plugins/lesy-plugin-generator/src/index.ts"
+      ],
+      "@lesy/testbed": ["testbed/src/index.ts"],
+      "@lesy/compiler": ["compiler/src/index.ts"]
+    },
+    "diagnostics": false
+  },
+  "exclude": ["node_modules", "__tests__", "dist"],
+  "compileOnSave": false,
+  "plugins": [
+    {
+      "name": "typescript-tslint-plugin"
+    }
+  ]
+}

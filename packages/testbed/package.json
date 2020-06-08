@@ -1,0 +1,32 @@
+{
+  "name": "@lesy/testbed",
+  "version": "1.0.0-beta.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "copy-config": "copyfiles -a -u 1 ./src/custom.tsConfig.json ./dist/",
+    "build": "rm -rf ./dist && tsc --build && npm run copy-config"
+  },
+  "dependencies": {
+    "@lesy/compiler": "^1.0.0-beta.0",
+    "strip-ansi": "^6.0.0"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.2.0"
+  },
+  "keywords": [
+    "lesy",
+    "cli",
+    "test",
+    "jest"
+  ],
+  "author": {
+    "email": "mexican.dirtyfellow@gmail.com",
+    "name": "Lokesh Rajendran"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

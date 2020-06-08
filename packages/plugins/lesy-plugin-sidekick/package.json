@@ -1,0 +1,24 @@
+{
+  "name": "@lesy/lesy-plugin-sidekick",
+  "version": "1.0.0-beta.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "npm run clean && tsc --build"
+  },
+  "keywords": [
+    "lesy",
+    "lesy-plugin",
+    "helper",
+    "basic"
+  ],
+  "author": {
+    "email": "mexican.dirtyfellow@gmail.com",
+    "name": "Lokesh Rajendran"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}

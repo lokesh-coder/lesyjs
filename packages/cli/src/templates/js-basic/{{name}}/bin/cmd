@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+
+const path = require("path");
+const lesy = require("@lesy/compiler");
+
+const options = {
+  root: path.resolve(__dirname, "../"),
+};
+
+lesy(options).parse();

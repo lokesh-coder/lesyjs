@@ -1,0 +1,70 @@
+<div class=" bg-white rounded-xl border border-gray-400 overflow-hidden">
+  <div class="flex p-6 items-center">
+    <i class="ri-fire-fill text-4xl mr-4 text-vio-100"></i>
+    <div class="flex-grow leading-tight">
+      <h1
+        class="text-capitalize font-bold text-vio-700 text-3xl flex items-center font-display"
+      >
+        {{ command.name }}
+        <ng-container *ngIf="command.main">
+          <i
+            class="ri-arrow-drop-left-fill leading-none text-2xl text-gray-500"
+          ></i>
+          <span class="text-lg text-gray-500 font-normal"
+            >{{command.main}}</span
+          >
+        </ng-container>
+      </h1>
+      <p class="text-gray-600">
+        {{ command.description }}
+      </p>
+    </div>
+    <div class="flex">
+      <i
+        class="ri-terminal-window-fill text-2xl mr-3 text-gray-700 cursor-pointer  hover:text-violet"
+        (click)="toggleConsole()"
+        [tooltip]="'Toggle console panel'"
+      ></i>
+      <i
+        class="ri-apps-2-line text-2xl text-gray-700 cursor-pointer hover:text-violet"
+        [popover]="aliasesTpl"
+        [popoverPos]="'BOTTOM'"
+      ></i>
+    </div>
+  </div>
+  <pre
+    #el
+    [copy]="el"
+    class="font-mono bg-gray-200 p-6 text-base text-gray-500 m-4 mt-0 rounded-lg cursor-copy"
+    [innerHTML]="shell"
+  ></pre>
+</div>
+
+<query-form
+  sectionName="Arguments"
+  [questions]="questions"
+  (done)="onDone($event)"
+></query-form>
+
+<ng-template #aliasesTpl>
+  <div class="p-5">
+    <div class="bg-white p-4 shadow-lg rounded-lg">
+      <h5
+        class="text-gray-600 uppercase text-sm mb-2 border-b border-gray-300 pb-2"
+      >
+        Aliases
+      </h5>
+      <ul class="list-inline">
+        <li
+          *ngFor="let alias of command.aliases"
+          class="text-gray-700 font-semibold flex items-center"
+        >
+          <i
+            class="ri-checkbox-blank-circle-fill mr-2 text-yellow-500 text-xs"
+          ></i>
+          {{alias}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-template>

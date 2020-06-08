@@ -1,0 +1,39 @@
+<div class="container mx-auto">
+  <div *ngIf="config">
+    <div class="w-full sm:w-2/3 mx-auto px-6 sm:px-0">
+      <h1 class="font-bold font-diplay text-2xl text-vio-900">
+        Configurations
+      </h1>
+      <div class="bg-white shadow-md rounded my-6">
+        <table class="text-left w-full border-collapse">
+          <thead>
+            <tr class="bg-gray-200">
+              <th
+                class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light"
+              >
+                Config name
+              </th>
+              <th
+                class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light"
+              >
+                Value
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hover:bg-gray-100" *ngFor="let conf of config">
+              <td class="py-4 px-6 border-b border-grey-light text-gray-600">
+                {{conf[0]}}
+              </td>
+              <td
+                class="py-4 px-6 border-b border-grey-light font-semibold text-yellow-800"
+              >
+                {{conf[1]}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

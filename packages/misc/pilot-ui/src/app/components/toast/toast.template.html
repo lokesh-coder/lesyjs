@@ -1,0 +1,18 @@
+<div class="flex" *ngIf="data$|async as notification">
+  <div
+    class="shadow-lg px-3 py-4 my-5 bg-white rounded-lg flex align-items-center mx-auto"
+    [style.width.px]="300"
+  >
+    <div class="icon mr-3">
+      <i
+        [className]="notification.status=='ERROR'?'ri-emotion-unhappy-line text-red-500 text-3xl':'ri-emotion-happy-line text-green-500 text-3xl'"
+      ></i>
+    </div>
+    <div class="message">
+      <h5 class="text-gray-600 text-lg font-semibold font-display">
+        {{notification.message.title}}
+      </h5>
+      <p class="text-gray-500">{{notification.message.details}}</p>
+    </div>
+  </div>
+</div>

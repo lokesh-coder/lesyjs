@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Core bootstrap should get complete state 1`] = `
+Object {
+  "allCommands": Array [
+    Object {
+      "aliases": Array [
+        "hello",
+      ],
+      "args": Object {},
+      "description": "",
+      "flags": Object {},
+      "group": "Commands",
+      "id": 0,
+      "isVisible": true,
+      "main": null,
+      "name": "hello",
+      "run": [Function],
+      "src": "__OBJ__",
+    },
+    Object {
+      "aliases": Array [
+        "greet",
+      ],
+      "args": Object {
+        "title": Object {
+          "required": true,
+        },
+      },
+      "description": "",
+      "flags": Object {},
+      "group": "Commands",
+      "id": 1,
+      "isVisible": true,
+      "main": null,
+      "name": "greet",
+      "run": [Function],
+      "src": "__OBJ__",
+    },
+    Object {
+      "aliases": Array [
+        "sample",
+      ],
+      "args": Object {
+        "title": Object {
+          "required": true,
+        },
+      },
+      "description": "",
+      "flags": Object {
+        "f1": Object {},
+      },
+      "group": "Commands",
+      "id": 2,
+      "isVisible": true,
+      "main": null,
+      "name": "sample",
+      "run": [MockFunction],
+      "src": "__OBJ__",
+    },
+    Object {
+      "aliases": Array [
+        "plugincmd",
+      ],
+      "args": Object {},
+      "description": "",
+      "flags": Object {},
+      "group": "Commands",
+      "id": 3,
+      "isVisible": true,
+      "main": null,
+      "name": "plugincmd",
+      "run": [Function],
+      "src": "__DUMMY_SRC__",
+    },
+  ],
+  "args": Object {},
+  "argv": Array [],
+  "cmdRunError": null,
+  "config": Object {
+    "defaultCommand": "plugincmd",
+    "plugin": Object {
+      "conf1": "xyz",
+    },
+    "test": "xyz",
+  },
+  "feature": Object {
+    "mainft": "one",
+    "pluginft": "abc",
+  },
+  "flags": Object {},
+  "id": null,
+  "rawArgs": Array [],
+  "rawFlags": Array [],
+  "request": Object {
+    "getCommandById": [Function],
+    "getCommandByName": [Function],
+    "getCommands": [Function],
+    "runCommand": [Function],
+  },
+  "root": StringContaining "lesy/packages/core/__tests__",
+  "runningCommand": null,
+  "unknownArgs": Array [],
+  "unknownFlags": Array [],
+  "utils": Object {
+    "color": [Function],
+    "spinner": [Function],
+  },
+  "validators": Array [],
+}
+`;

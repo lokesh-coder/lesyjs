@@ -1,0 +1,41 @@
+{
+  "name": "lesy",
+  "version": "1.0.0-monorepo",
+  "scripts": {
+    "bootstrap": "lerna bootstrap --hoist && lerna run install:deps",
+    "build": "lerna run build --stream",
+    "lint": "npx tslint --project tsconfig.base.json",
+    "clean": "lerna clean --yes && lerna run clean && rm -rf node_modules",
+    "bump": "lerna version --conventional-commits --conventional-prerelease=* --no-commit-hooks --force-publish --yes --create-release github",
+    "publish": "lerna publish from-package --yes --ignore-scripts",
+    "docs": "lerna run develop --scope @lesy/docs",
+    "benchmark": "lerna run benchmark --scope @lesy/lesy-benchmark",
+    "cbb": "npm run clean && npm run bootstrap && npm run build",
+    "test": "jest --ci"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@commitlint/config-lerna-scopes": "^8.3.4",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.5",
+    "copyfiles": "^2.2.0",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "jest-each-object": "^1.0.0",
+    "lerna": "^3.20.2",
+    "lint-staged": "^10.2.2",
+    "prettier": "2.0.5",
+    "ts-jest": "^25.4.0",
+    "tslint": "^6.1.2",
+    "tslint-config-airbnb": "^5.11.2",
+    "typescript": "^3.8.3",
+    "typescript-tslint-plugin": "^0.5.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm test",
+      "commit-msg": "npx commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}

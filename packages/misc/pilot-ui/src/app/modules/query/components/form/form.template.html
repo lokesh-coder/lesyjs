@@ -1,0 +1,35 @@
+<form
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+  class="d-flex flex-column"
+  id="pilotForm"
+>
+  <div
+    class=" bg-white rounded-xl border border-gray-400 mt-5 p-6 highlight:border-transparent highlight:mt-0"
+    *ngIf="questions.length > 0"
+  >
+    <h5
+      class="mb-6 text-lg text-gray-800 font-display font-medium highlight:hidden"
+    >
+      Arguments
+    </h5>
+
+    <div class="flex flex-wrap">
+      <div *ngFor="let question of questions" class="w-6/12 pr-3">
+        <query-input [question]="question" [form]="form"></query-input>
+      </div>
+    </div>
+
+    <!-- <div *ngIf="payLoad" class="form-row">
+    <strong>Saved the following values</strong><br />{{ payLoad }}
+  </div> -->
+  </div>
+
+  <button
+    type="submit"
+    class="flex mx-auto bg-green-500 py-4 px-6 mt-6 rounded text-white font-semibold shadow-lg  focus:shadow-none disabled:opacity-50 focus:outline-none highlight:mt-0"
+    [disabled]="!form.valid"
+  >
+    <i class="ri-send-plane-2-line mr-2"></i> Run command
+  </button>
+</form>

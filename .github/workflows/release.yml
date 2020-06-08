@@ -1,0 +1,68 @@
+name: Release
+on:
+    push:
+        branches:
+            - master
+jobs:
+    build:
+        runs-on: ubuntu-16.04
+        strategy:
+            matrix:
+                node: ["10"]
+        name: Node ${{ matrix.node }}
+        steps:
+            - name: GIT - checkout
+              uses: actions/checkout@v1
+              with:
+                  ref: master
+
+            - name: GIT - prepare
+              run: |
+                  git checkout "${GITHUB_REF:11}"
+                  git remote set-url origin https://lokesh-coder:${{ secrets.GITHUB_TOKEN }}@github.com/lokesh-coder/lesyjs.git
+                  git config --global user.email "mexican.dirtyfellow@gmail.com"
+                  git config --global user.name "lokesh-coder"
+
+            - name: NODE - setup
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node }}
+
+            - name: NPM - install lerna
+              run: npm install --global lerna
+
+            - name: LERNA - bootstrap
+              run: npm run bootstrap
+
+            - name: NPM - lint
+              run: npm run lint
+
+            - name: NPM - test
+              run: npm test
+
+            - name: LERNA - build packages
+              run: npm run build
+              env:
+                  GH_TOKEN: ${{ secrets.DOC_README_FETCH }}
+
+            - name: LERNA - bump version
+              run: npm run bump
+              env:
+                  GH_TOKEN: ${{ secrets.DOC_README_FETCH }}
+
+            - name: GIT - remove changed files
+              run: git reset --hard
+
+            - name: BASH - set local registry
+              run: echo //registry.npmjs.org/:_authToken=$NPM_TOKEN > ~/.npmrc
+              env:
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+            - name: LERNA - release packages
+              run: npm run publish
+
+            - name: DOCS
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.DOC_README_FETCH }}
+                  publish_dir: ./docs/public

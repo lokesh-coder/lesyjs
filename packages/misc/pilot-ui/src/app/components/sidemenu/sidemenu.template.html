@@ -1,0 +1,52 @@
+<div class="mb-4 mx-10" *ngFor="let group of commandGroups">
+  <h6 class="uppercase text-gray-500 font-semibold mb-3 text-sm ml-10">
+    {{ group[0] }}
+  </h6>
+  <ul>
+    <li *ngFor="let command of group[1]">
+      <ng-template
+        [ngTemplateOutlet]="nodeTemplateRef"
+        [ngTemplateOutletContext]="{ $implicit: command }"
+      >
+      </ng-template>
+    </li>
+  </ul>
+</div>
+
+<ng-template #nodeTemplateRef let-command>
+  <div
+    class="group flex items-center px-3 py-3 border-b border-gray-300 cursor-pointer hover:bg-gray-300 rounded-lg outline-none"
+    routerLink="/commands/{{ createPath(command) }}"
+    routerLinkActive="highlight bg-violet shadow-lg highlight-hover:bg-violet"
+  >
+    <i
+      class="ri-play-fill mr-3 group-hover:text-gray-700 highlight:text-yellow-400 highlight-hover:text-yellow-400 text-gray-500"
+    ></i>
+    <div>
+      <div
+        class="flex items-center font-semibold capitalize text-gray-700 group-hover:text-gray-600 highlight:text-white highlight-hover:text-white"
+        [ngClass]="{ nested: command.children.length > 0 }"
+      >
+        {{ command.name }}
+        <ng-container *ngIf="command.main">
+          <i class="ri-arrow-left-line mx-2"></i>
+          {{command.main}}
+        </ng-container>
+      </div>
+      <p
+        class="text-gray-600 text-sm group-hover:text-gray-500 group-hover:opacity-75 highlight:opacity-75 highlight:text-white highlight-hover:opacity-75 highlight-hover:text-white fit"
+      >
+        {{command.description||'no desc provided'}}
+      </p>
+    </div>
+  </div>
+
+  <div *ngIf="command.children.length" class="command__children">
+    <ng-template
+      ngFor
+      [ngForOf]="command.children"
+      [ngForTemplate]="nodeTemplateRef"
+    >
+    </ng-template>
+  </div>
+</ng-template>

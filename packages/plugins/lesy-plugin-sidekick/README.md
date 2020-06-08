@@ -1,0 +1,1 @@
+# @lesy/lesy-plugin-sidekick
