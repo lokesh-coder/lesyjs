@@ -1,6 +1,6 @@
 {
   "name": "@lesy/lesy-plugin-validator",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -21,6 +21,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@lesy/testbed": "^1.0.0-beta.1"
+    "@lesy/testbed": "^1.0.0-beta.2"
   }
 }
