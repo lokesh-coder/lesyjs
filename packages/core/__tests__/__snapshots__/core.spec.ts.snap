@@ -98,7 +98,7 @@ Object {
     "getCommands": [Function],
     "runCommand": [Function],
   },
-  "root": StringContaining "lesy/packages/core/__tests__",
+  "root": StringContaining "/packages/core/__tests__",
   "runningCommand": null,
   "unknownArgs": Array [],
   "unknownFlags": Array [],

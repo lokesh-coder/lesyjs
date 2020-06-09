@@ -128,7 +128,7 @@ describe("Core", () => {
     it("should get complete state", () => {
       core["state"].allCommands[3].src = "__DUMMY_SRC__";
       expect(core["state"]).toMatchSnapshot({
-        root: expect.stringContaining("lesy/packages/core/__tests__"),
+        root: expect.stringContaining("/packages/core/__tests__"),
       });
     });
     it("should call init middleware", () => {
