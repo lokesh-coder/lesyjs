@@ -1,6 +1,6 @@
 {
   "name": "@lesy/types",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "types": "index",
   "publishConfig": {
     "access": "public"
