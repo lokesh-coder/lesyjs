@@ -30,7 +30,7 @@ const Brand = ({ onSidebarToggle = () => {} }) => {
       </a>
       <div className="flex">
         <span
-          className="text-xl mr-3 text-gray-500 hover:text-primary lg:hidden"
+          className="text-2xl mr-3 text-gray-500 hover:text-primary lg:hidden"
           onClick={onSidebarToggle}
         >
           <i class="ri-menu-4-fill"></i>
@@ -38,14 +38,14 @@ const Brand = ({ onSidebarToggle = () => {} }) => {
         <Link
           to="/"
           title="Home"
-          className="text-xl mr-3 text-gray-500 hover:text-primary"
+          className="text-2xl mr-3 text-gray-500 hover:text-primary"
         >
           <i class="ri-home-4-line"></i>
         </Link>
         <a
           href="https://github.com"
           title="Github repo"
-          className="text-xl text-gray-500 hover:text-primary"
+          className="text-2xl text-gray-500 hover:text-primary"
         >
           <i class="ri-github-line"></i>
         </a>

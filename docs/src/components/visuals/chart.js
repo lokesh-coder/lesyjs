@@ -2,8 +2,6 @@ import React from "react";
 import { ResponsiveBar } from "@nivo/bar";
 
 const Chart = ({ data }) => {
-  //   console.log("data2", data.results);
-
   return (
     <div style={{ height: 400 }}>
       <ResponsiveBar

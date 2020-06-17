@@ -21,6 +21,8 @@ Lesy is a super cool javascript framework to build CLI applications with ease. T
 
 We have a setup a _playground_ for you to play around with it.
 
+[![Edit lesy-pilot-playground](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/lesy-pilot-playground-hzjgw?fontsize=14&hidenavigation=1&view=preview)
+
 ### Why is the name Lesy?
 
 Well, there is no specific meaning for Lesy. The whole project is build with the mindset of simple and easy. Whether it is a code or documentation or name or logo, everything should be simple and easy. Name **Lesy** sounds cool and short.

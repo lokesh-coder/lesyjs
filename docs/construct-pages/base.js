@@ -42,7 +42,7 @@ const createBaseScreen = async (createPage, graphql, reporter, screenName) => {
   menuLinks[`${screenName}ScreenMenuLinks`].forEach(
     (page, index) => (pageOrderMap[page] = index),
   );
-  pages.forEach(page => {
+  pages.forEach((page) => {
     if (pageOrderMap[page.node.parent.fileName] !== false) {
       finalPageEdges[pageOrderMap[page.node.parent.fileName]] = page;
     }
@@ -64,7 +64,7 @@ const createBaseScreen = async (createPage, graphql, reporter, screenName) => {
       context.jumpSection = context.next;
     }
     createPage({
-      path: node.frontmatter.path,
+      path: "/docs" + node.frontmatter.path,
       component: path.resolve(`./src/components/docs-layout.js`),
       context,
     });

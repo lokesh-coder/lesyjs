@@ -1,10 +1,3 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Sidebar from "./sidebar";
@@ -17,8 +10,6 @@ const Layout = ({ children, content, allContent }) => {
     const method = isHidden ? "remove" : "add";
     document.body.classList[method]("overflow-hidden");
   }, [isHidden]);
-
-  console.log({ content, allContent });
 
   if (!content) return <></>;
 
@@ -75,7 +66,7 @@ const Layout = ({ children, content, allContent }) => {
             content.toc.items.map((c) => {
               return (
                 <Link
-                  to={content.frontmatter.path + c.url}
+                  to={"/docs" + content.frontmatter.path + c.url}
                   className="text-gray-600 text-sm block leading-7"
                 >
                   {c.title}

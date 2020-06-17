@@ -4,10 +4,10 @@ exports.createPages = ({ graphql, actions, reporter }) => {
   const { createPage, createRedirect } = actions;
 
   createRedirect({
-    fromPath: `/core/even-more`,
+    fromPath: `/docs/core/even-more`,
     isPermanent: true,
     redirectInBrowser: true,
-    toPath: `/dev/performance`,
+    toPath: `/docs/dev/performance`,
   });
 
   let screenOne = screen.createBaseScreen(
