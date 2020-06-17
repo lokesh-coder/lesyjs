@@ -14,7 +14,7 @@ export class QueryService {
         return new DropdownQuestion({
           key: cmd.name,
           label: cmd.message || cmd.name,
-          options: cmd.choices.map(a => ({ key: a, value: a })),
+          options: cmd.choices.map((a) => ({ key: a, value: a })),
           order: 3,
           default: cmd.default,
         });
@@ -32,7 +32,7 @@ export class QueryService {
           key: cmd.name,
           label: cmd.message || cmd.name,
           value: cmd.default,
-          required: true,
+          required: cmd.required,
           order: i + 1,
           default: cmd.default,
         });
