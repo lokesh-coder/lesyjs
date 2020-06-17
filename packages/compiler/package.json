@@ -1,6 +1,6 @@
 {
   "name": "@lesy/compiler",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -18,8 +18,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@lesy/core": "^1.0.0-beta.2",
-    "@lesy/lesy-plugin-sidekick": "^1.0.0-beta.2",
+    "@lesy/core": "^1.0.0-beta.3",
+    "@lesy/lesy-plugin-sidekick": "^1.0.0-beta.3",
     "ts-node": "^8.10.1",
     "tsconfig-paths": "^3.9.0"
   },

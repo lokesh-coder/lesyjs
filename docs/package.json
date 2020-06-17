@@ -1,7 +1,7 @@
 {
   "name": "@lesy/docs",
   "private": true,
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "author": "Lokesh Rajendran <mexican.dirtyfellow@gmail.com>",
   "dependencies": {
     "@mdx-js/mdx": "^1.6.1",
@@ -41,11 +41,11 @@
     "unist-util-visit": "^2.0.2"
   },
   "devDependencies": {
+    "autoprefixer": "9.8.0",
+    "cssnano": "4.1.10",
     "dotenv": "^8.2.0",
     "prettier": "2.0.5",
-    "tailwindcss": "^1.4.6",
-    "autoprefixer": "9.8.0",
-    "cssnano": "4.1.10"
+    "tailwindcss": "^1.4.6"
   },
   "keywords": [
     "lesy",

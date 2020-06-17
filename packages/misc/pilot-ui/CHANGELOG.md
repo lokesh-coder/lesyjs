@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.3](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2020-06-17)
+
+
+### Bug Fixes
+
+* **lesy-pilot-ui:** allow optional required args ([ca9952c](https://github.com/lokesh-coder/lesyjs/commit/ca9952c37432939dc67c67693a72e52c0d61d1d1))
+* validator issue ([b4e0554](https://github.com/lokesh-coder/lesyjs/commit/b4e0554bd7a348e8ac9c2c9077d8bd91f39aed3a))
+
+
+
+
+
 # [1.0.0-beta.2](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2020-06-09)
 
 **Note:** Version bump only for package @lesy/lesy-pilot-ui
