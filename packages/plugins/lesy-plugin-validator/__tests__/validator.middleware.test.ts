@@ -12,8 +12,6 @@ describe("@lesy/lesy-plugin-validator", () => {
       commands: [
         {
           name: "hello",
-          description: "this is hello desc",
-          usage: "--foo--",
           args: {
             name: {
               required: true,
@@ -22,6 +20,15 @@ describe("@lesy/lesy-plugin-validator", () => {
           },
           run: ({ args }) => {
             console.log(`Hello ${args.name}`);
+          },
+        },
+        {
+          name: "sayname",
+          args: {
+            name: {},
+          },
+          run: ({ args }) => {
+            console.log(`Hi ${args.name || "Stranger"}`);
           },
         },
       ],
@@ -52,5 +59,10 @@ describe("@lesy/lesy-plugin-validator", () => {
     ];
     const response = await testBed.run(["hello"]);
     expect(response).toContain("Hello yogo");
+  });
+
+  it("should not prompt for non required aargs", async () => {
+    const response = await testBed.run(["sayname"]);
+    expect(response).toContain("Hi Stranger");
   });
 });

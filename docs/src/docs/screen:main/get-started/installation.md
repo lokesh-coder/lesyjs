@@ -69,7 +69,7 @@ Actually manual set up is also easy.
 npm init my-cli --yes
 ```
 
-**Step 2**: Get inside to your project directory and install `@lesy/compiler` with `npm` or `yarn`.
+**Step 2**: Get inside to your project directory and install `@lesy/compiler` with `npm` or `yarn`
 
 ```shell
 cd my-cli

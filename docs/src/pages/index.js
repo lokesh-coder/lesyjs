@@ -28,7 +28,6 @@ const features = [
 ];
 
 const IndexPage = ({ data }) => {
-  console.log("data", data);
   useEffect(() => {
     Prism.highlightAll();
   });
@@ -59,7 +58,7 @@ const IndexPage = ({ data }) => {
             <div className="text-center lg:text-left">
               <Link
                 className="bg-teal-500 text-white py-3 px-6 rounded-full font-medium inline-flex text-sm items-center"
-                to="/get-started/overview"
+                to="/docs/get-started/overview"
               >
                 <i className="ri-book-mark-fill text-lg mr-2"></i> Documentation
               </Link>

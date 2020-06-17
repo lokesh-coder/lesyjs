@@ -61,8 +61,12 @@ jobs:
             - name: LERNA - release packages
               run: npm run publish
 
-            - name: DOCS
+            - name: DOCS - build
+              run: npm run publish
+
+            - name: DOCS - publish
               uses: peaceiris/actions-gh-pages@v3
               with:
                   github_token: ${{ secrets.DOC_README_FETCH }}
                   publish_dir: ./docs/public
+                  cname: lesyjs.io

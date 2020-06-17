@@ -2,6 +2,7 @@ if (!process.env.GH_TOKEN) {
   require("dotenv").config();
 }
 const version = require("./package.json").version;
+const tailwindConfig = require("./tailwind.config.js");
 
 module.exports = {
   siteMetadata: {
@@ -60,7 +61,18 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
     "gatsby-plugin-sass",
-    `gatsby-plugin-postcss`,
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+        postCssPlugins: [
+          require(`tailwindcss`)(tailwindConfig),
+          require(`autoprefixer`),
+          ...(process.env.NODE_ENV === `production`
+            ? [require(`cssnano`)]
+            : []),
+        ],
+      },
+    },
     {
       resolve: "gatsby-plugin-prefetch-google-fonts",
       options: {

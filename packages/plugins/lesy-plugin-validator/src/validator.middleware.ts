@@ -1,11 +1,11 @@
 export default {
   on: "PRE_VALIDATE",
-  async run({ runningCommand: cmd, args, feature }) {
-    console.log("***", feature);
+  async run(ctx) {
+    const { runningCommand: cmd, args, feature } = ctx;
     const missingValues = [];
-    let newArgs = cmd.args;
+    let newArgs = args;
     Object.keys(cmd.args).forEach((key: any) => {
-      if (!args[key]) {
+      if (cmd.args[key].required && !args[key]) {
         missingValues.push(key);
       }
     });
@@ -27,6 +27,7 @@ export default {
       const ans = await feature.prompt(questions);
       newArgs = { ...args, ...ans };
     }
-    return { cmd, args: newArgs };
+    ctx.args = newArgs;
+    return ctx;
   },
 };

@@ -31,3 +31,5 @@ Manage key-value config locally. <Link to="/plugins/config-store">View docs</Lin
 Execute and run commands from GUI. No extra work needed, just add this plugin, and your UI is ready! <Link to="/plugins/pilot-ui">View docs</Link>
 
 ### Arguments Validator
+
+Prompt for required args if it is not supplied. <Link to="/plugins/arg-validator">View docs</Link>

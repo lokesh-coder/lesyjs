@@ -43,7 +43,9 @@
   "devDependencies": {
     "dotenv": "^8.2.0",
     "prettier": "2.0.5",
-    "tailwindcss": "^1.4.4"
+    "tailwindcss": "^1.4.6",
+    "autoprefixer": "9.8.0",
+    "cssnano": "4.1.10"
   },
   "keywords": [
     "lesy",
@@ -55,8 +57,7 @@
     "develop": "gatsby develop -H 0.0.0.0",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "serve": "gatsby serve"
   },
   "repository": {
     "type": "git",

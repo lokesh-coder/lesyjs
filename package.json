@@ -9,6 +9,7 @@
     "bump": "lerna version --conventional-commits --conventional-prerelease=* --no-commit-hooks --force-publish --yes --create-release github",
     "publish": "lerna publish from-package --yes --ignore-scripts",
     "docs": "lerna run develop --scope @lesy/docs",
+    "build-docs": "lerna run build --scope @lesy/docs",
     "benchmark": "lerna run benchmark --scope @lesy/lesy-benchmark",
     "cbb": "npm run clean && npm run bootstrap && npm run build",
     "test": "jest --ci"

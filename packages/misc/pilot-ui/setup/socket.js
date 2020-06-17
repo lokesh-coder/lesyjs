@@ -2,7 +2,7 @@ const config = require("./config-store");
 let argh = require("argh");
 
 let values = process.argv.slice(2);
-argh = argh(values[0].split(" "));
+argh = argh(values[1].split(" "));
 
 if (argh.sport) {
   config.set("sport", argh.sport);

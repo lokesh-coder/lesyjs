@@ -54,5 +54,3 @@ export class LesyValidator {
     });
   }
 }
-
-// let va2 = new LesyValidator(['name[*,3<->7,==foobar|abc,/^abc/]','age']);

@@ -7,11 +7,11 @@ import Brand from "./visuals/brand";
 const MenuLinks = ({ allContent }) => {
   return (
     <ul className="level-1">
-      {allContent.map(c => {
+      {allContent.map((c) => {
         return (
           <li>
             <Link
-              to={c.node.frontmatter.path}
+              to={`/docs${c.node.frontmatter.path}`}
               activeClassName="active"
               partiallyActive={true}
             >
@@ -29,7 +29,7 @@ const MenuLinks = ({ allContent }) => {
 const Sidebar = ({ allContent }) => {
   let isMainscreen = false;
 
-  let pagesObj = groupBy(allContent, item => {
+  let pagesObj = groupBy(allContent, (item) => {
     return item.node.fields.section;
   });
 
@@ -37,7 +37,7 @@ const Sidebar = ({ allContent }) => {
     isMainscreen = true;
   }
 
-  let pages = Object.keys(pagesObj).map(k => ({
+  let pages = Object.keys(pagesObj).map((k) => ({
     section: k,
     pages: pagesObj[k],
   }));
@@ -50,13 +50,13 @@ const Sidebar = ({ allContent }) => {
         <Brand />
       </div>
       {!isMainscreen && (
-        <Link className="sidebar--backbtn" to="/get-started/overview">
+        <Link className="sidebar--backbtn" to="/docs/get-started/overview">
           <i class="ri-arrow-left-line"></i> Back to main menu
         </Link>
       )}
       <div className="sidebar--menu mt-3">
         <ul className="level-0">
-          {pages.map(page => {
+          {pages.map((page) => {
             return (
               <li>
                 <div className="heading">{page.section}</div>
