@@ -1,6 +1,6 @@
 ---
 title: Even more
-path: /core/even-more
+path: /docs/core/even-more
 icon: more-fill
 skip: true
 ---

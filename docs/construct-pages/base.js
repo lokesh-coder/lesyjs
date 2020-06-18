@@ -1,7 +1,7 @@
 const menuLinks = require("../config/page-order");
 const path = require("path");
 
-const createBaseScreen = async (createPage, graphql, reporter, screenName) => {
+const createDocPage = async (createPage, graphql, reporter, screenName) => {
   const result = await graphql(`
     query {
       allMdx(filter: {fileAbsolutePath: {glob: "**/screen:${screenName}/**"}}) {
@@ -64,13 +64,13 @@ const createBaseScreen = async (createPage, graphql, reporter, screenName) => {
       context.jumpSection = context.next;
     }
     createPage({
-      path: "/docs" + node.frontmatter.path,
-      component: path.resolve(`./src/components/docs-layout.js`),
+      path: node.frontmatter.path,
+      component: path.resolve(`./src/templates/docs.js`),
       context,
     });
   });
 };
 
 module.exports = {
-  createBaseScreen,
+  createDocPage,
 };

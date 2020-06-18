@@ -1,6 +1,6 @@
 ---
 title: Help
-path: /plugins/help
+path: /docs/plugins/help
 icon: question-fill
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Plugins
-path: /core/plugins
+path: /docs/core/plugins
 icon: plug-fill
 ---
 

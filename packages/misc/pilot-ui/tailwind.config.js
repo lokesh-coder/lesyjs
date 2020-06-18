@@ -50,7 +50,7 @@ module.exports = {
         '"Segoe UI Symbol"',
         '"Noto Color Emoji"',
       ],
-      display: ["Hind Siliguri", "sans-serif"],
+      display: ["Gilroy", "sans-serif"],
       mono: ["Roboto Mono", "Inconsolata"],
     },
   },
@@ -100,21 +100,21 @@ module.exports = {
     display: ["responsive", "highlight", "highlight-hover", "parent"],
   },
   plugins: [
-    function({ addVariant, e }) {
+    function ({ addVariant, e }) {
       addVariant("parent", ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => {
           return `.parent .${e(`parent${separator}${className}`)}`;
         });
       });
     },
-    function({ addVariant, e }) {
+    function ({ addVariant, e }) {
       addVariant("highlight", ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => {
           return `.highlight .${e(`highlight${separator}${className}`)}`;
         });
       });
     },
-    function({ addVariant, e }) {
+    function ({ addVariant, e }) {
       addVariant("highlight-hover", ({ modifySelectors, separator }) => {
         modifySelectors(({ className }) => {
           return `.${e(
@@ -125,7 +125,7 @@ module.exports = {
         });
       });
     },
-    function({ addUtilities }) {
+    function ({ addUtilities }) {
       const rotateUtilities = {
         ".rotate-90": {
           transform: "rotate(90deg)",

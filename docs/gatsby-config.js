@@ -78,12 +78,8 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: "IBM Plex Mono",
-            variants: ["400", "500", "600", "700"],
-          },
-          {
-            family: "Hind Siliguri",
-            variants: ["300", "400", "500", "600", "700"],
+            family: "Manrope",
+            variants: ["700"],
           },
         ],
       },

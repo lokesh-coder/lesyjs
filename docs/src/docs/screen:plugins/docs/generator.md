@@ -1,6 +1,6 @@
 ---
 title: Scaffold generator
-path: /plugins/scaffold-generator
+path: /docs/plugins/scaffold-generator
 icon: folder-add-fill
 npm: https://www.npmjs.com/package/@lesy/lesy-plugin-generator
 repo: https://github.com/lokesh-coder/lesy/tree/master/packages/plugins/lesy-plugin-generator

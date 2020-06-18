@@ -1,6 +1,6 @@
 ---
 title: Config store
-path: /plugins/config-store
+path: /docs/plugins/config-store
 icon: database-2-fill
 ---
 

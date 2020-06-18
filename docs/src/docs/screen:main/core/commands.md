@@ -1,6 +1,6 @@
 ---
 title: Commands
-path: /core/commands
+path: /docs/core/commands
 icon: terminal-box-fill
 ---
 

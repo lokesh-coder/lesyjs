@@ -1,6 +1,6 @@
 ---
 title: Features
-path: /core/features
+path: /docs/core/features
 icon: water-flash-fill
 ---
 
@@ -10,7 +10,7 @@ Features are simple object which can be used to add functionalities and use them
 
 ```js
 // sayhello.feature.js
-module.exports = function(feature) {
+module.exports = function (feature) {
   feature.sayHello = () => console.log("hello");
 };
 ```
@@ -33,7 +33,7 @@ Then it can be accesses in command,
 ```js
 module.export = {
   name: "hello",
-  run: ctx => {
+  run: (ctx) => {
     ctx.features.sayHello();
   },
 };
@@ -44,7 +44,7 @@ module.export = {
 Always consider adding as property function. So that it can be lazily loaded. For instance if you want to include thir party module,
 
 ```js
-module.exports = function(feature) {
+module.exports = function (feature) {
   feature.sayHello = () => {
     const Case = require("case");
     console.log(Case.pascal("hello"));

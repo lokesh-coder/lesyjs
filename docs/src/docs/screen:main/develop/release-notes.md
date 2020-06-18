@@ -1,6 +1,6 @@
 ---
 title: Release notes
-path: /develop/release-notes
+path: /docs/develop/release-notes
 icon: book-3-fill
 ---
 

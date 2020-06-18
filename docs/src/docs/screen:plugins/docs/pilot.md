@@ -1,6 +1,6 @@
 ---
 title: Pilot UI
-path: /plugins/pilot-ui
+path: /docs/plugins/pilot-ui
 icon: apps-2-fill
 ---
 

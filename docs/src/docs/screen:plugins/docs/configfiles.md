@@ -1,6 +1,6 @@
 ---
 title: Config files
-path: /plugins/config-files
+path: /docs/plugins/config-files
 icon: file-settings-fill
 ---
 

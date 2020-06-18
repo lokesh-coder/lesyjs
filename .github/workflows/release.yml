@@ -62,7 +62,7 @@ jobs:
               run: npm run publish
 
             - name: DOCS - build
-              run: npm run publish
+              run: npm run build-docs
 
             - name: DOCS - publish
               uses: peaceiris/actions-gh-pages@v3

@@ -10,20 +10,11 @@ exports.createPages = ({ graphql, actions, reporter }) => {
     toPath: `/docs/dev/performance`,
   });
 
-  let screenOne = screen.createBaseScreen(
-    createPage,
-    graphql,
-    reporter,
-    "main",
-  );
-  let screenTwo = screen.createBaseScreen(createPage, graphql, reporter, "dev");
-  let screenThree = screen.createBaseScreen(
-    createPage,
-    graphql,
-    reporter,
-    "plugins",
-  );
-  return Promise.all([screenTwo, screenOne, screenThree]);
+  const allDocs = [];
+  ["main", "dev", "plugins"].forEach((name) => {
+    allDocs.push(screen.createDocPage(createPage, graphql, reporter, name));
+  });
+  return Promise.all(allDocs);
 };
 
 exports.onCreateNode = ({ node, getNode, actions }) => {

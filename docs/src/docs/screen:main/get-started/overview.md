@@ -1,6 +1,6 @@
 ---
 title: Overview
-path: /get-started/overview
+path: /docs/get-started/overview
 icon: user-smile-fill
 ---
 

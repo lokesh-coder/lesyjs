@@ -1,5 +1,5 @@
 ---
 title: API Docs
-path: /develop/api
+path: /docs/develop/api
 icon: book-read-fill
 ---

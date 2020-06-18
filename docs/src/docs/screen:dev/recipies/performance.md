@@ -1,6 +1,6 @@
 ---
 title: Performance
-path: /dev/performance
+path: /docs/dev/performance
 icon: terminal-box-fill
 ---
 
