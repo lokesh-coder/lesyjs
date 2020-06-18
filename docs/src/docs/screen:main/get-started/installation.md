@@ -1,6 +1,6 @@
 ---
 title: Installation
-path: /get-started/installation
+path: /docs/get-started/installation
 icon: folder-download-fill
 ---
 

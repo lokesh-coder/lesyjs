@@ -1,6 +1,6 @@
 ---
 title: Configuration
-path: /core/config
+path: /docs/core/config
 icon: settings-3-fill
 ---
 

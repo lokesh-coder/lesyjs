@@ -1,6 +1,6 @@
 ---
 title: Middlewares
-path: /core/middlewares
+path: /docs/core/middlewares
 icon: fire-fill
 ---
 

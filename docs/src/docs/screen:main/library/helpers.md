@@ -1,6 +1,6 @@
 ---
 title: Helpers
-path: /library/helpers
+path: /docs/library/helpers
 icon: settings-fill
 ---
 

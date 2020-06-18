@@ -66,7 +66,7 @@ const Layout = ({ children, content, allContent }) => {
             content.toc.items.map((c) => {
               return (
                 <Link
-                  to={"/docs" + content.frontmatter.path + c.url}
+                  to={content.frontmatter.path + c.url}
                   className="text-gray-600 text-sm block leading-7"
                 >
                   {c.title}

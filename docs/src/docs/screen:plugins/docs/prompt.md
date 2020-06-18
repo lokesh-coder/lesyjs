@@ -1,6 +1,6 @@
 ---
 title: Prompt
-path: /plugins/prompt
+path: /docs/plugins/prompt
 icon: questionnaire-fill
 ---
 

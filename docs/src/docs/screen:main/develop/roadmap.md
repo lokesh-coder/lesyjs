@@ -1,6 +1,6 @@
 ---
 title: Roadmap
-path: /develop/roadmap
+path: /docs/develop/roadmap
 icon: lightbulb-flash-fill
 ---
 

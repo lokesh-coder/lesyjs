@@ -1,6 +1,6 @@
 ---
 title: Testing
-path: /core/testing
+path: /docs/core/testing
 icon: bug-fill
 ---
 

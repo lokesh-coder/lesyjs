@@ -1,5 +1,5 @@
 ---
 title: Sample2
-path: /dev/sample2
+path: /docs/dev/sample2
 icon: terminal-box-fill
 ---

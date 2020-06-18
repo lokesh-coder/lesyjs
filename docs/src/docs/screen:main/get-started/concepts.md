@@ -1,5 +1,5 @@
 ---
 title: Concepts
-path: /get-started/concepts
+path: /docs/get-started/concepts
 icon: honour-fill
 ---

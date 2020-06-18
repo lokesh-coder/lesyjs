@@ -1,5 +1,5 @@
 ---
 title: Credits
-path: /develop/credits
+path: /docs/develop/credits
 icon: award-fill
 ---

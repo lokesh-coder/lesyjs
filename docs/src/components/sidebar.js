@@ -11,7 +11,7 @@ const MenuLinks = ({ allContent }) => {
         return (
           <li>
             <Link
-              to={`/docs${c.node.frontmatter.path}`}
+              to={`${c.node.frontmatter.path}`}
               activeClassName="active"
               partiallyActive={true}
             >

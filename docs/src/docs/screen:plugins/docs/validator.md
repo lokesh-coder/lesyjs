@@ -1,6 +1,6 @@
 ---
 title: Arg validator
-path: /plugins/arg-validator
+path: /docs/plugins/arg-validator
 icon: shield-keyhole-fill
 ---
 
