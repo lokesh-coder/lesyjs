@@ -13,6 +13,7 @@ module.exports = {
           300: "#5B6985",
           400: "#4A5874",
         },
+        light: "#f9fafb",
         primary: "#d5695f",
         secondary: "#596AA8",
         body: "#5D7095",
@@ -22,11 +23,39 @@ module.exports = {
       },
       fontFamily: {
         heading: ["Gilroy"],
-        subheading: ["Manrope"],
+        icon: ["remixicon"],
       },
     },
   },
   purge: ["./src/**/*.js", "./src/**/*.jsx"],
-  variants: {},
-  plugins: [],
+  variants: {
+    textColor: [
+      "hover",
+      "focus",
+      "active",
+      "group-hover",
+      "active",
+      "active-hover",
+    ],
+  },
+  plugins: [
+    function ({ addVariant, e }) {
+      addVariant("active", ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.active .${e(`active${separator}${className}`)}`;
+        });
+      });
+    },
+    function ({ addVariant, e }) {
+      addVariant("active-hover", ({ modifySelectors, separator }) => {
+        modifySelectors(({ className }) => {
+          return `.${e(
+            `active-hover${separator}${className}`,
+          )}:hover , .active:hover .${e(
+            `active-hover${separator}${className}`,
+          )}`;
+        });
+      });
+    },
+  ],
 };

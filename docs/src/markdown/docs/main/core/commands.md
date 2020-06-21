@@ -2,6 +2,8 @@
 title: Commands
 path: /docs/core/commands
 icon: terminal-box-fill
+seoTitle: Create commands
+seoDesc: somedat
 ---
 
 Command is a core part of lesy. You can create and add commands in multiple ways. Lets see what you can actually do with commands.

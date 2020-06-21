@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, graphql } from "gatsby";
 
 import SEO from "../components/seo";
@@ -38,10 +38,17 @@ const IndexPage = ({ data }) => {
       <div className="container lg:flex mx-auto min-h-screen relative z-10">
         <div className="w-full lg:w-8/12 flex items-center py-12 lg:py-0">
           <div className="px-4 lg:px-12 lg:px-24">
+            <div className="lg:absolute top-0 flex justify-center">
+              <img
+                src="/images/lesy-head.png"
+                className="w-8 py-5"
+                alt="lesy icon"
+              />
+            </div>
             <span className="text-sm text-orange-700 font-500">
               Little cute Node module
             </span>
-            <h1 className="text-heading text-4xl lg:text-5xl font-extrabold tracking-tight font-heading">
+            <h1 className="text-heading text-4xl lg:text-5xl font-extrabold tracking-tight font-heading leading-none">
               CLI Framework
             </h1>
             <p className="mb-8">
@@ -57,16 +64,16 @@ const IndexPage = ({ data }) => {
             </section>
             <div className="text-center lg:text-left">
               <Link
-                className="bg-teal-500 text-white py-3 px-6 rounded-full font-medium inline-flex text-sm items-center"
+                className="bg-teal-500 text-white py-3 px-6 rounded-full font-medium inline-flex text-sm items-center mr-3 hover:bg-teal-600"
                 to="/docs/get-started/overview"
               >
                 <i className="ri-book-mark-fill text-lg mr-2"></i> Documentation
               </Link>
               <Link
-                className="bg-gray-100 text-gray-600 py-3 px-6 rounded-full font-medium inline-flex text-sm items-center"
+                className="bg-gray-100 text-gray-600 py-3 px-6 rounded-full font-medium inline-flex text-sm items-center hover:bg-gray-200"
                 to="/"
               >
-                <i className="ri-github-fill mr-2 text-lg"></i> Github
+                <i className="ri-github-fill mr-2 text-lg"></i> Repository
               </Link>
             </div>
           </div>

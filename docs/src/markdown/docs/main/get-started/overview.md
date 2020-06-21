@@ -4,7 +4,9 @@ path: /docs/get-started/overview
 icon: user-smile-fill
 ---
 
-Lesy is a super cool javascript framework to build CLI applications with ease. There are quite a few awesome libraries are existing in the node eco-system, namely commander, gluegun, yargs. They are really super nice, production ready, good community support. But they all lack few things. They are scalability and non-futuristic.
+Lesy js is a flexible lighweight CLI framework to build modern command line apps without too much boilerplate.
+
+If you have already used comamnder, yargs, gluegun, then lesy js will definietlry give you a new experince and you will feel the differnce.
 
 ### Few things to consider Lesy for your next project
 
