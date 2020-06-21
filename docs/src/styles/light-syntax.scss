@@ -50,7 +50,7 @@
 
   :not(pre) > code[class*="language-"],
   pre[class*="language-"] {
-    background: #e9eef3;
+    background: #f5f7fa;
     border-radius: 10px;
   }
 
@@ -60,8 +60,9 @@
     border-radius: 0.3em;
     white-space: normal;
     font-size: 13px;
-    color: #d5695f;
-    background: #f4e5e4;
+    background: #e5e9ec;
+    color: #000;
+    font-weight: 600;
     line-height: 1;
     display: inline-block;
   }
@@ -109,7 +110,7 @@
   .language-css .token.string,
   .style .token.string {
     color: #364ddd;
-    background: #e9eef3;
+    background: #f5f7fa;
   }
 
   .token.number,
@@ -210,7 +211,7 @@
     left: 15px !important;
     width: 3em; /* works for line-numbers below 1000 lines */
     letter-spacing: -1px;
-    border-right: 1px solid #e9eef3;
+    border-right: 1px solid #f5f7fa;
 
     -webkit-user-select: none;
     -moz-user-select: none;

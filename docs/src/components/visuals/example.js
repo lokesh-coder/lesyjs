@@ -11,7 +11,7 @@ codes["2"] = `export default {
 codes["3"] = `$ node ./bin/cmd hello`;
 
 const Frame = ({ role, children }) => {
-  if (role == "editor")
+  if (role === "editor")
     return <EditorFrame filename="hello.js">{children}</EditorFrame>;
   return (
     <MacFrame title="terminal">

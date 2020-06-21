@@ -1,10 +1,10 @@
-const menuLinks = require("../config/page-order");
+const menuLinks = require("../config/doc-pages-config");
 const path = require("path");
 
-const createDocPage = async (createPage, graphql, reporter, screenName) => {
+async function createDocPage(createPage, graphql, reporter, screenName) {
   const result = await graphql(`
     query {
-      allMdx(filter: {fileAbsolutePath: {glob: "**/screen:${screenName}/**"}}) {
+      allMdx(filter: {fileAbsolutePath: {glob: "**/docs/${screenName}/**"}}) {
         edges {
           node {
             toc: tableOfContents(maxDepth: 4)
@@ -42,8 +42,10 @@ const createDocPage = async (createPage, graphql, reporter, screenName) => {
   menuLinks[`${screenName}ScreenMenuLinks`].forEach(
     (page, index) => (pageOrderMap[page] = index),
   );
+
   pages.forEach((page) => {
     if (pageOrderMap[page.node.parent.fileName] !== false) {
+      console.log("**", pageOrderMap, page.node.parent.fileName);
       finalPageEdges[pageOrderMap[page.node.parent.fileName]] = page;
     }
   });
@@ -52,7 +54,6 @@ const createDocPage = async (createPage, graphql, reporter, screenName) => {
     const context = {
       id: node.fields.id,
       ind: index,
-      abc: "foo",
       prev: index === 0 ? null : finalPageEdges[index - 1].node,
       next:
         index === finalPageEdges.length - 1
@@ -65,11 +66,11 @@ const createDocPage = async (createPage, graphql, reporter, screenName) => {
     }
     createPage({
       path: node.frontmatter.path,
-      component: path.resolve(`./src/templates/docs.js`),
+      component: path.resolve(`./templates/docs-template.js`),
       context,
     });
   });
-};
+}
 
 module.exports = {
   createDocPage,

@@ -47,7 +47,7 @@ const Features = () => {
         Some cool features that you should try today!
       </div>
       <div className="flex flex-wrap">
-        {data.map(d => (
+        {data.map((d) => (
           <div className="lg:w-2/6 mb-12 px-6">
             <Blade {...d} />
           </div>

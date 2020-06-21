@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-import Sidebar from "./sidebar";
+import Sidebar from "../sidebar";
 import { Link } from "gatsby";
-import Brand from "./visuals/brand";
+import Brand from "../visuals/brand";
 
-const Layout = ({ children, content, allContent }) => {
+const DocsLayout = ({ children, content, allContent }) => {
   const [isHidden, toggleSidebar] = useState(true);
   useEffect(() => {
     const method = isHidden ? "remove" : "add";
@@ -16,13 +15,13 @@ const Layout = ({ children, content, allContent }) => {
   return (
     <div className="flex">
       <div
-        className={` lg:block lg:w-3/12 z-10 mt-20 lg:m-0 ${
+        className={` lg:block lg:w-1/5 z-10 mt-20 lg:m-0 ${
           isHidden ? "hidden" : "block "
         }`}
       >
         <Sidebar content={content} allContent={allContent} />
       </div>
-      <div className="w-full lg:w-7/12 px-6 lg:px-40">
+      <div className="w-full lg:w-3/5 px-6 lg:px-48">
         <div className="lg:hidden">
           <Brand
             onSidebarToggle={() => {
@@ -30,7 +29,7 @@ const Layout = ({ children, content, allContent }) => {
             }}
           />
         </div>
-        <div className="my-6 pb-6 border-b border-gray-300 flex items-center justify-between">
+        <div className="my-8 lg:my-16 flex items-center justify-between">
           <div className="flex items-center">
             <i
               className={`ri-${content.frontmatter.icon} text-primary text-2xl mr-2`}
@@ -41,12 +40,20 @@ const Layout = ({ children, content, allContent }) => {
           </div>
           <div>
             {content.frontmatter.repo && (
-              <a href={content.frontmatter.repo} target="_blank">
+              <a
+                href={content.frontmatter.repo}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <i className={`ri-github-fill text-gray-500 text-2xl mr-2`} />
               </a>
             )}
             {content.frontmatter.npm && (
-              <a href={content.frontmatter.npm} target="_blank">
+              <a
+                href={content.frontmatter.npm}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <i className={`ri-npmjs-line text-gray-500 text-2xl mr-2`} />
               </a>
             )}
@@ -55,7 +62,7 @@ const Layout = ({ children, content, allContent }) => {
 
         <main className="content light-syntax text-gray-700">{children}</main>
       </div>
-      <div className="w-2/12 hidden lg:block">
+      <div className="w-1/5 hidden lg:block">
         <ul class="mt-32 px-4">
           {content.toc.items && (
             <div className="uppercase font-bold text-xs text-gray-600 mb-5">
@@ -79,10 +86,4 @@ const Layout = ({ children, content, allContent }) => {
   );
 };
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  content: PropTypes.object.isRequired,
-  allContent: PropTypes.object.isRequired,
-};
-
-export default Layout;
+export default DocsLayout;

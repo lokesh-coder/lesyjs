@@ -2,6 +2,87 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply leading-7;
+}
+
 p {
   @apply my-5;
+}
+
+.content p a,
+.content li a,
+.content .content-link {
+  @apply border-b-2;
+  @apply border-primary;
+  @apply text-gray-800;
+}
+
+.content p a:hover,
+.content li a:hover,
+.content .content-link:hover {
+  @apply text-primary;
+}
+
+.content h3 {
+  @apply mt-20;
+  @apply mb-4;
+  @apply pl-5;
+  @apply text-gray-800;
+  @apply leading-tight;
+  @apply font-heading;
+  @apply flex;
+  @apply flex-row-reverse;
+  @apply justify-between;
+  @apply font-bold;
+  @apply text-xl;
+  @apply relative;
+}
+
+.content h3:before {
+  content: "\EA6D";
+  left: -8px;
+  @apply absolute;
+  @apply text-primary;
+  @apply font-icon;
+  @apply leading-none;
+}
+
+.content h3 + p {
+  @apply m-0;
+}
+
+.content h4 {
+  @apply my-10;
+  @apply text-gray-800;
+  @apply tracking-tighter;
+  @apply font-semibold;
+  @apply border-l-4;
+  @apply border-gray-800;
+  @apply pl-4;
+}
+
+.content h4 a {
+  @apply hidden;
+}
+
+.content li {
+  @apply relative;
+  @apply pl-8;
+}
+
+.content li:before {
+  content: "\EB81";
+  @apply text-lg;
+  @apply mr-2;
+  @apply font-icon;
+  @apply opacity-25;
+  @apply align-middle;
+  @apply absolute;
+  @apply left-0;
+}
+
+.content .anchor {
+  @apply opacity-50;
+  @apply mr-3;
 }

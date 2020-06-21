@@ -17,7 +17,7 @@ const Brand = ({ onSidebarToggle = () => {} }) => {
   return (
     <div className="border-b px-0 lg:px-6 py-5 border-gray-300 flex items-center justify-between">
       <a className="flex" href="/" title="go to home">
-        <img src="/svg/lesy-head.svg" width="30" className="mr-3" />
+        <img src="/svg/lesy-head.svg" width="30" className="mr-3" alt="brand" />
         <div className="leading-tight">
           <h1 className="text-blue-700 text-xl font-bold text-subheading font-heading">
             Lesy{" "}
@@ -32,6 +32,9 @@ const Brand = ({ onSidebarToggle = () => {} }) => {
         <span
           className="text-2xl mr-3 text-gray-500 hover:text-primary lg:hidden"
           onClick={onSidebarToggle}
+          onKeyDown={() => {}}
+          role="button"
+          tabIndex="0"
         >
           <i class="ri-menu-4-fill"></i>
         </span>
@@ -43,7 +46,7 @@ const Brand = ({ onSidebarToggle = () => {} }) => {
           <i class="ri-home-4-line"></i>
         </Link>
         <a
-          href="https://github.com"
+          href="https://github.com/lokesh-coder/lesyjs"
           title="Github repo"
           className="text-2xl text-gray-500 hover:text-primary"
         >

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { Link } from "gatsby";
 import { groupBy } from "lodash-es";
 import Brand from "./visuals/brand";
@@ -8,16 +7,20 @@ const MenuLinks = ({ allContent }) => {
   return (
     <ul className="level-1">
       {allContent.map((c) => {
+        const { frontmatter: fm, fields } = c.node;
         return (
-          <li>
+          <li className="mb-1">
             <Link
-              to={`${c.node.frontmatter.path}`}
-              activeClassName="active"
+              to={`${fm.path}`}
+              className="text-gray-600 font-medium flex text-base"
+              activeClassName="active text-primary"
               partiallyActive={true}
             >
-              <i className={`ri-${c.node.frontmatter.icon}`}></i>
-              <span>{c.node.fields.title}</span>
-              {c.node.frontmatter.skip && <i class="ri-anchor-fill"></i>}
+              <i
+                className={`mr-3 text-lg text-gray-600 active:text-primary ri-${fm.icon}`}
+              ></i>
+              <span className="flex-1">{fields.title}</span>
+              {fm.skip && <i class="ri-anchor-fill"></i>}
             </Link>
           </li>
         );
@@ -33,7 +36,7 @@ const Sidebar = ({ allContent }) => {
     return item.node.fields.section;
   });
 
-  if (allContent[0] && allContent[0].node.fields.screen == "main") {
+  if (allContent[0] && allContent[0].node.fields.screen === "main") {
     isMainscreen = true;
   }
 
@@ -44,22 +47,27 @@ const Sidebar = ({ allContent }) => {
 
   return (
     <div
-      className={`bg-white border-r border-gray-300 fixed w-full lg:w-1/4 overflow-auto h-screen `}
+      className={`bg-light border-r border-gray-300 fixed w-full lg:w-1/5 overflow-auto h-screen `}
     >
       <div className="fixed top-0 bg-white z-10 hidden lg:block sticky">
         <Brand />
       </div>
       {!isMainscreen && (
-        <Link className="sidebar--backbtn" to="/docs/get-started/overview">
-          <i class="ri-arrow-left-line"></i> Back to main menu
+        <Link
+          className="p-4 text-sm border-b border-gray-300 flex justify-center text-gray-600 no-underline transition-all hover:bg-secondary hover:text-white"
+          to="/docs/get-started/overview"
+        >
+          <i class="ri-arrow-left-line mr-2"></i> Back to main menu
         </Link>
       )}
-      <div className="sidebar--menu mt-3">
-        <ul className="level-0">
+      <div className="py-3 px-10 flex">
+        <ul className="level-0 w-full">
           {pages.map((page) => {
             return (
-              <li>
-                <div className="heading">{page.section}</div>
+              <li className="mb-2">
+                <div className="text-xs uppercase font-semibold text-gray-800 my-3">
+                  {page.section}
+                </div>
                 <MenuLinks allContent={page.pages} />
               </li>
             );

@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 const Card = ({ icon, title, linkName, link, children, classNames }) => {
   return (
     <div className={`flex lg:flex-col items-center ${classNames}`}>
-      <img src={icon} width="50" className="mr-5 lg:mr-0" />
+      <img src={icon} width="50" className="mr-5 lg:mr-0" alt="card" />
       <div className="lg:text-center">
         <h3 className="text-lg font-bold font-heading text-heading my-4">
           {title}

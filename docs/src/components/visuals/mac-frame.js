@@ -3,7 +3,7 @@ import React from "react";
 const MacFrame = ({ title, children }) => {
   return (
     <div className="rounded overflow-hidden shadow-xl mb-3">
-      <header className="bg-dark-100 p-2 flex justify-between items-center">
+      <header className="bg-dark-100 px-2 flex justify-between items-center">
         <div className="flex">
           <i className="bg-window-first w-2 h-2 rounded-full block mr-1"></i>
           <i className="bg-window-second w-2 h-2 rounded-full block mr-1"></i>
