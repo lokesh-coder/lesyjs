@@ -27,72 +27,36 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-4f8dc7189ec1ef319f2e.js"
+    "url": "webpack-runtime-bdbdc231fd6e39f5cca1.js"
   },
   {
-    "url": "framework-57c6ed5bd2ab5610b977.js"
+    "url": "framework-4e21e89b04336ce92384.js"
   },
   {
-    "url": "app-036dbf6e61c489a1c797.js"
+    "url": "app-e2675465404ebc9110f2.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "18f2f947d417f562c3116afb8df803de"
+    "revision": "53907f75965698451c2ee9da323f5103"
   },
   {
-    "url": "google-fonts/s/hindsiliguri/v6/ijwOs5juQtsyLLR5jN4cxBEoRCf_0uYVKw.woff2",
-    "revision": "997142b32846a3bcbb5c602080912338"
-  },
-  {
-    "url": "google-fonts/s/hindsiliguri/v6/ijwOs5juQtsyLLR5jN4cxBEoRDf40uYVKw.woff2",
-    "revision": "ddef2dfa226d7dd2205d347c980e1c46"
-  },
-  {
-    "url": "google-fonts/s/hindsiliguri/v6/ijwOs5juQtsyLLR5jN4cxBEoREP-0uYVKw.woff2",
-    "revision": "fca10615d42fdb306cd785e387ab521a"
-  },
-  {
-    "url": "google-fonts/s/hindsiliguri/v6/ijwOs5juQtsyLLR5jN4cxBEoRG_50uYVKw.woff2",
-    "revision": "bd43209916051fe4ed1f1ba8dc9287aa"
-  },
-  {
-    "url": "google-fonts/s/hindsiliguri/v6/ijwTs5juQtsyLLR5jN4cxBEoTJzaxw.woff2",
-    "revision": "0dc5c4e8db4a051e3e5816f7cfec46ac"
-  },
-  {
-    "url": "google-fonts/s/ibmplexmono/v5/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2",
-    "revision": "762415236b4a11831f9fc064ea48dbdb"
-  },
-  {
-    "url": "google-fonts/s/ibmplexmono/v5/-F6qfjptAgt5VM-kVkqdyU8n3pQPwlBFgg.woff2",
-    "revision": "7d3e2006c08ae4fc5f9fd4ec4b6687fa"
-  },
-  {
-    "url": "google-fonts/s/ibmplexmono/v5/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgg.woff2",
-    "revision": "129e3b37c9d80c7e421b432c887c6a7b"
-  },
-  {
-    "url": "google-fonts/s/ibmplexmono/v5/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgg.woff2",
-    "revision": "0c4a54706495d75dc9e484eb51714f46"
-  },
-  {
-    "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-5224537b09cbd0556359.js"
+    "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-a6c47a1860dedb3c037e.js"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "08b568d7504c4363894fb3e8a2f95dd4"
+    "revision": "37cbf3b049784b98349d1f5f3d81519d"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 workbox.routing.registerRoute(/(\.js$|\.css$|static\/)/, new workbox.strategies.CacheFirst(), 'GET');
 workbox.routing.registerRoute(/^https?:.*\page-data\/.*\/page-data\.json/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
+workbox.routing.registerRoute(/^https?:.*\/page-data\/app-data\.json/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
 workbox.routing.registerRoute(/^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
 workbox.routing.registerRoute(/^https?:\/\/fonts\.googleapis\.com\/css/, new workbox.strategies.StaleWhileRevalidate(), 'GET');
 
 /* global importScripts, workbox, idbKeyval */
-
-importScripts(`idb-keyval-iife.min.js`)
+importScripts(`idb-keyval-3.2.0-iife.min.js`)
 
 const { NavigationRoute } = workbox.routing
 
@@ -173,7 +137,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-036dbf6e61c489a1c797.js`))) {
+  if (!resources || !(await caches.match(`/app-e2675465404ebc9110f2.js`))) {
     return await fetch(event.request)
   }
 
