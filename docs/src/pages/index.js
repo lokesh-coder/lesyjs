@@ -83,7 +83,7 @@ const IndexPage = ({ data }) => {
             <Example
               icon="terminal-window-line"
               step="1"
-              title="Install termo CLI globally"
+              title="Install lesy CLI globally"
               lang="shell"
             />
             <Example

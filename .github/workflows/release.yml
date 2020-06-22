@@ -63,6 +63,8 @@ jobs:
 
             - name: DOCS - build
               run: npm run build-docs
+              env:
+                  GH_TOKEN: ${{ secrets.DOC_README_FETCH }}
 
             - name: DOCS - publish
               uses: peaceiris/actions-gh-pages@v3
