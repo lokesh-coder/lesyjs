@@ -4,15 +4,15 @@ path: /docs/get-started/overview
 icon: user-smile-fill
 ---
 
-Lesy js is a flexible lighweight CLI framework to build modern command line apps without too much boilerplate.
+Lesy js is a flexible lightweight CLI framework to build modern command line apps without too much boilerplate.
 
-If you have already used comamnder, yargs, gluegun, then lesy js will definietlry give you a new experince and you will feel the differnce.
+If you have already used commander, yargs, gluegun, then lesy js will definitely give you a new experience and you will feel the difference.
 
 ### Few things to consider Lesy for your next project
 
 - **Language**: Full support for Typescript with @types
 - **Boilerplate**: Write less code. whether its a dead simple project or complex one.
-- **Flexibility**: Able to change complete behavior with middlewares
+- **Flexibility**: Able to change complete behaviour with middlewares
 - **Extensions**: Add cool functionalities with plugins
 - **Platform**: Write once and run in CLI or UI
 - **Performance**: It is just faster than existing libraries. Benchmark inside.
