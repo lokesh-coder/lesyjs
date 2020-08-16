@@ -17,6 +17,7 @@ module.exports = {
     "types",
     "docs",
     "templates",
+    "packages/plugins/lesy-plugin-demo",
   ],
   globals: {
     "ts-jest": {

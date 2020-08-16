@@ -197,6 +197,7 @@
   }
 
   pre[class*="language-"].line-numbers > code {
+    line-height: 26px;
     position: relative;
     white-space: inherit;
   }
@@ -211,6 +212,7 @@
     left: 15px !important;
     width: 3em; /* works for line-numbers below 1000 lines */
     letter-spacing: -1px;
+    line-height: 26px;
     border-right: 1px solid #f5f7fa;
 
     -webkit-user-select: none;

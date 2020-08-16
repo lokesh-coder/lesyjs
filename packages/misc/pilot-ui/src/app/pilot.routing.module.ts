@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
 import { HelpPage, RunPage, CommandsPage, ConfigPage } from "./pages";
+import { ProjectsPage } from "./pages/projects/projects.page";
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: "commands/:id",
     component: CommandsPage,
+  },
+  {
+    path: "projects",
+    component: ProjectsPage,
   },
   {
     path: "run",

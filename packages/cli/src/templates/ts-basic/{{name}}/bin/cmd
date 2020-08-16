@@ -8,4 +8,4 @@ const options = {
   root: path.resolve(__dirname, "../"),
 };
 
-lesy(options).parse();
+exports.default = lesy(options).parse();

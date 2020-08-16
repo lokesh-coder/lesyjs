@@ -3,6 +3,10 @@ export class SetConsolePanelHeight {
   constructor(public height: number) {}
 }
 
+export class SetConsolePanelFullScreen {
+  static readonly type = "[Console Panel] full screen";
+}
+
 export class ToggleConsolePanel {
   static readonly type = "[Console Panel] toggle panel";
 }

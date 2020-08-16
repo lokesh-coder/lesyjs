@@ -9,12 +9,12 @@
     >
     <div [ngSwitch]="question.controlType">
       <div
-        class="flex flex-wrap items-stretch w-full mb-4 relative focus-within:border-vio-500 border border-gray-500 rounded-sm bg-gray-100"
+        class="flex flex-wrap items-stretch w-full mb-4 relative focus-within:border-vio-500 border border-gray-500 bg-gray-100 rounded-md"
         *ngSwitchCase="'textbox'"
       >
         <div class="flex">
           <span
-            class="flex items-center leading-normal bg-gray-lighter rounded rounded-r-none  px-2 whitespace-no-wrap text-grey-dark text-sm"
+            class="flex items-center leading-normal bg-gray-lighter rounded rounded-r-none px-2 whitespace-no-wrap text-grey-dark text-sm"
             ><i class="ri-keyboard-box-fill text-2xl text-gray-500"></i
           ></span>
         </div>

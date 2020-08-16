@@ -5,5 +5,6 @@ export default {
       const { stack } = data.cmdRunError;
       console.log(stack);
     }
+    return data;
   },
 };

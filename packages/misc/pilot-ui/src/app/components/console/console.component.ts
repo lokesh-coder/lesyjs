@@ -9,8 +9,8 @@ import { AddLog, ReverseLogs } from "../../store/actions/logs.actions";
   templateUrl: "./console.template.html",
 })
 export class ConsoleComponent implements OnInit {
-  @Select(state => state.logs.logs)
-  logs$: Observable<string[]>;
+  @Select((state) => state.logs.logs)
+  logs$: Observable<Array<Array<string | number>>>;
 
   constructor(private store: Store, private actions$: Actions) {}
 
@@ -30,5 +30,9 @@ export class ConsoleComponent implements OnInit {
           behavior: "smooth",
         });
       });
+  }
+
+  formatTime(ts: number) {
+    return new Date(ts).toLocaleTimeString();
   }
 }

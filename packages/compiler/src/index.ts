@@ -81,9 +81,10 @@ class LesyCompiler {
 
     return {
       parse: (argv: string[]) =>
-        lesy.then((l: typeof LesyCoreClass) =>
-          l.run(argv || process.argv.slice(2)),
-        ),
+        lesy.then((l: typeof LesyCoreClass) => {
+          if (global["lesyWorkspace"]) return l;
+          return l.run(argv || process.argv.slice(2));
+        }),
     };
   }
 

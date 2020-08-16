@@ -1,5 +1,4 @@
 export default {
-  name: "default",
   description: `Lesy CLI Framework`,
   run: ({ utils, feature }) => {
     const chalk = utils.color();

@@ -12,7 +12,7 @@ Command is a core part of lesy. You can create and add commands in multiple ways
 - Run multi-level sub commands
 - Run another command programatically
 - Parse and validate arguments and flags
-- Use features from app or plugins
+- Use features and utils from app or plugins
 
 ### Types of commands
 
@@ -22,8 +22,8 @@ Command can be an `Object`, `Function` or `Class` .
 
 ```typescript
 {
-    name:"hello",
-    run:()=>console.log("Hello Buddy!")
+    name: "hello",
+    run: () => console.log("Hello Buddy!")
 }
 ```
 
@@ -92,21 +92,27 @@ export default {
 };
 ```
 
+> If you want to exclude one or more files, you can simply add `_` prefix to the file name. For example, `/commands/_greeting.js`
+
 ### Anatomy of command
 
-The only required properties for a command is `name` and `run` . Everything else is optional and used for other purposes.
+The only required property for a command is `run` . Everything else is optional.
 
 #### name
 
 It refers the name of the command. It should be unique and short. Hyphen `-` is allowed.
 
+#### description
+
+This is a command description used by help and other plugins.
+
 #### run
 
-This function or method will be executed when this command is triggered.
+It is a function which will be executed when this command is triggered.
 
 #### aliases
 
-Command can have multiple alias. Please make sure you are not using the same alias in the another command
+Command can have multiple aliases. Please make sure you are not using the same alias in the another command
 
 ```typescript
 {
@@ -124,14 +130,15 @@ Command can have multiple alias. Please make sure you are not using the same ali
 
 #### args
 
-These are the arguments schema. This has inbuild validation. [refer](foobar) [](/)Validator helper.
+These are the arguments schema. This has inbuild validation. [refer](foobar) Validator helper.
 
 ```typescript
 {
     name:"hello",
     args:{
         username:{
-            required:true
+            required:true,
+            requiredError:"Please provide username",
         },
         age:{}
     },
@@ -173,14 +180,14 @@ $ node bin/cmd hello // THROWS ERROR
 */
 ```
 
-#### extra
+#### additionalInfo
 
-This extra text will be used by other plugins and middlewares. Originally, use case is for showing extra info about the command in help or pilot command
+This extra text will be used by other plugins and middlewares. Originally, use case is for showing info about the command in help or pilot command
 
 ```typescript
 {
     name:"delete",
-    extra:"this command will delete all files. run with caution.",
+    additionalInfo:"this command will delete all files. run with caution.",
     run:()=>{}
 }
 ```
@@ -200,10 +207,6 @@ When you have sub commands, main should refer to parent command name.
 $ node bin/cmd generate component
 */
 ```
-
-#### description
-
-This is a command description used by help and other plugins.
 
 #### usage
 
@@ -245,6 +248,10 @@ The `run` method provides various data about the command and app.
     }
 }
 ```
+
+#### data.utils
+
+todo
 
 ### Sub commands
 
@@ -298,7 +305,7 @@ Please dont use parent name aliases
 
 ### Default command
 
-By default **lesy** look for command named `default` if no args supplied in the input. If you would like to run different command as a default command, set it in the config.
+By default **lesy** looks for command named `default` if no args supplied in the input. If you would like to run different command as a default command, set it in the config.
 
 ```typescript
 {

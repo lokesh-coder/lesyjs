@@ -22,12 +22,15 @@ import { CopyDirective } from "./directives/copy/copy.directive";
 
 /* Pages */
 import { CommandsPage } from "./pages/commands/commands.page";
+import { ProjectsPage } from "./pages/projects/projects.page";
 import { HelpPage } from "./pages/help/help.page";
 import { RunPage } from "./pages/run/run.page";
 import { SettingsPage } from "./pages/settings/settings.page";
 import { ConfigPage } from "./pages/config/config.page";
 
 /* States */
+import { ProjectsState } from "./store/states/projects.state";
+import { ProjectState } from "./store/states/project.state";
 import { CommandsState } from "./store/states/commands.state";
 import { CommandState } from "./store/states/command.state";
 import { CommonState } from "./store/states/common.state";
@@ -61,6 +64,7 @@ import { environment } from "../environments/environment.prod";
     SettingsPage,
     RunPage,
     CommandsPage,
+    ProjectsPage,
     ConfigPage,
     HelpPage,
     SafeHtmlPipe,
@@ -72,6 +76,8 @@ import { environment } from "../environments/environment.prod";
     ToppyModule,
     NgxsModule.forRoot(
       [
+        ProjectsState,
+        ProjectState,
         CommandsState,
         CommandState,
         CommonState,

@@ -128,6 +128,7 @@ class LesyCommand {
   }
 
   private normalizeCmdNames(cmd) {
+    if (!cmd.name) cmd.name = "default";
     const names = [cmd.name, ...cmd.aliases].map((n: string) =>
       this.normalizeStr(n),
     );

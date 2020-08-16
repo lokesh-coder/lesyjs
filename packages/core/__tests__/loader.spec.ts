@@ -12,8 +12,8 @@ jest.mock("../src/middleware");
 
 describe("LESY:Loader", () => {
   describe.each(["js", "ts"])("test %s", (flavor: string) => {
-    let p;
-    let d;
+    let p: Function;
+    let d: Function;
     let loader: LesyLoader;
     const addCmdRawObjSpy = jest.fn();
     const featAddSpy = jest.fn();
@@ -67,6 +67,11 @@ describe("LESY:Loader", () => {
             x.includes("/dummydir/dir0/file"),
           ).length,
         ).toEqual(2);
+      });
+
+      it("should exclude file with _ prefix", () => {
+        expect(loader["isAllowedFile"](p`dummy.file`)).toBeTruthy();
+        expect(loader["isAllowedFile"](p`_dummy.file`)).toBeFalsy();
       });
 
       it("should exclude invalid files", () => {

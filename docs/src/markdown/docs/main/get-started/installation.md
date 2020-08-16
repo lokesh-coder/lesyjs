@@ -4,9 +4,9 @@ path: /docs/get-started/installation
 icon: folder-download-fill
 ---
 
-Setting up Lesy is pretty simple and straightforward.
+Setting up Lesy is pretty simple and straightforward. And there are two ways to do that. Use **Lesy CLI** or do it manually.
 
-### Generate project with CLI
+### Scaffold project with CLI
 
 One easy way is using `npx` to generate project boilerplate with one command.
 
@@ -42,7 +42,7 @@ lesy my-cli --yes
 
 ### Project structure
 
-Here's how the project structure look like, after the project is generated
+Here's how the project structure look like, after the project is created
 
 ```
 my-cli
@@ -61,7 +61,7 @@ my-cli
 
 ### Manual setup
 
-Actually manual set up is also easy.
+If you are creating a simple CLI project and dont want too many directories, then its pretty simple.
 
 **Step 1**: Create new node project:
 
@@ -76,28 +76,35 @@ cd my-cli
 npm install @lesy/compiler
 ```
 
-**Step 3**: Create `executable` bin file `my-cli/bin/cmd`
+**Step 3**: Create main `index.(js|ts)` file
 
 ```js
 #!/usr/bin/env node
 
-const path = require("path");
 const lesy = require("@lesy/compiler");
 
 lesy({
-  root: path.resolve(__dirname, "../"),
-  commands:[...],
+  root: __dirname,
+  commands: [
+    {
+      name: "default",
+      run: () => console.log("hello"),
+    },
+    "./src/commands",
+  ],
   /* ...other props */
 }).parse();
 ```
 
-**Step 4**: Update executable file name in `package.json` file
+**Step 4**: Update bin property in `package.json` file
 
 ```json
 {
   "name": "my-cli",
   "bin": {
-    "mycli": "bin/cmd"
+    "mycli": "index.js"
   }
 }
 ```
+
+its done!
