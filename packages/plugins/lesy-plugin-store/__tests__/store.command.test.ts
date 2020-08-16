@@ -24,7 +24,7 @@ describe("@lesy/lesy-plugin-store", () => {
     afterEach(() => {
       store.clear();
     });
-    fit("should show no keys found if no keys exist", async () => {
+    it("should show no keys found if no keys exist", async () => {
       const response = await testBed.run(["store"]);
       expect(response).toContain("No keys found");
     });
