@@ -53,13 +53,15 @@ p {
 }
 
 .content h4 {
-  @apply my-10;
+  @apply mb-4;
+  @apply mt-10;
   @apply text-gray-800;
   @apply tracking-tighter;
   @apply font-semibold;
   @apply border-l-4;
   @apply border-gray-800;
   @apply pl-4;
+  @apply leading-none;
 }
 
 .content h4 a {
@@ -89,4 +91,35 @@ p {
 
 .gatsby-highlight {
   @apply mt-8;
+}
+
+blockquote {
+  @apply p-4;
+  @apply rounded-md;
+  @apply text-sm;
+  @apply font-medium;
+  @apply flex;
+  @apply bg-blue-100;
+  @apply text-blue-600;
+  @apply border;
+  @apply border-blue-200;
+}
+
+blockquote:before {
+  content: "\EE59";
+  @apply text-blue-300;
+  @apply text-2xl;
+  @apply mr-5;
+  @apply self-center;
+  font-family: "remixicon" !important;
+}
+
+blockquote p {
+  @apply m-0;
+  @apply inline;
+}
+
+blockquote code.language-text.language-text {
+  @apply bg-transparent;
+  font-weight: 400 !important;
 }

@@ -58,7 +58,7 @@ export default {
 This command will create a files in the destination folder. And the output file looks like,
 
 ```html
-<!-- dpath/to/estination/welcome.html -->
+<!-- path/to/estination/welcome.html -->
 <h1>Hello John</h1>
 ```
 

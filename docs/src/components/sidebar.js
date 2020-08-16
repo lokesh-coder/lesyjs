@@ -12,12 +12,12 @@ const MenuLinks = ({ allContent }) => {
           <li className="mb-1">
             <Link
               to={`${fm.path}`}
-              className="text-gray-600 font-medium flex text-base"
+              className="text-gray-600 font-medium flex text-base hover:text-gray-800 group"
               activeClassName="active text-primary"
               partiallyActive={true}
             >
               <i
-                className={`mr-3 text-lg text-gray-600 active:text-primary ri-${fm.icon}`}
+                className={`mr-3 text-lg text-gray-600 active:text-primary group-hover:text-gray-800 ri-${fm.icon}`}
               ></i>
               <span className="flex-1">{fields.title}</span>
               {fm.skip && <i class="ri-anchor-fill"></i>}

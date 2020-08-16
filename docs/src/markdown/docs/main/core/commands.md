@@ -92,6 +92,8 @@ export default {
 };
 ```
 
+> If you want to exclude one or more files, you can simply add `_` prefix to the file name. For example, `/commands/_greeting.js`
+
 ### Anatomy of command
 
 The only required property for a command is `run` . Everything else is optional.

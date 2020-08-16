@@ -9,11 +9,12 @@ Lesy is just a simple lightweight CLI framework helps you to build modern and pe
 Whether you are building a dead simple app or more advanced app, Lesy lets you to write less code and get more. Here's the sample code for classic Hello world example.
 
 ```js
-const lesy = require("@lesy/compiler");
+#!/usr/bin/env node
 
-lesy({
-  commands: [{ run: () => console.log("hello world") }],
-}).parse();
+const lesy = require("@lesy/compiler");
+const commands = [{ run: () => console.log("hello world") }];
+
+lesy({ commands }).parse();
 ```
 
 ### Why Lesy?
@@ -29,7 +30,7 @@ lesy({
 
 ### Lesy playground
 
-We have a setup a _playground_ for you to play around with it.
+We have setup a _playground_ for you to play around with it.
 
 [Pilot Playground](https://codesandbox.io/s/lesy-pilot-playground-hzjgw?fontsize=14&hidenavigation=1&view=preview)
 

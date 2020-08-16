@@ -28,7 +28,7 @@ describe("CLI", () => {
     });
   });
 
-  it("should log proper outout", async () => {
+  it("should log proper output", async () => {
     let response = await testBed.run(["hello"]);
     expect(response).toContain("hello yoyo!");
   });

@@ -70,14 +70,8 @@ const githubAPIOptions = {
 				issues {
 					totalCount
 				}
-				stargazers(first: 100) {
-					edges {
-						node {
-							name
-							login
-							avatarUrl
-						}
-					}
+				stargazers {
+					totalCount
 				}
 				collaborators(first: 100) {
 					edges {
