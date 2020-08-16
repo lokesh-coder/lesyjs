@@ -193,6 +193,7 @@ class LesyLoader {
   }
 
   private isAllowedFile(path: string) {
+    if (path.startsWith("_")) return false;
     const ext = path.split(".");
     const lastIndex = ext.length - 1;
     if (process.env.LESY_LANG === "js") {
