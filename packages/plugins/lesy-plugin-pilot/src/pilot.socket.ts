@@ -1,35 +1,35 @@
 import { Server } from "ws";
 import { Subject } from "rxjs";
-const stringify = require("json-stringify-safe");
+import jsonStringifySafe from "json-stringify-safe";
 
 export class WebSocketBus {
   private ws: Server;
   private receiver: Subject<any> = new Subject();
   private sender: Subject<any> = new Subject();
-  private requests;
+  private requests: object;
   constructor() {}
 
-  startServer(host, port) {
+  startServer(host: string, port: number) {
     this.ws = new Server({ host, port });
     this.ws.on("open", this.onConnectionOpen);
     this.ws.on("close", this.onConnectionClosed);
     return this;
   }
 
-  init(requests) {
+  init(requests: object) {
     this.requests = requests;
     this.ws.on("connection", (ws: any) => {
       this.sender.subscribe((a: any) => {
         ws.send(JSON.stringify(a));
       });
-      ws.on("message", message =>
+      ws.on("message", (message: string) =>
         this.onMessageReceived.call(this, message, ws),
       );
     });
     return this;
   }
 
-  sendMessage(message) {
+  sendMessage(message: string) {
     this.sender.next(message);
   }
 
@@ -54,6 +54,6 @@ export class WebSocketBus {
     this.receiver.next(data);
     if (!this.requests[data.REQUEST]) return;
     const response = await this.requests[data.REQUEST](data.PAYLOAD);
-    if (response) ws.send(stringify(response));
+    if (response) ws.send(jsonStringifySafe(response));
   }
 }
