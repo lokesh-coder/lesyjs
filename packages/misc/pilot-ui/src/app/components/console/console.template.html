@@ -22,10 +22,18 @@
         <p class="text-center text-sm">Console panel</p>
       </div>
     </div>
-    <div class="pt-6 h-auto  text-green-200 font-mono " id="console">
-      <pre class="bg-console-bg p-4 h-auto text-white" #consoleEl>
-<span *ngFor="let log of (logs$|async)" [innerHTML]="log|safeHtml"></span>
-</pre>
+    <div class="pt-6 h-auto text-green-200 font-mono" id="console">
+      <div class="bg-console-bg p-4 h-auto text-white" #consoleEl>
+        <ng-container *ngFor="let log of (logs$|async)">
+          <div class="flex">
+            <div
+              class="w-24 mr-2 opacity-50"
+              [innerHTML]="formatTime(log[0])"
+            ></div>
+            <pre [innerHTML]="log[1]|safeHtml"></pre>
+          </div>
+        </ng-container>
+      </div>
     </div>
   </div>
 </div>

@@ -18,6 +18,11 @@ export interface CommandModel {
   group: string;
 }
 
+export interface ProjectModel {
+  name: string;
+  path: string;
+}
+
 export interface RunnerModel {
   name: string;
   description: string;
@@ -48,6 +53,6 @@ export enum LogsDirection {
 }
 
 export interface LogsModel {
-  logs: string[];
+  logs: Array<Array<string | number>>;
   direction: LogsDirection;
 }

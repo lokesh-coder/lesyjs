@@ -5,9 +5,9 @@
   <ng-container *ngIf="consoleStatus$|async as consoleStatus">
     <li
       (click)="toggleConsole()"
-      class="flex items-center p-3 cursor-pointer  text-gray-600 hover:text-vio-500"
-      [class.hidden]="consoleStatus=='OPEN'"
-      tooltip="open console"
+      class="flex items-center p-3 cursor-pointer text-gray-600 hover:text-vio-500"
+      [class.hidden]="consoleStatus=='OPEN' || consoleStatus=='FULLSCREEN'"
+      tooltip="show console"
     >
       <i class="ri-eye-line leading-none text-xl"></i>
     </li>
@@ -15,9 +15,9 @@
       (click)="toggleConsole()"
       class="flex items-center p-3 cursor-pointer text-gray-600 hover:text-vio-500"
       [class.hidden]="consoleStatus=='CLOSED'"
-      tooltip="close console"
+      tooltip="hide console"
     >
-      <i class="ri-eye-off-line leading-none text-xl "></i>
+      <i class="ri-eye-off-line leading-none text-xl"></i>
     </li>
     <li
       (click)="clearLogs()"
@@ -35,6 +35,14 @@
       [class.hidden]="consoleStatus=='CLOSED'"
     >
       <i class="ri-exchange-box-line rotate-90 leading-none text-xl"></i>
+    </li>
+    <li
+      (click)="setConsoleFullScreen()"
+      tooltip="Full screen"
+      class="flex items-center p-3 cursor-pointer text-gray-600 hover:text-vio-500"
+      [class.hidden]="consoleStatus=='CLOSED' || consoleStatus=='FULLSCREEN'"
+    >
+      <i class="ri-fullscreen-fill leading-none text-xl"></i>
     </li>
   </ng-container>
   <li class="flex items-center ml-auto">
@@ -74,7 +82,7 @@
         >
           <span
             class="font-bold text-yellow-900 bg-yellow-500 text-xs rounded px-2 py-1 mr-2 uppercase"
-            style="line-height: 14px"
+            style="line-height: 14px;"
             >{{keys[0]}}{{keys[1]}}
           </span>
           <span class="text-gray-500 text-base"> {{keys[2]}}</span>

@@ -1,0 +1,9 @@
+<div class="w-full sm:w-2/3 mx-auto px-6 sm:px-0">
+  <div
+    *ngFor="let project of (projects$|async)"
+    class="p-3"
+    (click)="switchProject(project)"
+  >
+    {{project.name}}
+  </div>
+</div>

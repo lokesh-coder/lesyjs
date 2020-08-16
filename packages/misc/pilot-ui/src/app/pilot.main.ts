@@ -18,6 +18,7 @@ import { ToppyControl, Toppy, GlobalPosition, InsidePlacement } from "toppy";
 import { NotificationModel } from "./pilot.models";
 import { ToastComponent } from "./components";
 import { Hotkeys } from "./services/hotkeys.service";
+import { FetchDefaultProject } from "./store/actions/project.actions";
 
 const HOTKEY = "`";
 
@@ -48,6 +49,7 @@ export class PilotMain implements OnInit {
     this.store.dispatch(new LoadLogs());
     this.store.dispatch(new LoadConfig());
     this.store.dispatch(new ListenForNotification());
+    this.store.dispatch(new FetchDefaultProject());
 
     this.notification$.subscribe((n) => {
       if (!n.message) {

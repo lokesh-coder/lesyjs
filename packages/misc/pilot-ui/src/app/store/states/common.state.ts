@@ -7,6 +7,7 @@ import {
   ToggleConsolePanel,
   SetConfig,
   LoadConfig,
+  SetConsolePanelFullScreen,
 } from "../actions/common.actions";
 import { CommonService } from "../../services/common.service";
 import { mergeMap } from "rxjs/operators";
@@ -36,6 +37,12 @@ export class CommonState {
     ctx.setState({ ...state, consoleHeight: action.height });
   }
 
+  @Action(SetConsolePanelFullScreen)
+  setFullscreen(ctx: StateContext<CommonModel>) {
+    const state = ctx.getState();
+    ctx.setState({ ...state, consoleHeight: 100 });
+  }
+
   @Action(ToggleConsolePanel)
   togglePanel(ctx: StateContext<CommonModel>) {
     const state = ctx.getState();
@@ -49,7 +56,7 @@ export class CommonState {
     this.commonService.requestConfig();
     return this.commonService
       .onRequestConfig()
-      .pipe(mergeMap(config => ctx.dispatch(new SetConfig(config))));
+      .pipe(mergeMap((config) => ctx.dispatch(new SetConfig(config))));
   }
 
   @Action(SetConfig)

@@ -1,3 +1,4 @@
+export { ProjectsState } from "./projects.state";
 export { CommandsState } from "./commands.state";
 export { CommandState } from "./command.state";
 export { CommonState } from "./common.state";

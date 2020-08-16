@@ -23,23 +23,21 @@ export class LogsState {
   loadLogs(ctx: StateContext<LogsModel>) {
     return this.logsService
       .getLogs()
-      .pipe(mergeMap(log => ctx.dispatch(new AddLog(log))));
+      .pipe(mergeMap((log) => ctx.dispatch(new AddLog(log))));
   }
 
   @Action(AddLog)
   addLog(ctx: StateContext<LogsModel>, action: AddLog) {
     const state = ctx.getState();
     const pushStratergy = state.direction === "DESC" ? "push" : "unshift";
-    state.logs[pushStratergy](
-      `[${new Date().toLocaleTimeString()}] ${action.log}`,
-    );
+    state.logs[pushStratergy]([Date.now(), action.log]);
     ctx.setState(state);
   }
 
   @Action(ClearLogs)
   ClearLogs(ctx: StateContext<LogsModel>) {
     const state = ctx.getState();
-    ctx.setState({ ...state, logs: ["logs cleared!\n"] });
+    ctx.setState({ ...state, logs: [[Date.now(), "logs cleared!\n"]] });
   }
 
   @Action(ReverseLogs)
