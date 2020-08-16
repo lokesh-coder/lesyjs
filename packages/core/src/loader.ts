@@ -1,5 +1,5 @@
 import { lstatSync, readdirSync, statSync } from "fs";
-import { join } from "path";
+import { join, sep } from "path";
 
 import { LesyCommand } from "./command";
 import { LesyFeature } from "./feature";
@@ -193,7 +193,9 @@ class LesyLoader {
   }
 
   private isAllowedFile(path: string) {
-    if (path.startsWith("_")) return false;
+    const pathSegments = path.split(sep);
+    const fileName = pathSegments[pathSegments.length - 1];
+    if (fileName.startsWith("_")) return false;
     const ext = path.split(".");
     const lastIndex = ext.length - 1;
     if (process.env.LESY_LANG === "js") {
