@@ -52,10 +52,8 @@ const IndexPage = ({ data }) => {
               CLI Framework
             </h1>
             <p className="mb-8">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. A
-              suscipit distinctio saepe pariatur nisi, dolorum culpa maiores.
-              Amet, optio! Cum corrupti a itaque eos aspernatur aperiam fugiat
-              fugit perspiciatis dolorum.
+              Lesy js is a super flexible lightweight CLI framework to build
+              modern command line apps without too much boilerplate.
             </p>
             <section className="text-sm text-subtext mb-8">
               {features.map((f) => (
@@ -71,7 +69,7 @@ const IndexPage = ({ data }) => {
               </Link>
               <Link
                 className="bg-gray-100 text-gray-600 py-3 px-6 rounded-full font-medium inline-flex text-sm items-center hover:bg-gray-200"
-                to="/"
+                to="https://github.com/lokesh-coder/lesyjs"
               >
                 <i className="ri-github-fill mr-2 text-lg"></i> Repository
               </Link>

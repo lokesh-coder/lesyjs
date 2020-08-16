@@ -66,15 +66,15 @@ This command will create a files in the destination folder. And the output file 
 
 Once the plugin is installed and added to index file, we can access the `generator` function from the `features`. It has only one method called `create`, which accepts the following options.
 
-#### `source`
+#### source
 
 The source path for the templates. Should be a absolute path.
 
-#### `destination`
+#### destination
 
 The destination path for the compiled files.Should be a absolute path.
 
-#### `data`
+#### data
 
 We can pass the dynamic data to the templates using `data` option. It is a plain object. All the keys will be replaced with the value in the template files.
 

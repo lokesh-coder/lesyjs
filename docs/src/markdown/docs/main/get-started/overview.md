@@ -4,33 +4,39 @@ path: /docs/get-started/overview
 icon: user-smile-fill
 ---
 
-Lesy js is a flexible lightweight CLI framework to build modern command line apps without too much boilerplate.
+Lesy is just a simple lightweight CLI framework helps you to build modern and performant command line apps. Thats all!
 
-If you have already used commander, yargs, gluegun, then lesy js will definitely give you a new experience and you will feel the difference.
+Whether you are building a dead simple app or more advanced app, Lesy lets you to write less code and get more. Here's the sample code for classic Hello world example.
 
-### Few things to consider Lesy for your next project
+```js
+const lesy = require("@lesy/compiler");
+
+lesy({
+  commands: [{ run: () => console.log("hello world") }],
+}).parse();
+```
+
+### Why Lesy?
 
 - **Language**: Full support for Typescript with @types
-- **Boilerplate**: Write less code. whether its a dead simple project or complex one.
 - **Flexibility**: Able to change complete behaviour with middlewares
+- **Boilerplate**: Write less code. whether its a dead simple project or complex one.
 - **Extensions**: Add cool functionalities with plugins
 - **Platform**: Write once and run in CLI or UI
 - **Performance**: It is just faster than existing libraries. Benchmark inside.
 - **Testing**: Dedicated testing setup for unit test and integration test
-- **Lot more**: Features, sub commands, existing plugins, Boilerplate generator...
+- **Lot more**: Features, sub commands, existing plugins, boilerplate generator...
 
-### Try Lesy before installing
+### Lesy playground
 
 We have a setup a _playground_ for you to play around with it.
 
-[![Edit lesy-pilot-playground](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/lesy-pilot-playground-hzjgw?fontsize=14&hidenavigation=1&view=preview)
+[Pilot Playground](https://codesandbox.io/s/lesy-pilot-playground-hzjgw?fontsize=14&hidenavigation=1&view=preview)
 
-### Why is the name Lesy?
+### What is the meaning of Lesy?
 
-Well, there is no specific meaning for Lesy. The whole project is build with the mindset of simple and easy. Whether it is a code or documentation or name or logo, everything should be simple and easy. Name **Lesy** sounds cool and short.
+Well, there is no specific meaning for Lesy. The whole project is build with the mindset of simple and easy. Whether it is a code or documentation or name or logo, everything should be simple. **Lesy** sounds cool and short.
 
 Same way, it is not related to penguin logo. Penguin is cute right? Lets make that as a logo and name it Lesy!!
 
-<br/>
-
-You should give it a try!
+Give it a try, you will like Lesy!

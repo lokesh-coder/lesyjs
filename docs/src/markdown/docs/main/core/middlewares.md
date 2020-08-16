@@ -4,7 +4,7 @@ path: /docs/core/middlewares
 icon: fire-fill
 ---
 
-Middlewares are special type of hooks, to inject new functionality or change tge behaviour of the command flow. For instance, if you want to redirect the command, or validate the middleware can be hooked in to specific points in the flow. Basically, they are simple functions which will be execute at the runtime.
+Middlewares are special type of hooks, to inject new functionality or change the behaviour of the command flow. For instance, if you want to redirect the command or validate, the middleware can be hooked in to specific points in the flow. Basically, they are simple functions which will be execute at specific point during runtime.
 
 ### Hook points
 
@@ -34,11 +34,10 @@ export default {
 Add the middleware file in the **index.ts** file.
 
 ```typescript
-let argv = process.argv.slice(2);
 let commands = [...];
 let middlewares = [`${__dirname}/middlewares/start.ts`];
 
-export { argv, commands, middlewares };
+export { commands, middlewares };
 ```
 
 Middleware should return the input data to continue the flow.
@@ -76,9 +75,9 @@ This will run after loading all commands and plugins. The run context will have 
 ```typescript
 export default {
   on: "START",
-  run: (data) => {
-    console.log(data.cmds);
-    return data;
+  run: (ctx) => {
+    console.log(ctx.cmds);
+    return ctx;
   },
 };
 ```
@@ -90,14 +89,14 @@ This will run before parsing raw argv input. At this point you can change **argv
 ```typescript
 export default {
   on: "PRE_PARSE",
-  run: (data) => {
-    // data.argv    - raw input argv values
-    // data.root    - root path
-    // data.config  - config object
-    // data.utils   - colors() and spinner() object
-    // data.feature - all features
-    // data.request - oject of dynamic actions
-    return data;
+  run: (ctx) => {
+    // ctx.argv    - raw input argv values
+    // ctx.root    - root path
+    // ctx.config  - config object
+    // ctx.utils   - colors() and spinner() object
+    // ctx.feature - all features
+    // ctx.request - oject of dynamic actions
+    return ctx;
   },
 };
 ```
@@ -109,17 +108,17 @@ Run after parsing raw argv values.
 ```typescript
 export default {
   on: "PRE_PARSE",
-  run: (data) => {
-    // data.argv    - raw input argv values
-    // data.root    - root path
-    // data.config  - config object
-    // data.utils   - colors() and spinner() object
-    // data.feature - all features
-    // data.request - oject of dynamic actions
+  run: (ctx) => {
+    // ctx.argv    - raw input argv values
+    // ctx.root    - root path
+    // ctx.config  - config object
+    // ctx.utils   - colors() and spinner() object
+    // ctx.feature - all features
+    // ctx.request - oject of dynamic actions
 
-    // data.args    - resolved args
-    // data.flags   -  resolved flags
-    return data;
+    // ctx.args    - resolved args
+    // ctx.flags   -  resolved flags
+    return ctx;
   },
 };
 ```
@@ -131,9 +130,9 @@ Once lesy found the right command to execute, it will pass the command object to
 ```typescript
 export default {
   on: "PRE_VALIDATE",
-  run: (data) => {
-    console.log(data);
-    return data;
+  run: (ctx) => {
+    console.log(ctx);
+    return ctx;
   },
 };
 ```
@@ -171,30 +170,31 @@ After validation passes, **pre_run** will be executed will all the necessary inf
 ```typescript
 export default {
   on: "PRE_RUN",
-  run: (data) => {
-    // data.argv    - raw input argv values
-    // data.root    - root path
-    // data.config  - config object
-    // data.utils   - colors() and spinner() object
-    // data.feature - all features
-    // data.request - oject of dynamic actions
-    // data.args    - resolved args
-    // data.flags   -  resolved flags
-    // data.rest   -  unknown args
-    return data;
+  run: (ctx) => {
+    // ctx.argv    - raw input argv values
+    // ctx.root    - root path
+    // ctx.config  - config object
+    // ctx.utils   - colors() and spinner() object
+    // ctx.feature - all features
+    // ctx.request - oject of dynamic actions
+    // ctx.args    - resolved args
+    // ctx.flags   -  resolved flags
+    // ctx.rest   -  unknown args
+    return ctx;
   },
 };
 ```
 
 ### END - Hook
 
-This hook will run at the end of the command flow. There is no run context. Thus no need of return statement.
+This hook will run at the end of the command flow.
 
 ```typescript
 export default {
   on: "END",
-  run: () => {
+  run: (ctx) => {
     console.log("Command ran successfully!");
+    return ctx;
   },
 };
 ```
