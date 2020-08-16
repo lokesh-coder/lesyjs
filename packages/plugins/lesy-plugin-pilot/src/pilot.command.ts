@@ -79,7 +79,10 @@ export default class PilotCommand {
 
   private getAllProjects(): any[] {
     const projectNames = Object.keys(global.lesyWorkspace);
-    return projectNames.map((name: string) => ({ name }));
+    return projectNames.map((key: string) => {
+      const details = global.lesyWorkspace[key].feature.pkg;
+      return details;
+    });
   }
 
   private switchProject(name: string): void {

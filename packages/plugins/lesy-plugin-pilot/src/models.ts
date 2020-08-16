@@ -1,5 +1,5 @@
 export interface LesyWorkSpace {
-  [key: string]: string;
+  [key: string]: any;
 }
 
 export interface SocketInputData {
