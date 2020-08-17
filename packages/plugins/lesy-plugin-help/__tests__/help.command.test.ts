@@ -1,5 +1,7 @@
 import { LesyTestBed } from "@lesy/testbed";
 import { resolve } from "path";
+// tslint:disable-next-line: import-name
+import PluginData from "../src";
 
 describe("@lesy/lesy-plugin-help", () => {
   let testBed;
@@ -8,8 +10,9 @@ describe("@lesy/lesy-plugin-help", () => {
       isTypescriptApp: true,
       loadDefaultPlugins: false,
       root: resolve(__dirname, "../"),
+
       commands: [
-        resolve(__dirname, "../src/help.command.ts"),
+        ...PluginData.commands,
         {
           name: "hello",
           description: "this is hello desc",
@@ -58,7 +61,7 @@ describe("@lesy/lesy-plugin-help", () => {
           },
         },
       ],
-      middlewares: [resolve(__dirname, "../src/help.middleware.ts")],
+      middlewares: [...PluginData.middlewares],
       features: [resolve(__dirname, "./fixtures/help.feature.ts")],
       config: {
         defaultCmd: "default",
