@@ -5,8 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "clean": "rm -rf ./dist",
-    "copy-templates": "copyfiles -f ./src/templates/**/* ./dist/templates",
-    "build": "npm run clean && tsc --build tsconfig.json && npm run copy-templates",
+    "build": "npm run clean && tsc --build tsconfig.json",
     "test": "jest"
   },
   "bin": {
@@ -27,6 +26,6 @@
   "keywords": [
     "lesy"
   ],
-  "author": {},
+  "author": "",
   "license": "MIT"
 }
