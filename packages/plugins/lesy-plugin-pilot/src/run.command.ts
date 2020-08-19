@@ -1,5 +1,3 @@
-import execa from "execa";
-
 export default {
   name: "run",
   description: "Run shell command",
@@ -12,6 +10,7 @@ export default {
   visibleInList: false,
 
   async run({ args, utils }) {
+    const execa = require("execa");
     const chalk = utils.color();
     console.log(`${chalk.green("running")} > ${chalk.gray(args.command)}`);
     const [main, ...others] = args.command.split(" ");

@@ -1,5 +1,7 @@
 import { LesyTestBed } from "@lesy/testbed";
 import { resolve } from "path";
+// tslint:disable-next-line: import-name
+import PluginData from "../src";
 
 describe("@lesy/lesy-plugin-validator", () => {
   let testBed;
@@ -32,7 +34,7 @@ describe("@lesy/lesy-plugin-validator", () => {
           },
         },
       ],
-      middlewares: [resolve(__dirname, "../src/validator.middleware.ts")],
+      ...PluginData,
     });
 
     mockExit = jest
