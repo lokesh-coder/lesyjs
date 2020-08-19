@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2020-08-19)
+
+
+### Bug Fixes
+
+* **lesy:** refactor scaffold templates ([a2776cf](https://github.com/lokesh-coder/lesyjs/commit/a2776cf9bb2e93ca8da3929fdf60265fa2dd4073))
+
+
+### Features
+
+* **lesy:** update templates for workspace support ([49e2569](https://github.com/lokesh-coder/lesyjs/commit/49e2569d2791a97cf3f0ade39037f0a9acd396a2))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2020-06-22)
 
 **Note:** Version bump only for package lesy

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2020-08-19)
+
+
+### Features
+
+* **lesy-pilot-ui:** add workspace screen ([70989b0](https://github.com/lokesh-coder/lesyjs/commit/70989b0fa19ebdca00461d14b4bb9db2c92e92e0))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2020-06-22)
 
 **Note:** Version bump only for package @lesy/lesy-pilot-ui

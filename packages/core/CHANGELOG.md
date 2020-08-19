@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2020-08-19)
+
+
+### Bug Fixes
+
+* **core:** set default cmd and ignore files prefix with _ ([fe9f781](https://github.com/lokesh-coder/lesyjs/commit/fe9f781ca6c3a04ebb77b63cbaad83b13c22c9b5))
+
+
+### Features
+
+* **core:** add support to ignore files while providing dir ([ff6b17f](https://github.com/lokesh-coder/lesyjs/commit/ff6b17f610e4229db43ac1d0ea19f09674c01fba))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2020-06-22)
 
 **Note:** Version bump only for package @lesy/core

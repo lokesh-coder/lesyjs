@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2020-08-19)
+
+
+### Bug Fixes
+
+* **compiler:** return print data when workspace is not enabled ([c72ad16](https://github.com/lokesh-coder/lesyjs/commit/c72ad1699381b230842cc98dee844dfe786d8ba0))
+* **core:** set default cmd and ignore files prefix with _ ([fe9f781](https://github.com/lokesh-coder/lesyjs/commit/fe9f781ca6c3a04ebb77b63cbaad83b13c22c9b5))
+* **docs:** update typos and modify terms ([ee51225](https://github.com/lokesh-coder/lesyjs/commit/ee51225f47d09fd7feeb85ad3af0a858e36b6cec))
+* **lesy:** refactor scaffold templates ([a2776cf](https://github.com/lokesh-coder/lesyjs/commit/a2776cf9bb2e93ca8da3929fdf60265fa2dd4073))
+* **lesy-plugin-sidekick:** exit verison middleware gracefully ([d7127f1](https://github.com/lokesh-coder/lesyjs/commit/d7127f1bbd2f68bef4e2cea9194d334860ee7e98))
+
+
+### Features
+
+* **compiler:** add support for workspace ([add61ac](https://github.com/lokesh-coder/lesyjs/commit/add61aceda5c660e3635a5d61b4438c983bfb90f))
+* **core:** add support to ignore files while providing dir ([ff6b17f](https://github.com/lokesh-coder/lesyjs/commit/ff6b17f610e4229db43ac1d0ea19f09674c01fba))
+* **lesy:** update templates for workspace support ([49e2569](https://github.com/lokesh-coder/lesyjs/commit/49e2569d2791a97cf3f0ade39037f0a9acd396a2))
+* **lesy-pilot-ui:** add workspace screen ([70989b0](https://github.com/lokesh-coder/lesyjs/commit/70989b0fa19ebdca00461d14b4bb9db2c92e92e0))
+* **lesy-plugin-pilot:** support multiple projects ([4b75655](https://github.com/lokesh-coder/lesyjs/commit/4b756556f5572a8b3071aa1d28ca72f93b2fe26e))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2020-06-22)
 
 **Note:** Version bump only for package lesy

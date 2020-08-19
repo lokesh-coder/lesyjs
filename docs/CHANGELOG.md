@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2020-08-19)
+
+
+### Bug Fixes
+
+* **docs:** update typos and modify terms ([ee51225](https://github.com/lokesh-coder/lesyjs/commit/ee51225f47d09fd7feeb85ad3af0a858e36b6cec))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2020-06-22)
 
 **Note:** Version bump only for package @lesy/docs
