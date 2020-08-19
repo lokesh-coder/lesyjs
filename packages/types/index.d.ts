@@ -1,3 +1,3 @@
-export { LesyCore } from "./core";
+export { LesyCore, LesyCoreClass } from "./core";
 export * from "./model";
 //# sourceMappingURL=index.d.ts.map

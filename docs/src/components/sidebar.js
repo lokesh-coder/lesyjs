@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import { groupBy } from "lodash-es";
+import groupBy from "lodash/groupBy";
 import Brand from "./visuals/brand";
 
 const MenuLinks = ({ allContent }) => {
