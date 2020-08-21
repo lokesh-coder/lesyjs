@@ -1,6 +1,6 @@
+import { Injectable } from "@angular/core";
 import { State, Action, StateContext } from "@ngxs/store";
-import { UpdateCommands, LoadCommands } from "../actions/commands.actions";
-import { tap, mergeMap } from "rxjs/operators";
+import { mergeMap } from "rxjs/operators";
 import { RunnerModel } from "../../pilot.models";
 import { RunnersService } from "../../services/runners.service";
 import { LoadRunners, UpdateRunners } from "../actions/runners.actions";
@@ -9,6 +9,7 @@ import { LoadRunners, UpdateRunners } from "../actions/runners.actions";
   name: "runners",
   defaults: [],
 })
+@Injectable()
 export class RunnersState {
   constructor(private runnersService: RunnersService) {}
 
@@ -17,7 +18,7 @@ export class RunnersState {
     this.runnersService.requestRunners();
     return this.runnersService
       .onRequestRunners()
-      .pipe(mergeMap(runners => ctx.dispatch(new UpdateRunners(runners))));
+      .pipe(mergeMap((runners) => ctx.dispatch(new UpdateRunners(runners))));
   }
 
   @Action(UpdateRunners)

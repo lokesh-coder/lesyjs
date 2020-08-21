@@ -1,4 +1,5 @@
 import { State, Action, StateContext } from "@ngxs/store";
+import { Injectable } from "@angular/core";
 import { mergeMap } from "rxjs/operators";
 import { LogsService } from "../../services/logs.service";
 import {
@@ -16,6 +17,7 @@ import { LogsModel, LogsDirection } from "../../pilot.models";
     direction: LogsDirection.DESC,
   },
 })
+@Injectable()
 export class LogsState {
   constructor(private logsService: LogsService) {}
 

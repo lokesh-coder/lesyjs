@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Select } from "@ngxs/store";
 import { Observable } from "rxjs";
 
@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
   selector: "pilot-header",
   templateUrl: "./header.template.html",
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   menuItems = [];
   @Select((state) => state.common.config)
   webConfig$: Observable<object>;

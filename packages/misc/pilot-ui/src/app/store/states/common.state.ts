@@ -1,3 +1,4 @@
+import { Injectable } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { State, Action, StateContext, createSelector } from "@ngxs/store";
 import { CommonModel } from "../../pilot.models";
@@ -19,6 +20,7 @@ import { mergeMap } from "rxjs/operators";
     config: {},
   },
 })
+@Injectable()
 export class CommonState {
   constructor(
     private commonService: CommonService,

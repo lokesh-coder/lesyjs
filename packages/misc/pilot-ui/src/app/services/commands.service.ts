@@ -16,11 +16,11 @@ export class CommandsService {
 
   onRequestCommands(): Observable<any> {
     return this.wsService.listen().pipe(
-      filter(a => a && a.onRequestAllCommands),
+      filter((a) => a && a.onRequestAllCommands),
       take(1),
-      map(req => req.onRequestAllCommands),
-      map(cmds => {
-        return cmds.filter(cmd => cmd.isVisible);
+      map((req) => req.onRequestAllCommands),
+      map((cmds) => {
+        return cmds.filter((cmd) => cmd.isVisible);
       }),
     );
   }
@@ -28,11 +28,11 @@ export class CommandsService {
   createdNestedCommands(commands: object[]) {
     const nest = (items, main = null, parent = "") =>
       items
-        .filter(item => item.main === main)
-        .map(item => ({
+        .filter((item) => item.main === main)
+        .map((item) => ({
           ...item,
           children: nest(items, item.name, (parent + " " + item.name).trim()),
-          family: [...parent.split(" "), item.name].filter(a => a),
+          family: [...parent.split(" "), item.name].filter((a) => a),
         }));
     return nest(commands);
   }

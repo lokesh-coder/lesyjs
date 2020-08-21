@@ -1,3 +1,4 @@
+import { Injectable } from "@angular/core";
 import { State, Action, StateContext } from "@ngxs/store";
 import { UpdateCommands, LoadCommands } from "../actions/commands.actions";
 import { CommandsService } from "../../services/commands.service";
@@ -8,6 +9,7 @@ import { CommandModel } from "../../pilot.models";
   name: "commands",
   defaults: [],
 })
+@Injectable()
 export class CommandsState {
   constructor(private commandsService: CommandsService) {}
 
@@ -16,7 +18,7 @@ export class CommandsState {
     this.commandsService.requestCommands();
     return this.commandsService
       .onRequestCommands()
-      .pipe(mergeMap(commands => ctx.dispatch(new UpdateCommands(commands))));
+      .pipe(mergeMap((commands) => ctx.dispatch(new UpdateCommands(commands))));
   }
 
   @Action(UpdateCommands)

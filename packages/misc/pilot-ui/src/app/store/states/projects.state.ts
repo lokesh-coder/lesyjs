@@ -1,5 +1,6 @@
 import { State, Action, StateContext } from "@ngxs/store";
 import { mergeMap } from "rxjs/operators";
+import { Injectable } from "@angular/core";
 import { ProjectModel } from "../../pilot.models";
 import { LoadProjects, UpdateProjects } from "../actions/projects.actions";
 import { ProjectsService } from "../../services/projects.service";
@@ -8,6 +9,7 @@ import { ProjectsService } from "../../services/projects.service";
   name: "projects",
   defaults: [],
 })
+@Injectable()
 export class ProjectsState {
   constructor(private projectsService: ProjectsService) {}
 

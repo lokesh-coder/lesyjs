@@ -1,3 +1,4 @@
+import { Injectable } from "@angular/core";
 import { State, Action, StateContext } from "@ngxs/store";
 import { SelectedCommand } from "../actions/command.actions";
 
@@ -7,6 +8,7 @@ import { SelectedCommand } from "../actions/command.actions";
     command: null,
   },
 })
+@Injectable()
 export class CommandState {
   @Action(SelectedCommand)
   selectedCommand(ctx: StateContext<any>, action: SelectedCommand) {
