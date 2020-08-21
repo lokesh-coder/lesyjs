@@ -75,13 +75,13 @@ class LesyCompiler {
     const { root } = this.opts;
     Object.assign(appData, this.includeEssentials(appData));
 
-    const lesy = LesyCore.bootstrap({ ...appData, root }).catch((e: any) =>
-      console.log("LESY ERROR:", e),
-    );
+    const lesy = new LesyCoreClass()
+      .bootstrap({ ...appData, root })
+      .catch((e: any) => console.log("LESY ERROR:", e));
 
     return {
       parse: (argv: string[]) =>
-        lesy.then((l: typeof LesyCoreClass) => {
+        lesy.then((l) => {
           if (global["lesyWorkspace"]) return l;
           return l.run(argv || process.argv.slice(2));
         }),

@@ -113,7 +113,9 @@ export default class PilotCommand {
 
     return {
       requestSwitchProject: this.switchProject,
-      requestRunCommand: this.getSelectedProject().request.runCommand,
+      requestRunCommand: (x: any): void => {
+        return this.getSelectedProject().request.runCommand(x);
+      },
       requestProject: () => ({
         onRequestProject: selectedProject(),
       }),
