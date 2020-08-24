@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.7](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2020-08-24)
+
+
+### Bug Fixes
+
+* **pilot-ui:** workspacesuing same core module ([c706094](https://github.com/lokesh-coder/lesyjs/commit/c7060947088c0e4819ad182609b90949473d28bd))
+
+
+
+
+
 # [1.0.0-beta.6](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2020-08-19)
 
 
