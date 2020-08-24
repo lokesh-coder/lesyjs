@@ -27,5 +27,5 @@ b.suite(
   b.cycle(),
   b.complete(),
   b.save({ file: "perf", version: "1.0.0", folder: "./results" }),
-  b.save({ file: "perf", format: "chart.html", folder: "./results" })
+  b.save({ file: "perf", format: "chart.html", folder: "./results" }),
 );

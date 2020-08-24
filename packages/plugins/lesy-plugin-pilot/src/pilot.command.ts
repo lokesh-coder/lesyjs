@@ -65,7 +65,7 @@ export default class PilotCommand {
       [currCtx.feature.pkg.name]: currCtx,
     };
     global.lesySelectedProject = currCtx.feature.pkg.name;
-    const projectsPaths = await this.fetchProjectPaths();
+    const projectsPaths = await this.fetchProjectPaths(); // todo: remove same project dup
     for (let i = 0; i < projectsPaths.length; i = i + 1) {
       const p = await require(projectsPaths[i]).default;
       global.lesyWorkspace[p.feature.pkg.name] = p.localState;
@@ -113,7 +113,9 @@ export default class PilotCommand {
 
     return {
       requestSwitchProject: this.switchProject,
-      requestRunCommand: this.getSelectedProject().request.runCommand,
+      requestRunCommand: (x: any): void => {
+        return this.getSelectedProject().request.runCommand(x);
+      },
       requestProject: () => ({
         onRequestProject: selectedProject(),
       }),

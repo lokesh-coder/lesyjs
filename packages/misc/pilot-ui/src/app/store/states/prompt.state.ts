@@ -1,7 +1,6 @@
 import { State, Action, StateContext } from "@ngxs/store";
+import { Injectable } from "@angular/core";
 import { tap, mergeMap } from "rxjs/operators";
-import { LogsService } from "../../services/logs.service";
-import { LoadLogs, AddLog } from "../actions/logs.actions";
 import { PromptModel } from "../../pilot.models";
 import { PromptService } from "../../services/prompt.service";
 import {
@@ -17,16 +16,17 @@ import {
     questions: [],
   },
 })
+@Injectable()
 export class PromptState {
   constructor(private promptService: PromptService) {}
 
   @Action(ListenForPrompt)
   listenForPrompt(ctx: StateContext<PromptModel>) {
     return this.promptService.getPrompt().pipe(
-      tap(prompt => {
+      tap((prompt) => {
         console.log("PROMPT", prompt);
       }),
-      mergeMap(prompt => ctx.dispatch(new UpdatePrompt(prompt))),
+      mergeMap((prompt) => ctx.dispatch(new UpdatePrompt(prompt))),
     );
   }
 

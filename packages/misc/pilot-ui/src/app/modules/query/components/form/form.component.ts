@@ -5,11 +5,13 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
+  OnChanges,
+  OnDestroy,
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { Query } from "../../model";
 import { QueryControlService } from "../../services/control.service";
-import { switchMap, distinctUntilChanged } from "rxjs/operators";
+import { distinctUntilChanged } from "rxjs/operators";
 import { Subscription } from "rxjs";
 
 @Component({
@@ -17,7 +19,7 @@ import { Subscription } from "rxjs";
   templateUrl: "./form.template.html",
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QueryFormComponent implements OnInit {
+export class QueryFormComponent implements OnInit, OnChanges, OnDestroy {
   @Input() questions: Query<any>[] = [];
   @Input() sectionName = "";
   form: FormGroup;
@@ -33,12 +35,10 @@ export class QueryFormComponent implements OnInit {
     // this.form = this.qcs.toFormGroup(this.questions);
     this.subscription = this.form.statusChanges
       .pipe(distinctUntilChanged())
-      .subscribe(status => {
+      .subscribe((status) => {
         this.status.emit(status);
       });
   }
-
-  ngAfterContentInit() {}
 
   ngOnChanges(changes) {
     this.form = this.qcs.toFormGroup(changes.questions.currentValue);

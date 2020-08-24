@@ -4,7 +4,7 @@ export interface LesyWorkSpace {
 
 export interface SocketInputData {
   requestSwitchProject: (name: string) => any;
-  requestRunCommand: () => any;
+  requestRunCommand: (x: any) => any;
   requestProject: () => any;
   requestAllProjects: () => any;
   requestAllCommands: () => any;

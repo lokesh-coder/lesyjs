@@ -1,39 +1,27 @@
 {
   "name": "Performance test",
-  "date": "2020-05-12T16:35:02.021Z",
+  "date": "2020-08-23T03:28:45.351Z",
   "version": "1.0.0",
   "results": [
     {
       "name": "commander",
-      "ops": 137,
-      "margin": 32.09,
-      "percentSlower": 98.91
-    },
-    {
-      "name": "yargs",
-      "ops": 6115,
-      "margin": 9.26,
-      "percentSlower": 51.27
-    },
-    {
-      "name": "glugun",
-      "ops": 252,
-      "margin": 3.69,
-      "percentSlower": 97.99
+      "ops": 40126,
+      "margin": 39.33,
+      "percentSlower": 0
     },
     {
       "name": "lesy",
-      "ops": 12549,
-      "margin": 8.97,
-      "percentSlower": 0
+      "ops": 18674,
+      "margin": 11.74,
+      "percentSlower": 53.46
     }
   ],
   "fastest": {
-    "name": "lesy",
-    "index": 3
-  },
-  "lesywest": {
     "name": "commander",
     "index": 0
+  },
+  "slowest": {
+    "name": "lesy",
+    "index": 1
   }
 }

@@ -1,4 +1,5 @@
 import { State, Action, StateContext } from "@ngxs/store";
+import { Injectable } from "@angular/core";
 import { mergeMap } from "rxjs/operators";
 import {
   SelectedProject,
@@ -12,6 +13,7 @@ import { ProjectsService } from "../../services/projects.service";
     project: null,
   },
 })
+@Injectable()
 export class ProjectState {
   constructor(private projectsService: ProjectsService) {}
 

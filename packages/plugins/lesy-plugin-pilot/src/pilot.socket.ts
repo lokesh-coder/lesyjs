@@ -37,8 +37,10 @@ export class WebSocketBus {
     return this.receiver.asObservable();
   }
 
-  close() {
-    this.ws.close();
+  close(cb?: (param: any) => void) {
+    this.sender.unsubscribe();
+    this.receiver.unsubscribe();
+    this.ws.close(cb);
   }
 
   private onConnectionOpen() {

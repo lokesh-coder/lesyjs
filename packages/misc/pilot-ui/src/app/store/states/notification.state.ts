@@ -1,4 +1,5 @@
 import { State, Action, StateContext } from "@ngxs/store";
+import { Injectable } from "@angular/core";
 import { tap, mergeMap } from "rxjs/operators";
 import { NotificationModel } from "../../pilot.models";
 import { NotificationService } from "../../services/notification.service";
@@ -15,16 +16,17 @@ import {
     message: undefined,
   },
 })
+@Injectable()
 export class NotificationState {
   constructor(private notificationService: NotificationService) {}
 
   @Action(ListenForNotification)
   listen(ctx: StateContext<NotificationModel>) {
     return this.notificationService.getNotification().pipe(
-      tap(message => {
+      tap((message) => {
         console.log("NOT", message);
       }),
-      mergeMap(message =>
+      mergeMap((message) =>
         ctx.dispatch(
           new UpdateNotification({ status: message.status, message }),
         ),
