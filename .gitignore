@@ -95,3 +95,5 @@ dist/
 docs/public
 packages/plugins/lesy-plugin-pilot/public
 .todo
+backup
+benchmark/singletest.js

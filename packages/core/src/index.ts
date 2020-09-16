@@ -1,2 +1,2 @@
-export { LesyCore, LesyCoreClass } from "./core";
+export { LesyCoreClass } from "./core";
 export * from "./model";

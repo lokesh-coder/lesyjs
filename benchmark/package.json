@@ -4,6 +4,7 @@
   "main": "benchmark.suite.js",
   "scripts": {
     "benchmark": "node ./benchmark.suite.js",
+    "benchmarkWS": "node --max-old-space-size=10000 ./benchmark.suite.js",
     "copy-to-docs": "cp results/perf.json ../docs/static/"
   },
   "private": true,

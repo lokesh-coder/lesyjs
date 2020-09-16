@@ -109,13 +109,6 @@ export interface Validation {
   errors: any[];
 }
 
-export interface ResolvedCommand {
-  command: Command;
-  values: object;
-  rest: string[];
-  flags: SimpleObj<string>;
-}
-
 export interface FeatureObj {
   [key: string]: any;
 }
@@ -139,7 +132,7 @@ export type CommandSource =
   | ExtractRawCommand<Command>
   | ExtractClassCommand<Command>;
 
-export type Plugin = string | [string, any];
+export type Plugin = string | [string, any] | any;
 // export type Plugin<T> = T extends string ? string : [string, any];
 
 // namespace Validation {}

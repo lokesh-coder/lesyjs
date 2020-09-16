@@ -74,9 +74,6 @@ Object {
       "src": "__DUMMY_SRC__",
     },
   ],
-  "args": Object {},
-  "argv": Array [],
-  "cmdRunError": null,
   "config": Object {
     "defaultCommand": "plugincmd",
     "plugin": Object {
@@ -88,10 +85,6 @@ Object {
     "mainft": "one",
     "pluginft": "abc",
   },
-  "flags": Object {},
-  "id": null,
-  "rawArgs": Array [],
-  "rawFlags": Array [],
   "request": Object {
     "getCommandById": [Function],
     "getCommandByName": [Function],
@@ -99,9 +92,6 @@ Object {
     "runCommand": [Function],
   },
   "root": StringContaining "/packages/core/__tests__",
-  "runningCommand": null,
-  "unknownArgs": Array [],
-  "unknownFlags": Array [],
   "utils": Object {
     "color": [Function],
     "spinner": [Function],

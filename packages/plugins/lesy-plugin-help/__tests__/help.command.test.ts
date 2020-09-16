@@ -10,7 +10,6 @@ describe("@lesy/lesy-plugin-help", () => {
       isTypescriptApp: true,
       loadDefaultPlugins: false,
       root: resolve(__dirname, "../"),
-
       commands: [
         ...PluginData.commands,
         {
@@ -84,7 +83,7 @@ describe("@lesy/lesy-plugin-help", () => {
     expect(response).toContain("testapp hello [name]");
   });
 
-  it("should render properly when no args passes", async () => {
+  it("should render properly when no args passed", async () => {
     const response = await testBed.run(["help"]);
     expect(response).toContain(`Commands`);
     expect(response).toContain(`testapp hello [name]`);

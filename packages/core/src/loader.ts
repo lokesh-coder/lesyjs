@@ -1,17 +1,19 @@
 import { lstatSync, readdirSync, statSync } from "fs";
 import { join, sep } from "path";
 
+import { Command, Plugin } from "./model";
 import { LesyCommand } from "./command";
-import { LesyFeature } from "./feature";
-import { LesyMiddleware } from "./middleware";
-import { Command, Feature, Middleware, Plugin } from "./model";
 
 class LesyLoader {
-  private commands: LesyCommand;
-  private middlewares: LesyMiddleware;
-  private features: LesyFeature;
   private root: string;
-  private pluginConfigs = {};
+  pluginConfigs = {};
+  cmdCtrl: any;
+  mwCtrl: any;
+  featCtrl: any;
+
+  commands: any[] = [];
+  middlewares: any[] = [];
+  features: any[] = [];
 
   constructor(
     {
@@ -28,131 +30,90 @@ class LesyLoader {
     root: string,
   ) {
     this.root = root;
-    this.commands = new LesyCommand();
-    this.middlewares = new LesyMiddleware();
-    this.features = new LesyFeature(this.root);
-
-    this.loadFeatures(features);
-    this.loadCommands(commands);
-    this.loadMiddlewares(middlewares);
-    this.loadPlugins(plugins);
+    const corePlugin = { commands, middlewares, features };
+    this.loadPlugins([corePlugin, ...plugins]);
   }
 
-  /* commands */
-  loadCommandFromFile(path: string): void {
-    const rawCmd = this.getModuleFromFile(path) as Command | Function;
-    this.loadCommandFromObject(rawCmd, path);
+  loadFromObject(item: any, path: string, type: string) {
+    this[`${type}Ctrl`].add(item, path);
   }
-  loadCommandsFromDir(dir: string): void {
-    this.getFiles(dir).map((path: string) => this.loadCommandFromFile(path));
+  loadFromFile(path: string, type: string) {
+    const item = this.getModuleFromFile(path);
+    this.loadFromObject(item, path, type);
   }
-  loadCommandFromObject(rawCmd: Command | Function, src: string): void {
-    this.commands.addCommandFromRawObject(rawCmd, src);
+  loadFromDir(dir: string, type: string) {
+    this.getFiles(dir).map((path: string) => this.loadFromFile(path, type));
   }
-  loadCommands(cmds: (string | Command)[]): void {
-    cmds.forEach((cmd: string | Command) => {
-      if (typeof cmd !== "string") {
-        return this.loadCommandFromObject(cmd, "__OBJ__");
+  load(items: any[], type: string) {
+    items.forEach((item) => {
+      if (typeof item !== "string") {
+        return this.loadFromObject(item, "__OBJ__", type);
       }
-      this.loadFilesAndDirs(cmd, "Command");
+      this.loadFilesAndDirs(item, type);
     });
   }
 
-  getCommand(): LesyCommand {
-    return this.commands;
+  loadPluginFromObject({
+    commands = [],
+    middlewares = [],
+    features = [],
+  }): void {
+    this.commands = this.commands.concat(commands);
+    this.middlewares = this.middlewares.concat(middlewares);
+    this.features = this.features.concat(features);
   }
-
-  /* middlewares */
-  loadMiddlewareFromFile(path: string): void {
-    const middleware = this.getModuleFromFile(path);
-    this.middlewares.add(middleware["default"] || middleware);
-  }
-  loadMiddlewaresFromDir(dir: string): void {
-    this.getFiles(dir).map((p: string) => this.loadMiddlewareFromFile(p));
-  }
-  loadMiddlewaresFromObject(rawMw: Middleware): void {
-    this.middlewares.add(rawMw);
-  }
-  loadMiddlewares(middlewares: string[] | Middleware[]): void {
-    middlewares.forEach((pathOrObj: Middleware | string) => {
-      if (typeof pathOrObj === "object") {
-        return this.loadMiddlewaresFromObject(pathOrObj);
-      }
-      this.loadFilesAndDirs(pathOrObj, "Middleware");
-    });
-  }
-
-  getMiddlewares(): LesyMiddleware {
-    return this.middlewares;
-  }
-
-  /* features */
-  loadFeatureFromFile(path: string): void {
-    const feature = this.getModuleFromFile(path) as Feature;
-    this.features.add(feature);
-  }
-  loadFeaturesFromDir(dir: string): void {
-    this.getFiles(dir).map((p: string) => this.loadFeatureFromFile(p));
-  }
-  loadFeaturesFromObject(rawFeature: Feature): void {
-    this.features.add(rawFeature);
-  }
-  loadFeatures(features: (string | Feature)[]): void {
-    features.forEach((pathOrFn: Feature | string) => {
-      if (typeof pathOrFn !== "string") {
-        return this.features.add(pathOrFn);
-      }
-      this.loadFilesAndDirs(pathOrFn, "Feature");
-    });
-  }
-
-  getFeature(): LesyFeature {
-    return this.features;
-  }
-
-  /* plugins */
   loadPluginFromFile(path: string): void {
     let plugin = this.getModuleFromFile(path);
     plugin = plugin["default"] || plugin;
-    this.loadCommands(plugin["commands"] || []);
-    this.loadMiddlewares(plugin["middlewares"] || []);
-    this.loadFeatures(plugin["features"] || []);
+    this.loadPluginFromObject(plugin);
   }
   loadPluginFromDir(dir: string): void {
     const pluginPath = require.resolve(dir);
     this.loadPluginFromFile(pluginPath);
   }
-  loadPlugins<T>(paths: Plugin[]): void {
-    paths.forEach((plugin: T extends string ? string : never) => {
-      let pathOrName = plugin;
-      if (Array.isArray(plugin)) {
-        this.pluginConfigs[plugin[0]] = plugin[1] || {};
-        pathOrName = plugin[0];
+  loadPlugins(paths: Plugin[]): void {
+    paths.forEach((pluginSource: any) => {
+      if (Array.isArray(pluginSource)) {
+        this.pluginConfigs[pluginSource[0]] = pluginSource[1] || {};
+        // tslint:disable-next-line: no-parameter-reassignment
+        pluginSource = pluginSource[0];
       }
       try {
-        const isFile = lstatSync(pathOrName).isFile();
-        if (isFile) return this.loadPluginFromFile(pathOrName);
-        const isDir = lstatSync(pathOrName).isDirectory();
+        const isObject = typeof pluginSource === "object";
+        if (isObject) return this.loadPluginFromObject(pluginSource);
+        const isFile = lstatSync(pluginSource).isFile();
+        if (isFile) return this.loadPluginFromFile(pluginSource);
+        const isDir = lstatSync(pluginSource).isDirectory();
         if (isDir) {
-          return this.getDirectories(pathOrName).map((dir: string) =>
+          return this.getDirectories(pluginSource).map((dir: string) =>
             this.loadPluginFromDir(dir),
           );
         }
       } catch (e) {}
       try {
-        const pluginModule = require.resolve(pathOrName, {
+        const pluginModule = require.resolve(pluginSource, {
           paths: [this.root],
         });
         this.loadPluginFromFile(pluginModule);
       } catch (e) {
-        console.log(`${pathOrName} is not loaded`);
+        console.log(`${pluginSource} is not loaded`);
         console.log(`Error: ${e.message}`);
       }
     });
-  }
 
-  getPluginConfigs() {
-    return this.pluginConfigs;
+    this.cmdCtrl = new LesyCommand();
+    this.load(this.commands, "cmd");
+    if (this.features.length > 0) {
+      const { LesyFeature } = require("./feature");
+      this.featCtrl = new LesyFeature(this.root);
+      this.load(this.features, "feat");
+    }
+
+    if (this.middlewares.length > 0) {
+      const { LesyMiddleware } = require("./middleware");
+      this.mwCtrl = new LesyMiddleware();
+      this.load(this.middlewares, "mw");
+    }
   }
 
   private formatPath(path: string): string {
@@ -207,11 +168,9 @@ class LesyLoader {
   private loadFilesAndDirs(fileOrDirName: string, name: string): void {
     const fileOrDir = this.formatPath(fileOrDirName);
     const isFile = lstatSync(fileOrDir).isFile();
-    if (isFile) return this[`load${name}FromFile`](fileOrDir);
+    if (isFile) return this.loadFromFile(fileOrDir, name);
     const isDir = lstatSync(fileOrDir).isDirectory();
-    if (isDir) return this[`load${name}sFromDir`](fileOrDir);
-
-    throw new Error(`invalid ${name}`);
+    if (isDir) return this.loadFromDir(fileOrDir, name);
   }
 }
 

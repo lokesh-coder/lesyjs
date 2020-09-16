@@ -106,12 +106,6 @@ export interface Validation {
     isPassed: boolean;
     errors: any[];
 }
-export interface ResolvedCommand {
-    command: Command;
-    values: object;
-    rest: string[];
-    flags: SimpleObj<string>;
-}
 export interface FeatureObj {
     [key: string]: any;
 }
@@ -128,6 +122,6 @@ declare type ExtractClassCommand<T> = Function & {
     prototype: T;
 };
 export declare type CommandSource = ExtractFunctionCommand<Function> | ExtractStringCommand<string> | ExtractRawCommand<Command> | ExtractClassCommand<Command>;
-export declare type Plugin = string | [string, any];
+export declare type Plugin = string | [string, any] | any;
 export {};
 //# sourceMappingURL=model.d.ts.map

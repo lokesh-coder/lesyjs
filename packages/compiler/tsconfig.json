@@ -12,7 +12,11 @@
     "importHelpers": false,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "paths": {
+      "@lesy/core": ["../core/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "__tests__"],
   "compileOnSave": false

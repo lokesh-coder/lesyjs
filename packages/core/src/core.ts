@@ -1,28 +1,17 @@
-import argh from "argh";
-
 import { LesyCommand } from "./command";
 import { LesyFeature } from "./feature";
 import { LesyLoader } from "./loader";
 import { LesyMiddleware } from "./middleware";
-import {
-  MiddlewareContext,
-  MiddlewarePlacement as $,
-  Validator,
-  State,
-} from "./model";
+import { MiddlewareContext, MiddlewarePlacement as $, State } from "./model";
 import { utils } from "./utilities";
 
 class LesyCoreClass {
+  // todo: rename to lesycore
   loader: LesyLoader;
-  feature = {};
-  root: string;
-  config: Record<string, any>;
-  validators: Validator[];
 
-  private localState: State;
+  private localState: Partial<State> = {};
   private cmdCtrl!: LesyCommand;
   private mwCtrl!: LesyMiddleware;
-  private featCtrl!: LesyFeature;
 
   async bootstrap({
     root,
@@ -33,66 +22,75 @@ class LesyCoreClass {
     validators = [],
     config = {},
   }): Promise<LesyCoreClass> {
-    this.root = root;
-    this.validators = validators;
     this.loader = new LesyLoader(
       { commands, features, middlewares, plugins },
-      this.root,
+      root,
     );
-    this.config = { ...config, ...this.loader.getPluginConfigs() };
+    for (const prop in this.loader.pluginConfigs) {
+      config[prop] = this.loader.pluginConfigs[prop];
+    }
 
-    this.mwCtrl = this.loader.getMiddlewares();
-    this.state = { root, utils, validators, config: this.config };
-    await this.hook($.INIT);
+    this.mwCtrl = this.loader.mwCtrl;
+    this.state = { root, utils, validators, config };
+    if (this.mwCtrl) await this.hook($.INIT);
 
-    this.cmdCtrl = this.loader.getCommand();
-    this.featCtrl = this.loader.getFeature();
-    const allCmds = this.cmdCtrl.getCommands();
-    this.feature = this.featCtrl.getFeatures();
-    const request = this.getRequests();
-    this.state = { request, feature: this.feature, allCommands: allCmds };
-    await this.hook($.START);
-
+    this.cmdCtrl = this.loader.cmdCtrl;
+    const feature = this.loader.featCtrl
+      ? this.loader.featCtrl.getFeatures()
+      : {};
+    this.state = {
+      feature,
+      request: this.getRequests(),
+      allCommands: this.cmdCtrl.getCommands(),
+    };
+    if (this.mwCtrl) await this.hook($.START);
     return this;
   }
 
   async run(argv: string[]): Promise<any> {
     this.state = { argv };
 
-    const preParsedState = await this.hook($.PRE_PARSE);
-    const { argv: rawArgs = [], ...rawFlags } = argh([...preParsedState.argv]);
+    if (this.mwCtrl) this.state = await this.hook($.PRE_PARSE);
+    const argh = argv.some((a: string) => a.startsWith("-"))
+      ? require("argh")
+      : (x: any) => ({ argv: x });
+    const { argv: rawArgs = [], ...rawFlags } = argh([...this.state.argv]);
     this.state = { rawArgs, rawFlags };
 
-    this.state = await this.hook($.POST_PARSE);
+    if (this.mwCtrl) this.state = await this.hook($.POST_PARSE);
 
     const { rawArgs: rArgs, rawFlags: rFlags } = this.state;
     const defaultCmdName = this.state.config.defaultCommand;
     const cmdNames = !rArgs.length ? [defaultCmdName] : rArgs;
 
-    this.state = this.cmdCtrl.findCommand(cmdNames)(rFlags);
+    this.state = this.cmdCtrl.findCommand(cmdNames, rFlags);
 
-    this.state = await this.hook($.PRE_VALIDATE);
+    if (this.mwCtrl) this.state = await this.hook($.PRE_VALIDATE);
 
+    if (Object.keys(this.state.runningCommand.args).length) {
+      await this.validate(this.state);
+    }
+    if (this.mwCtrl) this.state = await this.hook($.PRE_RUN);
+
+    try {
+      await this.state.runningCommand.run(this.state);
+    } catch (e) {
+      // todo: option to expose errors
+      this.state = { cmdRunError: e };
+    }
+    if (this.mwCtrl) await this.hook($.END);
+  }
+
+  private async validate({ runningCommand, args, validators }: Partial<State>) {
     const validation = await this.cmdCtrl.validate(
-      this.state.runningCommand,
-      this.state.args,
-      this.state.validators,
+      runningCommand,
+      args,
+      validators,
     );
     validation.errors
       .filter((e: any) => !!e.error)
       .forEach((e: any) => console.error(e.error));
     if (!validation.isPassed) process.exit();
-
-    this.state = await this.hook($.POST_VALIDATE); // dont need?
-
-    this.state = await this.hook($.PRE_RUN);
-    try {
-      await this.state.runningCommand.run(this.state);
-    } catch (e) {
-      this.state = { cmdRunError: e };
-    }
-
-    await this.hook($.END);
   }
 
   private async hook(
@@ -116,30 +114,8 @@ class LesyCoreClass {
   }
 
   private set state(newState: Partial<State>) {
-    const defaultState = {
-      argv: [],
-      id: null,
-      args: {},
-      flags: {},
-      rawArgs: [],
-      rawFlags: [],
-      unknownArgs: [],
-      unknownFlags: [],
-      config: {},
-      root: null,
-      feature: {},
-      utils: {},
-      request: {},
-      cmdRunError: null,
-      validators: [],
-      allCommands: null,
-      runningCommand: null,
-    };
-    const currentState = this.localState || defaultState;
-    this.localState = { ...currentState, ...newState } as State;
+    for (const prop in newState) this.localState[prop] = newState[prop];
   }
 }
 
-const core = new LesyCoreClass();
-
-export { core as LesyCore, LesyCoreClass };
+export { LesyCoreClass };

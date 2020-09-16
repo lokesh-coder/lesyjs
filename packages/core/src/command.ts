@@ -1,5 +1,4 @@
-import { LesyValidator } from "@lesy/validator";
-import { Command, Validation, ResolvedCommand, State } from "./model";
+import { Command, Validation, State } from "./model";
 
 class LesyCommand {
   private commands: Command[] = [];
@@ -17,13 +16,13 @@ class LesyCommand {
     run: () => {},
   };
 
-  private static lastAddedID = 0;
+  private static lastAddedID: number;
 
   constructor() {
     LesyCommand.lastAddedID = 0;
   }
 
-  addCommandFromRawObject(rawCmd: Command | Function, src: string) {
+  add(rawCmd: Command | Function, src: string) {
     const cmd = this.transformRawCommand(rawCmd);
     // tslint:disable-next-line: no-increment-decrement
     Object.assign(cmd, { src, id: LesyCommand.lastAddedID++ });
@@ -35,43 +34,51 @@ class LesyCommand {
 
   findCommand(
     args: string[] = [],
+    flags = {},
     ancestor: string = "root",
-  ): ReturnType<
-    () => (flags: Record<string, string | boolean>) => Partial<State>
-  > {
+  ): Partial<State> {
+    let cmd: Command;
     const parent = this.aliasesDict[`${ancestor}.${args[0]}`];
-    const child = this.aliasesDict[`${parent}.${args[1]}`];
+    cmd = this.commands.find((cmd: Command) => cmd.name === parent);
     if (!parent) {
       console.log(
-        [
-          "command",
-          "\x1b[31m ",
-          args[0] || "<empty>",
-          " \x1b[0m",
-          "not found!",
-        ].join(""),
+        `command \x1b[31m ${args[0] || "<empty>"} \x1b[0m not found!`,
       );
       process.exit(1);
     }
-    if (child) return this.findCommand(args.splice(1), parent);
-    return this.mapFlagAliases.bind(
-      this,
-      this.mapValuesWithArgs(
-        this.commands.find((cmd: Command) => cmd.name === parent),
-        args.splice(1),
-      ),
-    );
+
+    const child = this.aliasesDict[`${parent}.${args[1]}`];
+
+    if (child) return this.findCommand(args.splice(1), flags, parent);
+    const resolvedArgs = this.resolveArgs(cmd, args.splice(1));
+    const resolvedFlags = this.resolveFlags(cmd, flags);
+
+    return {
+      runningCommand: cmd,
+      ...resolvedArgs,
+      ...resolvedFlags,
+    };
   }
 
-  private mapFlagAliases(
-    resolvedCommand: Partial<State>,
+  private resolveArgs(cmd: Command, rawArgs: string[]): Partial<State> {
+    const args = {};
+    const argSchemas = Object.keys(cmd.args);
+    argSchemas.forEach((arg, i) => {
+      args[arg] = rawArgs[i];
+    });
+    return {
+      args,
+      unknownArgs: rawArgs.slice(argSchemas.length),
+    };
+  }
+
+  private resolveFlags(
+    cmd: Command,
     flags: Record<string, string | boolean>,
   ): Partial<State> {
-    const { runningCommand } = resolvedCommand;
-
-    const flattenFlags = Object.keys(runningCommand.flags).map((k: any) => [
+    const flattenFlags = Object.keys(cmd.flags).map((k: any) => [
       k,
-      ...(runningCommand.flags[k].aliases || []),
+      ...(cmd.flags[k].aliases || []),
     ]);
     const resolvedFlags = {};
     for (const key in flags) {
@@ -81,7 +88,7 @@ class LesyCommand {
         }
       });
     }
-    return { ...resolvedCommand, flags: resolvedFlags };
+    return { flags: resolvedFlags };
   }
 
   getCommands(): Command[] {
@@ -93,7 +100,7 @@ class LesyCommand {
   }
 
   getCommandByName(names: string[]): any {
-    return this.findCommand(names)({}).runningCommand;
+    return this.findCommand(names).runningCommand;
   }
 
   async validate(
@@ -101,39 +108,18 @@ class LesyCommand {
     args: object,
     validators = [],
   ): Promise<Validation> {
+    const { LesyValidator } = require("@lesy/validator");
     const schema = new LesyValidator(command.args);
-    validators.forEach(({ name, fn }) => {
-      schema.register(name, fn);
-    });
+    validators.forEach(({ name, fn }) => schema.register(name, fn));
     const validation = await schema.validate(args);
-    const isValidationPassed = validation.every((v: any) => v.passed);
-    return { isPassed: isValidationPassed, errors: validation };
+    const isPassed = validation.every((v: any) => v.passed);
+    return { isPassed, errors: validation };
   }
 
-  private mapValuesWithArgs(
-    runningCommand: Command,
-    rawArgs: string[],
-  ): Partial<State> {
-    const args = {};
-    const argSchemas = Object.keys(runningCommand.args);
-    argSchemas.forEach((arg, i) => {
-      args[arg] = rawArgs[i];
-    });
-    return {
-      runningCommand,
-      args,
-      unknownArgs: rawArgs.slice(argSchemas.length),
-      flags: {},
-    };
-  }
-
-  private normalizeCmdNames(cmd) {
-    if (!cmd.name) cmd.name = "default";
-    const names = [cmd.name, ...cmd.aliases].map((n: string) =>
-      this.normalizeStr(n),
-    );
-    cmd.name = names[0];
-    cmd.aliases = names;
+  private formatNames(cmd: Command) {
+    cmd.name = cmd.name || "default";
+    cmd.aliases = [cmd.name, ...cmd.aliases].map(this.normalizeStr);
+    cmd.name = cmd.aliases[0];
     return cmd;
   }
 
@@ -142,27 +128,22 @@ class LesyCommand {
     if (typeof cmd === "object") {
       cmdObj = { ...this.defaultProps, ...cmd };
     } else if (this.isClass(cmd)) {
-      const obj = new (cmd as any)() as Command;
+      cmdObj = new (cmd as any)() as Command;
       Object.keys(this.defaultProps).forEach((p: any) => {
-        if (!obj[p]) {
-          Object.defineProperty(obj, p, {
-            value: this.defaultProps[p],
-            configurable: true,
-            enumerable: true,
-            writable: true,
-          });
-        }
+        if (cmdObj[p]) return;
+        Object.defineProperty(cmdObj, p, {
+          value: this.defaultProps[p],
+          configurable: true,
+          enumerable: true,
+          writable: true,
+        });
       });
-      return this.normalizeCmdNames(obj);
     } else {
       cmdObj = { ...this.defaultProps, ...cmd };
-      cmd(this.normalizeCmdNames(cmdObj));
+      cmd(cmdObj);
     }
 
-    return {
-      ...cmdObj,
-      ...this.normalizeCmdNames(cmdObj),
-    };
+    return this.formatNames(cmdObj);
   }
 
   private isClass(funcOrClass: Function): boolean {

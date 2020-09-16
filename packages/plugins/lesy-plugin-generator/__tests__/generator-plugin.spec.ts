@@ -1,5 +1,5 @@
 import generator from "../src/generator";
-import { LesyCore } from "@lesy/core";
+import { LesyCoreClass } from "@lesy/core";
 import {
   existsSync,
   readdirSync,
@@ -30,10 +30,10 @@ describe("lesy-plugin-generator", () => {
   });
 
   it("should be injected properly", async () => {
-    const bootstrap = (await LesyCore.bootstrap({
+    const bootstrap = (await new LesyCoreClass().bootstrap({
       plugins: [resolve(__dirname, "../src/index.ts")],
     })) as any;
-    expect(bootstrap.feature.generateFiles).toBeTruthy();
+    expect(bootstrap.state.feature.generateFiles).toBeTruthy();
   });
 
   it("should generate files", (done: any) => {

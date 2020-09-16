@@ -5,24 +5,43 @@ const { build: gluegun } = require("gluegun");
 const lesy = require("@lesy/compiler");
 const { commanderCode, gluegunCode, yargsCode, lesyCode } = require("./libs");
 
+const options = {
+  // minSamples: 100
+};
+
 b.suite(
   "Performance test",
+  b.add(
+    "lesy",
+    async () => {
+      await lesyCode(lesy);
+    },
+    options,
+  ),
 
-  b.add("commander", () => {
-    commanderCode(commander);
-  }),
+  b.add(
+    "commander",
+    () => {
+      commanderCode(commander);
+    },
+    options,
+  ),
 
-  b.add("yargs", () => {
-    yargsCode(yargs);
-  }),
+  b.add(
+    "yargs",
+    () => {
+      yargsCode(yargs);
+    },
+    options,
+  ),
 
-  b.add("glugun", async () => {
-    await gluegunCode(gluegun);
-  }),
-
-  b.add("lesy", async () => {
-    await lesyCode(lesy);
-  }),
+  b.add(
+    "glugun",
+    async () => {
+      await gluegunCode(gluegun);
+    },
+    options,
+  ),
 
   b.cycle(),
   b.complete(),

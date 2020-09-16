@@ -15,6 +15,7 @@ describe("LESY:Loader", () => {
     let p: Function;
     let d: Function;
     let loader: LesyLoader;
+    let mockExit;
     const addCmdRawObjSpy = jest.fn();
     const featAddSpy = jest.fn();
     const mwAddSpy = jest.fn();
@@ -25,7 +26,7 @@ describe("LESY:Loader", () => {
 
     beforeEach(() => {
       (LesyCommand as any).mockImplementation(() => ({
-        addCommandFromRawObject: addCmdRawObjSpy,
+        add: addCmdRawObjSpy,
       }));
 
       (LesyFeature as any).mockImplementation(() => ({
@@ -35,12 +36,16 @@ describe("LESY:Loader", () => {
       (LesyMiddleware as any).mockImplementation(() => ({
         add: mwAddSpy,
       }));
+      mockExit = jest.spyOn(process, "exit").mockImplementationOnce(() => {
+        throw new Error("__PROCESS_EXIT__");
+      });
     });
     beforeEach(() => {
       loader = new LesyLoader({}, "");
     });
 
     afterEach(() => {
+      mockExit.mockRestore();
       jest.resetAllMocks();
     });
 
@@ -94,13 +99,19 @@ describe("LESY:Loader", () => {
           `/loaderfiles/${flavor}/dummydir/dir0/file1.${flavor}`,
         );
       });
+      it("should throw exception when path is invalid", () => {
+        expect(() => loader["loadFilesAndDirs"]("aaa", "cmd")).toThrowError(
+          /^ENOENT: no such file or directory, lstat 'aaa'$/,
+        );
+      });
     });
 
     describe("command", () => {
       it("should load cmd from obj and pass to cmd class", () => {
-        loader.loadCommandFromObject(
+        loader.loadFromObject(
           { name: "testcmd", run: () => {} },
           "__OBJ__",
+          "cmd",
         );
         expect(addCmdRawObjSpy).toBeCalledWith(
           { name: "testcmd", run: expect.any(Function) },
@@ -108,7 +119,7 @@ describe("LESY:Loader", () => {
         );
       });
       it("should load cmd from file and pass to cmd class", () => {
-        loader.loadCommandFromFile(p`cmddir/cmddir0/cmdfile0`);
+        loader.loadFromFile(p`cmddir/cmddir0/cmdfile0`, "cmd");
         expect(addCmdRawObjSpy).toBeCalledWith(
           { name: "cmd0-0", run: expect.any(Function) },
           expect.stringContaining(
@@ -117,105 +128,143 @@ describe("LESY:Loader", () => {
         );
       });
       it("should load cmds from dir and pass to cmd class", () => {
-        loader.loadCommandsFromDir(d`cmddir`);
+        loader.loadFromDir(d`cmddir`, "cmd");
         expect(
           addCmdRawObjSpy.mock.calls.map((x: any[]) => x[0].name),
         ).toEqual(["cmd0-1-0", "cmd0-1-1", "cmd0-0", "cmd0-1"]);
       });
 
       it("should load cmds from mixed types and pass to cmd class", () => {
-        loader.loadCommands([
-          { name: "abccmd", run: () => {} },
-          ((c: any) => {
-            c.name = "foo";
-            c.run = () => {};
-          }) as any,
-          class Abc {
-            name = "one";
-            run() {}
-          },
-          d`cmddir/cmddir0/cmddir1`,
-          p`cmddir/cmddir0/cmdfile0`,
-        ]);
+        loader.load(
+          [
+            { name: "abccmd", run: () => {} },
+            ((c: any) => {
+              c.name = "foo";
+              c.run = () => {};
+            }) as any,
+            class Abc {
+              name = "one";
+              run() {}
+            },
+            d`cmddir/cmddir0/cmddir1`,
+            p`cmddir/cmddir0/cmdfile0`,
+          ],
+          "cmd",
+        );
         expect(addCmdRawObjSpy.mock.calls.length).toEqual(6);
       });
 
       it("should return command instance", () => {
-        expect(loader.getCommand()).toEqual({
-          addCommandFromRawObject: expect.any(Function),
+        expect(loader.cmdCtrl).toEqual({
+          add: expect.any(Function),
         });
       });
     });
 
     describe("Middleware", () => {
+      beforeEach(() => {
+        loader.mwCtrl = new LesyMiddleware();
+      });
+      afterAll(() => {
+        loader.mwCtrl = null;
+      });
       it("should load mw from obj and pass to mw istance", () => {
-        loader.loadMiddlewaresFromObject({ on: "START", run: () => {} } as any);
-        expect(mwAddSpy).toBeCalledWith({
-          on: "START",
-          run: expect.any(Function),
-        });
+        loader.loadFromObject(
+          { on: "START", run: () => {} } as any,
+          null,
+          "mw",
+        );
+        expect(mwAddSpy).toBeCalledWith(
+          {
+            on: "START",
+            run: expect.any(Function),
+          },
+          null,
+        );
       });
 
       it("should load mw from file and pass to mw instance", () => {
-        loader.loadMiddlewareFromFile(p`mwdir/mwdir0/mwfile0`);
-        expect(mwAddSpy).toBeCalledWith({
-          on: "START",
-          run: expect.any(Function),
-        });
+        loader.loadFromFile(p`mwdir/mwdir0/mwfile0`, "mw");
+        expect(mwAddSpy).toBeCalledWith(
+          {
+            on: "START",
+            run: expect.any(Function),
+          },
+          p`mwdir/mwdir0/mwfile0`,
+        );
       });
 
       it("should load mws from dir and pass to mw instance", () => {
-        loader.loadMiddlewaresFromDir(d`mwdir/mwdir0`);
+        loader.loadFromDir(d`mwdir/mwdir0`, "mw");
         expect(mwAddSpy.mock.calls.length).toEqual(4);
       });
 
       it("should load mws from mixed types and pass to mw instance", () => {
-        loader.loadMiddlewares([
-          { on: "START", run: () => {} } as any,
-          p`mwdir/mwdir0/mwfile1`,
-          d`mwdir/mwdir0/mwdir1`,
-        ]);
+        loader.load(
+          [
+            { on: "START", run: () => {} } as any,
+            p`mwdir/mwdir0/mwfile1`,
+            d`mwdir/mwdir0/mwdir1`,
+          ],
+          "mw",
+        );
         expect(mwAddSpy.mock.calls.length).toEqual(4);
       });
 
       it("should return middleware instance", () => {
-        expect(loader.getMiddlewares()).toEqual({
+        expect(loader.mwCtrl).toEqual({
           add: expect.any(Function),
         });
       });
     });
 
     describe("Feature", () => {
+      beforeEach(() => {
+        loader.featCtrl = new LesyFeature("");
+      });
+      afterAll(() => {
+        loader.featCtrl = null;
+      });
       it("should load feature from obj and pass to ft istance", () => {
-        loader.loadFeaturesFromObject((f: any) => {
-          f.x = "x";
-        });
-        expect(featAddSpy).toBeCalledWith(expect.any(Function));
+        loader.loadFromObject(
+          (f: any) => {
+            f.x = "x";
+          },
+          null,
+          "feat",
+        );
+        expect(featAddSpy).toBeCalledWith(expect.any(Function), null);
       });
 
       it("should load feature from file and pass to ft instance", () => {
-        loader.loadFeatureFromFile(p`ftdir/ftdir0/ftfile0`);
-        expect(featAddSpy).toBeCalledWith(expect.any(Function));
+        loader.loadFromFile(p`ftdir/ftdir0/ftfile0`, "feat");
+        expect(featAddSpy).toBeCalledWith(
+          expect.any(Function),
+          p`ftdir/ftdir0/ftfile0`,
+        );
       });
 
       it("should load features from dir and pass to ft instance", () => {
-        loader.loadFeaturesFromDir(d`ftdir`);
+        loader.loadFromDir(d`ftdir`, "feat");
         expect(featAddSpy.mock.calls.length).toEqual(4);
       });
 
       it("should load features from mixed types and pass to ft instance", () => {
-        loader.loadFeatures([
-          (f: any) => {
-            f.x = "x";
-          },
-          p`ftdir/ftdir0/ftfile1`,
-          d`ftdir/ftdir0/ftdir1`,
-        ]);
+        loader.load(
+          [
+            (f: any) => {
+              f.x = "x";
+            },
+            p`ftdir/ftdir0/ftfile1`,
+            d`ftdir/ftdir0/ftdir1`,
+          ],
+          "feat",
+        );
         expect(featAddSpy.mock.calls.length).toEqual(4);
       });
 
       it("should return feature instance", () => {
-        expect(loader.getFeature()).toEqual({
+        expect(loader.featCtrl).toEqual({
           add: expect.any(Function),
         });
       });
@@ -232,31 +281,41 @@ describe("LESY:Loader", () => {
             method =
               pathtype === "file" ? "loadPluginFromFile" : "loadPluginFromDir";
           });
-          it("should load command", () => {
+          it("should load all commands", () => {
             loader[method](path);
-            expect(
-              addCmdRawObjSpy.mock.calls.map((x: any[]) => x[0].name),
-            ).toEqual([
-              "plugincmd0-0",
-              "plugincmd0-1-0",
-              "plugincmd0-1-1",
-              "pluginrawcmd",
-            ]);
+            expect(loader.commands.length).toEqual(3);
+            expect(loader.commands[0]).toEqual(p`plugindir/cmddir0/cmdfile0`);
+            expect(loader.commands[1]).toEqual(d`plugindir/cmddir0/cmddir1`);
+            expect(loader.commands[2].name).toEqual("pluginrawcmd");
           });
-          it("should load middleware", () => {
+          it("should load all middleware", () => {
             loader[method](path);
-            expect(mwAddSpy.mock.calls[0][0]).toEqual({
-              on: "START",
-              run: expect.any(Function),
-            });
+            expect(loader.middlewares.length).toEqual(3);
+            expect(loader.middlewares[0]).toEqual(p`plugindir/mwdir0/mwfile0`);
+            expect(loader.middlewares[1]).toEqual(d`plugindir/mwdir0/mwdir1`);
+            expect(loader.middlewares[2].on).toEqual("END");
           });
-          it("should load feature", () => {
+          it("should load all features", () => {
             loader[method](path);
-            expect(featAddSpy.mock.calls[0][0]).toEqual(expect.any(Function));
+            expect(loader.features.length).toEqual(3);
+            expect(loader.features[0]).toEqual(p`plugindir/ftdir0/ftfile0`);
+            expect(loader.features[1]).toEqual(d`plugindir/ftdir0/ftdir1`);
+            expect(typeof loader.features[2]).toEqual("function");
           });
         },
       );
       describe("loadPlugins", () => {
+        it("should load plugin from object", () => {
+          const loadPluginFromObjSpy = jest.spyOn(
+            loader,
+            "loadPluginFromObject",
+          );
+          const objCmds = { commands: [{ name: "abc", run: () => {} }] };
+          loader.loadPlugins([objCmds]);
+          expect(loadPluginFromObjSpy).toBeCalledWith(
+            expect.objectContaining(objCmds),
+          );
+        });
         it("should load plugin from file path", () => {
           const loadPluginFromFileSpy = jest.spyOn(
             loader,
@@ -289,11 +348,21 @@ describe("LESY:Loader", () => {
           jest.spyOn(loader, "loadPluginFromFile");
           loader["root"] = d``;
           loader.loadPlugins([["plugindir", { name: "test" }]]);
-          expect(loader.getPluginConfigs()).toEqual({
+          expect(loader.pluginConfigs).toEqual({
             plugindir: {
               name: "test",
             },
           });
+        });
+        it("should show error if plugin source in invalid", () => {
+          const logSpy = jest.spyOn(console, "log");
+          loader.loadPlugins(["abc"]);
+          expect(logSpy).toBeCalledWith("abc is not loaded");
+          expect(logSpy).toBeCalledWith(
+            expect.stringContaining(
+              "Error: Cannot resolve module 'abc' from paths ['']",
+            ),
+          );
         });
       });
     });
