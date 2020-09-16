@@ -1,5 +1,5 @@
 import { existsSync } from "fs";
-
+import { LesyCoreClass } from "@lesy/core";
 class LesyCompiler {
   opts: any = {
     isTypescriptApp: false,
@@ -18,24 +18,24 @@ class LesyCompiler {
   private tsConfigPath = null;
 
   exec(opts = {}) {
-    this.opts = { ...this.opts, ...opts };
-    const {
-      isTypescriptApp,
-      root,
-      srcFilePath,
-      tsFlag,
-      loadDefaultPlugins,
-      customTsConfig,
-      ...src
-    } = this.opts;
-    const hasSrcData = Object.keys(src).length > 0;
-    const hasBuildDir = existsSync(`${root}/dist`);
-    const shouldRunTSCode = process.argv.includes(tsFlag);
+    Object.assign(this.opts, opts);
+    const src = {
+      commands: this.opts.commands || [],
+      middlewares: this.opts.middlewares || [],
+      features: this.opts.features || [],
+      plugins: this.opts.plugins || [],
+      config: this.opts.config || {},
+      validators: this.opts.validators || [],
+    };
+    const hasSrcData = this.opts.commands;
     let mainFilePath: string;
     process.env.LESY_LANG = "js";
-    if (!isTypescriptApp) {
-      mainFilePath = !hasSrcData && require.resolve(root);
+    if (!this.opts.isTypescriptApp) {
+      mainFilePath = !hasSrcData && require.resolve(this.opts.root);
     } else {
+      const { root, tsFlag, srcFilePath, customTsConfig } = this.opts;
+      const hasBuildDir = existsSync(`${root}/dist`);
+      const shouldRunTSCode = process.argv.includes(tsFlag);
       if ((hasBuildDir && shouldRunTSCode) || !hasBuildDir) {
         // run src
         process.env.LESY_LANG = "ts";
@@ -48,7 +48,6 @@ class LesyCompiler {
         mainFilePath = !hasSrcData && require.resolve(root);
       }
     }
-
     return this.runApp(hasSrcData ? src : require(mainFilePath));
   }
 
@@ -71,17 +70,14 @@ class LesyCompiler {
   }
 
   private runApp(appData) {
-    const { LesyCore, LesyCoreClass } = require("@lesy/core");
-    const { root } = this.opts;
-    Object.assign(appData, this.includeEssentials(appData));
-
+    this.includeEssentials(appData);
+    appData.root = this.opts.root;
     const lesy = new LesyCoreClass()
-      .bootstrap({ ...appData, root })
+      .bootstrap(appData)
       .catch((e: any) => console.log("LESY ERROR:", e));
-
     return {
       parse: (argv: string[]) =>
-        lesy.then((l) => {
+        lesy.then((l: any) => {
           if (global["lesyWorkspace"]) return l;
           return l.run(argv || process.argv.slice(2));
         }),
@@ -89,15 +85,15 @@ class LesyCompiler {
   }
 
   private includeEssentials(appData) {
-    let { plugins = [], config = {} } = appData;
     if (this.opts.loadDefaultPlugins) {
-      plugins = [
+      appData.plugins = [
         ...this.defaultPlugins.map((p: string) => require.resolve(p)),
-        ...plugins,
+        ...appData.plugins,
       ];
     }
-    config = { ...this.defaultConfig, ...config };
-    return { ...appData, plugins, config };
+    const config = this.defaultConfig;
+    for (const prop in appData.config) config[prop] = appData.config[prop];
+    appData.config = config;
   }
 }
 
