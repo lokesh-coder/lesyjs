@@ -1,11 +1,9 @@
 import { LesyLoader } from "./loader";
-import { Validator } from "./model";
 declare class LesyCoreClass {
     loader: LesyLoader;
     feature: {};
     root: string;
     config: Record<string, any>;
-    validators: Validator[];
     private localState;
     private cmdCtrl;
     private mwCtrl;
@@ -20,11 +18,11 @@ declare class LesyCoreClass {
         config?: {};
     }): Promise<LesyCoreClass>;
     run(argv: string[]): Promise<any>;
+    private validate;
     private hook;
     private getRequests;
     private get state();
     private set state(value);
 }
-declare const core: LesyCoreClass;
-export { core as LesyCore, LesyCoreClass };
+export { LesyCoreClass };
 //# sourceMappingURL=core.d.ts.map
