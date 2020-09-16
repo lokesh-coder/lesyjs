@@ -28,8 +28,8 @@ jobs:
               with:
                   node-version: ${{ matrix.node }}
 
-            - name: NPM - install lerna
-              run: npm install --global lerna
+            - name: NPM - install global deps
+              run: npm i -g lerna && npm i -g @vercel/ncc
 
             - name: LERNA - bootstrap
               run: npm run bootstrap
