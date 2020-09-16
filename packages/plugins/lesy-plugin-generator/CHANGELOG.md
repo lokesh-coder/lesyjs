@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.8](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2020-09-16)
+
+
+### Performance Improvements
+
+* improve overall performance ([f263587](https://github.com/lokesh-coder/lesyjs/commit/f2635870954e202ddcfffc252c9dac4387abe3f1))
+
+
+
+
+
 # [1.0.0-beta.7](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2020-08-24)
 
 **Note:** Version bump only for package @lesy/lesy-plugin-generator
