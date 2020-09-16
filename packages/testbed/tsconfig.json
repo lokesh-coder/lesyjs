@@ -13,6 +13,7 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
+      "@lesy/compiler": ["../compiler/src/index.ts"],
       "@lesy/core": ["../core/src/index.ts"],
       "@lesy/validator": ["../helpers/validator/src/index.ts"]
     }
