@@ -88,7 +88,7 @@ class LesyCompiler {
     if (this.opts.loadDefaultPlugins) {
       appData.plugins = [
         ...this.defaultPlugins.map((p: string) => require.resolve(p)),
-        ...appData.plugins,
+        ...(appData.plugins || []),
       ];
     }
     const config = this.defaultConfig;
