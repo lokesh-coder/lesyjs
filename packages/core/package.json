@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "clean": "rm -rf ./dist",
-    "build": "npm run clean && tsc --build tsconfig.build.json"
+    "compile": "npm run clean && tsc --build tsconfig.build.json",
+    "build": "npm run clean && ncc build src/index.ts  -o dist -e @lesy/validator -e tsconfig-paths -e ts-node -e chalk -e ora -e argh -e trough --no-source-map-register -m"
   },
   "keywords": [
     "core",
