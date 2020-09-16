@@ -1,8 +1,8 @@
-module.exports = async greet => {
+module.exports = async (greet) => {
   const movieCLI = greet("greetings")
     .command({
       name: "greet",
-      run: () => console.log("gluegun: hello world"),
+      run: () => {},
     })
     .src(__dirname)
     .exclude([

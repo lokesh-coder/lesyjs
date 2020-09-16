@@ -1,7 +1,5 @@
-module.exports = program => {
-  program.command("greet").action(function() {
-    console.log("commander: Hello world");
-  });
+module.exports = (program) => {
+  program.command("greet").action(function () {});
 
   program.parse(["./", "./", "greet"]);
 };
