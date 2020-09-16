@@ -87,7 +87,7 @@ describe("Core", () => {
       core = await core.bootstrap(data);
     });
     it("should set root property", () => {
-      expect(core.root).toEqual(__dirname);
+      expect(core["state"].root).toEqual(__dirname);
     });
     it("should get all commands", () => {
       expect(
@@ -95,7 +95,7 @@ describe("Core", () => {
       ).toEqual(["hello", "greet", "sample", "plugincmd"]);
     });
     it("should get all features", () => {
-      expect(core["featCtrl"].getFeatures()).toEqual({
+      expect(core.loader.featCtrl.getFeatures()).toEqual({
         mainft: "one",
         pluginft: "abc",
       });
@@ -117,7 +117,7 @@ describe("Core", () => {
       });
     });
     it("should get config", () => {
-      expect(core["config"]).toEqual({
+      expect(core["state"].config).toEqual({
         defaultCommand: "plugincmd",
         test: "xyz",
         plugin: {
@@ -133,7 +133,7 @@ describe("Core", () => {
     });
     it("should call init middleware", () => {
       expect(initMwMock).toBeCalledWith(
-        expect.objectContaining({ allCommands: null }),
+        expect.objectContaining({ validators: [] }),
       );
     });
     it("should call start middleware", () => {

@@ -47,7 +47,7 @@ describe("LESY:COMMAND", () => {
         it("should create a new command object and push it to the list", () => {
           const cmdObjs = ["one", "two", "three"];
           cmdObjs.forEach((n: string) => {
-            cmd.addCommandFromRawObject(createNewCmd(n), OBJ);
+            cmd.add(createNewCmd(n), OBJ);
           });
           expect(cmd["commands"].length).toEqual(3);
           expect(cmd["commands"][0].name).toEqual("one");
@@ -58,7 +58,7 @@ describe("LESY:COMMAND", () => {
         it("should create a new command and normalize the name", () => {
           const names = ["one one", "two.two", "three_three"];
           names.forEach((n: string) => {
-            cmd.addCommandFromRawObject(createNewCmd(n), OBJ);
+            cmd.add(createNewCmd(n), OBJ);
           });
           expect(cmd.getCommands().map((s: Command) => s.name)).toEqual([
             "one-one",
@@ -82,28 +82,28 @@ describe("LESY:COMMAND", () => {
       describe("get command", () => {
         it("should return the command when name is provided", () => {
           createXCmds(5).map((c: any) => {
-            cmd.addCommandFromRawObject(c, OBJ);
+            cmd.add(c, OBJ);
           });
-          const command = cmd.findCommand(["cmd1"])({});
+          const command = cmd.findCommand(["cmd1"]);
           expect(command.runningCommand).toHaveProperty("name", "cmd1");
         });
         it("should return the command when name and args are provided", () => {
           createXCmds(5, { args: { name: {} } }).map((c: any) => {
-            cmd.addCommandFromRawObject(c, OBJ);
+            cmd.add(c, OBJ);
           });
-          const command = cmd.findCommand(["cmd3", "john"])({});
+          const command = cmd.findCommand(["cmd3", "john"]);
           expect(command.args.name).toBe("john");
         });
         it("should return the command when id is provided", () => {
           createXCmds(5).map((c: any) => {
-            cmd.addCommandFromRawObject(c, OBJ);
+            cmd.add(c, OBJ);
           });
           const command = cmd.getCommandById(2);
           expect(command).toHaveProperty("name", "cmd2");
         });
         it("should return the command when name is provided", () => {
           createXCmds(5).map((c: any) => {
-            cmd.addCommandFromRawObject(c, OBJ);
+            cmd.add(c, OBJ);
           });
           const command = cmd.getCommandByName(["cmd4"]);
           expect(command).toHaveProperty("name", "cmd4");
@@ -112,51 +112,51 @@ describe("LESY:COMMAND", () => {
           createXCmds(5, (i: number) =>
             i === 3 ? { aliases: ["hola"] } : {},
           ).map((c: any, i) => {
-            cmd.addCommandFromRawObject(c, OBJ);
+            cmd.add(c, OBJ);
           });
-          const command = cmd.findCommand(["hola"])({});
+          const command = cmd.findCommand(["hola"]);
           expect(command.runningCommand).toHaveProperty("name", "cmd3");
         });
         it("should return the command with resolved args", () => {
           createXCmds(5, (i: number) =>
             i === 3 ? { args: { name: {}, age: {} } } : {},
           ).map((c: any, i) => {
-            cmd.addCommandFromRawObject(c, OBJ);
+            cmd.add(c, OBJ);
           });
-          const command = cmd.findCommand(["cmd3", "john", "33"])({});
+          const command = cmd.findCommand(["cmd3", "john", "33"]);
           expect(command.args).toEqual({ name: "john", age: "33" });
         });
         it("should return the command with resolved flags", () => {
           createXCmds(5, (i: number) =>
             i === 3 ? { flags: { temp: {} } } : {},
           ).map((c: any, i) => {
-            cmd.addCommandFromRawObject(c, OBJ);
+            cmd.add(c, OBJ);
           });
-          const command = cmd.findCommand(["cmd3"])({ temp: "yes" });
+          const command = cmd.findCommand(["cmd3"], { temp: "yes" });
           expect(command.flags).toEqual({ temp: "yes" });
         });
         it("should return the command without unknown flags", () => {
           createXCmds(5, (i: number) =>
             i === 3 ? { flags: { temp: {} } } : {},
           ).map((c: any, i) => {
-            cmd.addCommandFromRawObject(c, OBJ);
+            cmd.add(c, OBJ);
           });
-          const command = cmd.findCommand(["cmd3"])({ temphoya: "yes" });
+          const command = cmd.findCommand(["cmd3"], { temphoya: "yes" });
           expect(command.flags).toEqual({});
         });
         it("should throw error when command name is not provided", () => {
           createXCmds(5).map((c: any, i) => {
-            cmd.addCommandFromRawObject(c, OBJ);
+            cmd.add(c, OBJ);
           });
           try {
-            cmd.findCommand([])({});
+            cmd.findCommand([]);
           } catch (error) {
             expect(error.message).toBe("__PROCESS_EXIT__");
           }
         });
         it("should throw error when command args are not provided", () => {
           createXCmds(5).map((c: any, i) => {
-            cmd.addCommandFromRawObject(c, OBJ);
+            cmd.add(c, OBJ);
           });
           try {
             cmd.findCommand();
@@ -166,10 +166,10 @@ describe("LESY:COMMAND", () => {
         });
         it("should throw error when unavailable command is requested", () => {
           createXCmds(5).map((c: any, i) => {
-            cmd.addCommandFromRawObject(c, OBJ);
+            cmd.add(c, OBJ);
           });
           try {
-            cmd.findCommand(["boom-boom"])({});
+            cmd.findCommand(["boom-boom"]);
           } catch (error) {
             expect(error.message).toBe("__PROCESS_EXIT__");
           }
@@ -180,9 +180,9 @@ describe("LESY:COMMAND", () => {
         it("should return the sub command when name is provided", () => {
           const parentCmd = createNewCmd("parent");
           const childCmd = createNewCmd("child", { main: "parent" });
-          cmd.addCommandFromRawObject(parentCmd, OBJ);
-          cmd.addCommandFromRawObject(childCmd, OBJ);
-          const command = cmd.findCommand(["parent", "child"])({});
+          cmd.add(parentCmd, OBJ);
+          cmd.add(childCmd, OBJ);
+          const command = cmd.findCommand(["parent", "child"]);
           expect(command.runningCommand).toHaveProperty("main", "parent");
         });
         it("should return the sub command when name and args are provided", () => {
@@ -191,9 +191,9 @@ describe("LESY:COMMAND", () => {
             main: "parent",
             args: { name: {} },
           });
-          cmd.addCommandFromRawObject(parentCmd, OBJ);
-          cmd.addCommandFromRawObject(childCmd, OBJ);
-          const command = cmd.findCommand(["parent", "child", "john"])({});
+          cmd.add(parentCmd, OBJ);
+          cmd.add(childCmd, OBJ);
+          const command = cmd.findCommand(["parent", "child", "john"]);
           expect(command.runningCommand).toHaveProperty("args", { name: {} });
         });
         it("should return sub command of multiple mid-level same parent name", () => {
@@ -209,9 +209,9 @@ describe("LESY:COMMAND", () => {
             { name: "gc3", props: { main: "c3" } },
           ];
           data.forEach(({ name, props }) =>
-            cmd.addCommandFromRawObject(createNewCmd(name, props), OBJ),
+            cmd.add(createNewCmd(name, props), OBJ),
           );
-          const command = cmd.findCommand(["p3", "c3", "gc3"])({});
+          const command = cmd.findCommand(["p3", "c3", "gc3"]);
           expect(command.runningCommand).toHaveProperty("main", "c3");
         });
         it("should return sub command if aliases is provided", () => {
@@ -221,11 +221,9 @@ describe("LESY:COMMAND", () => {
             { name: "gc1", props: { main: "c1", aliases: ["gcalias1"] } },
           ];
           data.forEach(({ name, props }) =>
-            cmd.addCommandFromRawObject(createNewCmd(name, props), OBJ),
+            cmd.add(createNewCmd(name, props), OBJ),
           );
-          const command = cmd.findCommand(["palias1", "calias1", "gcalias1"])(
-            {},
-          );
+          const command = cmd.findCommand(["palias1", "calias1", "gcalias1"]);
           expect(command.runningCommand).toHaveProperty("main", "c1");
         });
         it("should get arg value if parent has args and child is not exists", () => {
@@ -235,10 +233,10 @@ describe("LESY:COMMAND", () => {
             { name: "gc1", props: { main: "c1" } },
           ];
           data.forEach(({ name, props }) =>
-            cmd.addCommandFromRawObject(createNewCmd(name, props), OBJ),
+            cmd.add(createNewCmd(name, props), OBJ),
           );
 
-          const command = cmd.findCommand(["p1", "c1", "john"])({});
+          const command = cmd.findCommand(["p1", "c1", "john"]);
           expect(command.args).toHaveProperty("name", "john");
         });
         it("should get cmd if parent has args and child is exists", () => {
@@ -248,9 +246,9 @@ describe("LESY:COMMAND", () => {
             { name: "gc1", props: { main: "c1" } },
           ];
           data.forEach(({ name, props }) =>
-            cmd.addCommandFromRawObject(createNewCmd(name, props), OBJ),
+            cmd.add(createNewCmd(name, props), OBJ),
           );
-          const command = cmd.findCommand(["p1", "c1", "gc1"])({});
+          const command = cmd.findCommand(["p1", "c1", "gc1"]);
           expect(command.runningCommand).toHaveProperty("name", "gc1");
         });
         it("should throw error when parent is invalid", () => {
@@ -260,11 +258,11 @@ describe("LESY:COMMAND", () => {
             { name: "gc1", props: { main: "c1" } },
           ];
           data.forEach(({ name, props }) =>
-            cmd.addCommandFromRawObject(createNewCmd(name, props), OBJ),
+            cmd.add(createNewCmd(name, props), OBJ),
           );
 
           try {
-            cmd.findCommand(["c1", "gc1"])({});
+            cmd.findCommand(["c1", "gc1"]);
           } catch (error) {
             expect(error.message).toBe("__PROCESS_EXIT__");
           }
@@ -276,11 +274,11 @@ describe("LESY:COMMAND", () => {
             { name: "gc1", props: { main: "c1" } },
           ];
           data.forEach(({ name, props }) =>
-            cmd.addCommandFromRawObject(createNewCmd(name, props), OBJ),
+            cmd.add(createNewCmd(name, props), OBJ),
           );
 
           try {
-            cmd.findCommand(["gc1"])({});
+            cmd.findCommand(["gc1"]);
           } catch (error) {
             expect(error.message).toBe("__PROCESS_EXIT__");
           }
@@ -289,9 +287,7 @@ describe("LESY:COMMAND", () => {
 
       describe("get command list", () => {
         it("should return the list of command objects", () => {
-          createXCmds(4).forEach((c: Command) =>
-            cmd.addCommandFromRawObject(c, OBJ),
-          );
+          createXCmds(4).forEach((c: Command) => cmd.add(c, OBJ));
           expect(cmd.getCommands().length).toEqual(4);
           expect(cmd.getCommands()[0].name).toBe("cmd0");
         });
