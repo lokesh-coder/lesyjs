@@ -7,7 +7,7 @@
     "packages/misc/*",
     "packages/plugins/*"
   ],
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0-beta.9",
   "command": {
     "bootstrap": {
       "ignore": "@lesy/lesy-pilot-ui",
