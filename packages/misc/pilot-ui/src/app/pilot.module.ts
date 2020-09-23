@@ -3,6 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { ToppyModule } from "toppy";
 import { NgxsModule } from "@ngxs/store";
 import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
+import { NgxsStoragePluginModule } from "@ngxs/storage-plugin";
 import { AngularSplitModule } from "angular-split";
 
 /* Components */
@@ -93,6 +94,7 @@ import { environment } from "../environments/environment.prod";
     NgxsReduxDevtoolsPluginModule.forRoot({
       disabled: !environment.production,
     }),
+    NgxsStoragePluginModule.forRoot(),
     AngularSplitModule.forRoot(),
   ],
   bootstrap: [PilotMain],

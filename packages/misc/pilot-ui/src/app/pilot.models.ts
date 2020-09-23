@@ -44,6 +44,7 @@ export interface NotificationModel {
 
 export interface CommonModel {
   consoleHeight: number;
+  consolePosition: "vertical" | "horizontal";
   config: { [key: string]: any };
 }
 

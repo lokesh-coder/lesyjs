@@ -9,6 +9,7 @@ import {
   SetConfig,
   LoadConfig,
   SetConsolePanelFullScreen,
+  ToggleConsolePosition,
 } from "../actions/common.actions";
 import { CommonService } from "../../services/common.service";
 import { mergeMap } from "rxjs/operators";
@@ -17,6 +18,7 @@ import { mergeMap } from "rxjs/operators";
   name: "common",
   defaults: {
     consoleHeight: 0,
+    consolePosition: "vertical",
     config: {},
   },
 })
@@ -51,6 +53,14 @@ export class CommonState {
     const consoleHeight =
       state.consoleHeight === 0 ? PilotConfig.ConsolePanelDefaultHeight : 0;
     ctx.setState({ ...state, consoleHeight });
+  }
+
+  @Action(ToggleConsolePosition)
+  toggleConsolePosition(ctx: StateContext<CommonModel>) {
+    const state = ctx.getState();
+    const consolePosition =
+      state.consolePosition === "vertical" ? "horizontal" : "vertical";
+    ctx.setState({ ...state, consolePosition });
   }
 
   @Action(LoadConfig)
