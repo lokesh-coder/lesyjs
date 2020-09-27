@@ -44,6 +44,7 @@ jobs:
               run: npm run build
               env:
                   GH_TOKEN: ${{ secrets.DOC_README_FETCH }}
+                  MAILCHIMP_ENDPOINT: ${{ secrets.MAILCHIMP_ENDPOINT }}
 
             - name: LERNA - bump version
               run: npm run bump
@@ -65,6 +66,7 @@ jobs:
               run: npm run build-docs
               env:
                   GH_TOKEN: ${{ secrets.DOC_README_FETCH }}
+                  MAILCHIMP_ENDPOINT: ${{ secrets.MAILCHIMP_ENDPOINT }}
 
             - name: DOCS - publish
               uses: peaceiris/actions-gh-pages@v3
