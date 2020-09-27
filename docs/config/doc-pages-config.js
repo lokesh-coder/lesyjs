@@ -31,6 +31,8 @@ const devScreenMenuLinks = [
   "dev/recipies/sample2.md",
 ];
 
+const developerScreenMenuLinks = ["developer/architecture/internal.md"];
+
 const pluginsScreenMenuLinks = [
   "plugins/docs/generator.md",
   "plugins/docs/configfiles.md",
@@ -39,11 +41,13 @@ const pluginsScreenMenuLinks = [
   "plugins/docs/pilot.md",
   "plugins/docs/prompt.md",
   "plugins/docs/validator.md",
+  "plugins/docs/sidekick.md",
 ];
 
 module.exports = {
   mainScreenMenuLinks,
   devScreenMenuLinks,
+  developerScreenMenuLinks,
   pageSectionNames,
   pluginsScreenMenuLinks,
 };

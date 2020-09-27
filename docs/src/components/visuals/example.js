@@ -3,9 +3,9 @@ import Step from "./step";
 import MacFrame from "./mac-frame";
 import EditorFrame from "./editor-frame";
 const codes = {};
-codes["1"] = `$ npx lesy my-cli`;
+codes["1"] = `$ npx lesy new my-cli`;
 codes["2"] = `export default {
-  name:"hello",
+  name: "hello",
   run:() => console.log("Hello world!")
 }`;
 codes["3"] = `$ node ./bin/cmd hello`;

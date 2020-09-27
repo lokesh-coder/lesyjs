@@ -1,1 +1,11 @@
 @import "~pretty-checkbox/src/pretty-checkbox.scss";
+
+pilot-commands-page {
+  display: flex;
+  flex: 1;
+}
+
+as-split as-split-area.as-split-area:first-child {
+  display: flex;
+  flex-direction: column;
+}

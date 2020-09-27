@@ -33,6 +33,9 @@ export class PilotMain implements OnInit {
   @Select(CommonState.consolePanelsHeight())
   panelHeights$: Observable<number[]>;
 
+  @Select((state) => state.common.consolePosition)
+  consolePosition$: Observable<string>;
+
   @Select((state) => state.notification)
   notification$: Observable<NotificationModel>;
 

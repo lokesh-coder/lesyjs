@@ -12,7 +12,7 @@ function createDocPages(pageTools) {
   });
 
   const allDocs = [];
-  ["main", "dev", "plugins"].forEach((name) => {
+  ["main", "dev", "plugins", "developer"].forEach((name) => {
     allDocs.push(createDocPage(createPage, graphql, reporter, name));
   });
   return Promise.all(allDocs);

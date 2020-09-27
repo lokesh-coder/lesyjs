@@ -33,3 +33,7 @@ Execute and run commands from GUI. No extra work needed, just add this plugin, a
 ### Arguments Validator
 
 Prompt for required args if it is not supplied. <Link to="/docs/plugins/arg-validator">View docs</Link>
+
+### Essentials
+
+It is one of the inbuild plugins consist of few neccessary features and middlewares. <Link to="/docs/plugins/sidekick">View docs</Link>

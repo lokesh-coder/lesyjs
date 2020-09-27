@@ -4,10 +4,7 @@
   class="d-flex flex-column"
   id="pilotForm"
 >
-  <div
-    class="bg-white rounded-xl border border-gray-400 mt-5 p-6 highlight:border-transparent highlight:mt-0"
-    *ngIf="questions.length > 0"
-  >
+  <div class="bg-white mt-5 p-6 highlight:mt-0" *ngIf="questions.length > 0">
     <h5 class="mb-6 text-lg text-gray-800 font-medium highlight:hidden">
       Arguments
     </h5>
@@ -25,7 +22,7 @@
 
   <button
     type="submit"
-    class="flex mx-auto bg-green-500 py-4 px-6 mt-6 rounded text-white font-semibold shadow-lg focus:shadow-none disabled:opacity-50 focus:outline-none highlight:mt-0"
+    class="flex mx-auto bg-green-500 py-3 px-6 mt-6 rounded-lg text-white font-semibold shadow-lg focus:shadow-none disabled:opacity-50 focus:outline-none highlight:mt-0"
     [disabled]="!form.valid"
   >
     <i class="ri-send-plane-2-line mr-2"></i> Run command

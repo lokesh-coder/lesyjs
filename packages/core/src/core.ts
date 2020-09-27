@@ -26,6 +26,7 @@ class LesyCoreClass {
       { commands, features, middlewares, plugins },
       root,
     );
+    // todo: store plugin config under config.plugins
     for (const prop in this.loader.pluginConfigs) {
       config[prop] = this.loader.pluginConfigs[prop];
     }

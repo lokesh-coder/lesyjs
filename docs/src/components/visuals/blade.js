@@ -1,12 +1,15 @@
 import React from "react";
 
-const Blade = ({ icon, themes, desc }) => {
+const Blade = ({ icon, title, themes, desc }) => {
   return (
-    <div className="flex items-center p-4 tile">
-      <i
-        className={`${icon} text-gray-500 p-3 text-2xl mb-2 inline-block leading-none mr-2`}
-      />
-      <p className="text-sm m-0">{desc}</p>
+    <div className="p-4">
+      <div className="flex items-center">
+        <i
+          className={`${icon} ${themes} p-2 rounded text-3xl mb-2 inline-block leading-none mr-2`}
+        />
+        <h3 className="font-heading font-bold">{title}</h3>
+      </div>
+      <p className="text-sm m-0 ">{desc}</p>
     </div>
   );
 };

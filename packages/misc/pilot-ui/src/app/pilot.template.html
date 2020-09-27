@@ -1,6 +1,6 @@
-<div style="height: 100vh;padding-bottom:42px">
+<div style="height: 100vh; padding-bottom: 42px;">
   <as-split
-    direction="vertical"
+    [direction]="consolePosition$ | async"
     *ngIf="panelHeights$ | async as heights"
     (dragEnd)="onDragEnd($event)"
   >

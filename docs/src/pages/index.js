@@ -14,6 +14,8 @@ import Highlights from "../components/parts/highlights";
 import Features from "../components/parts/features";
 import Stats from "../components/parts/stats";
 import Footer from "../components/parts/footer";
+import NewsletterSection from "../components/parts/newsletter";
+import SectionHeadlines from "../components/visuals/section-headlines";
 
 const features = [
   "Sub commands",
@@ -22,7 +24,7 @@ const features = [
   "Typescript",
   "Middleware architecture",
   "Better testing",
-  "Easy and Faster",
+  "Configurable",
   "Lightweight",
   "Even more",
 ];
@@ -37,7 +39,7 @@ const IndexPage = ({ data }) => {
       <ParticlesBg />
       <div className="container lg:flex mx-auto min-h-screen relative z-10">
         <div className="w-full lg:w-8/12 flex items-center py-12 lg:py-0">
-          <div className="px-4 lg:px-12 lg:px-24">
+          <div className="px-4 lg:px-24">
             <div className="lg:absolute top-0 flex justify-center">
               <img
                 src="/images/lesy-head.png"
@@ -45,30 +47,29 @@ const IndexPage = ({ data }) => {
                 alt="lesy icon"
               />
             </div>
-            <span className="text-sm text-orange-700 font-500">
-              Little cute Node module
-            </span>
+
             <h1 className="text-heading text-4xl lg:text-5xl font-extrabold tracking-tight font-heading leading-none">
-              CLI Framework
+              Build modern command line apps with{" "}
+              <span className="text-primary">Lesy js</span>
             </h1>
             <p className="mb-8">
-              Lesy js is a super flexible lightweight CLI framework to build
-              modern command line apps without too much boilerplate.
+              Lesy is a super flexible and lightweight CLI framework to build
+              damn good command line apps without too much boilerplate.
             </p>
             <section className="text-sm text-subtext mb-8">
               {features.map((f) => (
-                <span key={f}>{f} &middot;</span>
+                <span key={f}>{f} &middot; </span>
               ))}
             </section>
             <div className="text-center lg:text-left">
               <Link
-                className="bg-teal-500 text-white py-3 px-6 rounded-full font-medium inline-flex text-sm items-center mr-3 hover:bg-teal-600"
+                className="bg-secondary text-white py-2 px-4 rounded-md font-medium inline-flex text-sm items-center mr-3 hover:bg-teal-600"
                 to="/docs/get-started/overview"
               >
                 <i className="ri-book-mark-fill text-lg mr-2"></i> Documentation
               </Link>
               <Link
-                className="bg-gray-100 text-gray-600 py-3 px-6 rounded-full font-medium inline-flex text-sm items-center hover:bg-gray-200"
+                className="bg-gray-200 text-gray-600 py-2 px-4 rounded-md font-medium inline-flex text-sm items-center hover:bg-gray-300"
                 to="https://github.com/lokesh-coder/lesyjs"
               >
                 <i className="ri-github-fill mr-2 text-lg"></i> Repository
@@ -81,7 +82,7 @@ const IndexPage = ({ data }) => {
             <Example
               icon="terminal-window-line"
               step="1"
-              title="Install lesy CLI globally"
+              title="Generate a new project"
               lang="shell"
             />
             <Example
@@ -96,14 +97,25 @@ const IndexPage = ({ data }) => {
         </div>
       </div>
       <div className="bg-gray-200 overflow-hidden">
+        <SectionHeadlines
+          title="Run commands from _Pilot_ UI"
+          subtitle="Pilot is a plugin for lesy, which lets you to view and run commands from any lesy projects. It is a fully functional dashboard with console viewer, prompt modal and runner"
+        />
         <Preview />
       </div>
 
       <div>
         <Highlights />
       </div>
-      <div className="bg-gray-200">
+      <div>
+        <SectionHeadlines
+          title="Easy, Classy, Bossy, _Lesy_"
+          subtitle="Whether you are building a tiny teeny app or complex one, process shouldn't be hard."
+        />
         <Features />
+      </div>
+      <div className="bg-gray-200">
+        <NewsletterSection />
       </div>
       <div className="bg-dark-200">
         <Stats />

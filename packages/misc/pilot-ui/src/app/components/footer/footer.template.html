@@ -44,6 +44,14 @@
     >
       <i class="ri-fullscreen-fill leading-none text-xl"></i>
     </li>
+    <li
+      *ngIf="consolePositionClassName$ | async as consolePosClassName"
+      (click)="toggleConsolePosition()"
+      tooltip="Toggle position"
+      class="flex items-center p-3 cursor-pointer text-gray-600 hover:text-vio-500"
+    >
+      <i class="{{consolePosClassName}} leading-none text-xl"></i>
+    </li>
   </ng-container>
   <li class="flex items-center ml-auto">
     <a

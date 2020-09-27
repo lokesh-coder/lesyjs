@@ -7,6 +7,10 @@ export class SetConsolePanelFullScreen {
   static readonly type = "[Console Panel] full screen";
 }
 
+export class ToggleConsolePosition {
+  static readonly type = "[Console Panel] toggle position";
+}
+
 export class ToggleConsolePanel {
   static readonly type = "[Console Panel] toggle panel";
 }

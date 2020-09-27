@@ -44,6 +44,7 @@ export interface NotificationModel {
 
 export interface CommonModel {
   consoleHeight: number;
+  consolePosition: "vertical" | "horizontal";
   config: { [key: string]: any };
 }
 
@@ -55,4 +56,16 @@ export enum LogsDirection {
 export interface LogsModel {
   logs: Array<Array<string | number>>;
   direction: LogsDirection;
+}
+
+export interface PilotState {
+  projects: ProjectModel[];
+  project: ProjectModel;
+  commands: CommandModel[];
+  command: CommandModel;
+  common: CommonModel;
+  logs: LogsModel;
+  notification: NotificationModel;
+  prompt: PromptModel;
+  runners: RunnerModel;
 }

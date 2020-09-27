@@ -91,7 +91,7 @@ class LesyCompiler {
         ...(appData.plugins || []),
       ];
     }
-    const config = this.defaultConfig;
+    const config = { ...this.defaultConfig }; // todo: refactor to imprv perf
     for (const prop in appData.config) config[prop] = appData.config[prop];
     appData.config = config;
   }

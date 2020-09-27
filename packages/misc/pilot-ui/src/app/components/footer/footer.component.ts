@@ -3,6 +3,7 @@ import { Store, Select } from "@ngxs/store";
 import {
   ToggleConsolePanel,
   SetConsolePanelFullScreen,
+  ToggleConsolePosition,
 } from "../../store/actions/common.actions";
 import { Observable } from "rxjs";
 import { ClearLogs, ReverseLogs } from "../../store/actions/logs.actions";
@@ -24,6 +25,13 @@ export class FooterComponent {
   })
   consoleStatus$: Observable<"CLOSED" | "OPEN" | "FULLSCREEN">;
 
+  @Select((state) => {
+    const position = state.common.consolePosition;
+    if (position === "vertical") return "ri-layout-right-line";
+    else return "ri-layout-bottom-line";
+  })
+  consolePositionClassName$: Observable<any>;
+
   constructor(private store: Store, private hotkeys: Hotkeys) {}
 
   toggleConsole() {
@@ -33,6 +41,11 @@ export class FooterComponent {
   setConsoleFullScreen() {
     this.store.dispatch(new SetConsolePanelFullScreen());
   }
+
+  toggleConsolePosition() {
+    this.store.dispatch(new ToggleConsolePosition());
+  }
+
   clearLogs() {
     this.store.dispatch(new ClearLogs());
   }
