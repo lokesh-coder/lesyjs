@@ -7,7 +7,7 @@ export default {
       type: "string",
     },
   },
-  visibleInList: false,
+  isVisible: false,
 
   async run({ args, utils }) {
     const execa = require("execa");
