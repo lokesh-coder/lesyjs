@@ -3,19 +3,8 @@ import React, { useState } from "react";
 const Preview = () => {
   const [slide, setSlide] = useState(2);
   return (
-    <div className="container m-auto py-16 ">
+    <div className="container m-auto py-8 ">
       <div className="px-6 lg:w-8/12 mx-auto ">
-        <span className="text-xs uppercase text-orange-700 text-center block font-medium tracking-tight">
-          Pilot Interface
-        </span>
-        <h3 className="font-heading font-bold text-heading text-2xl px:text-3xl text-center mb-3 tracking-tight">
-          Write once run in CLI or UI
-        </h3>
-        <p className="px-0 lg:px-12 text-center mb-10">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam
-          blanditiis quam quisquam quibusdam quos repudiandae harum repellat
-          animi magni aliquid rerum molestias quod, vel explicabo .
-        </p>
         <div className="preview">
           <div className="shadow-2xl p-4 lg:p-10 bg-white ">
             {slide === 0 && (

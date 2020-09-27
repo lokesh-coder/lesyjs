@@ -49,7 +49,7 @@ const Sidebar = ({ allContent }) => {
     <div
       className={`bg-light border-r border-gray-300 fixed w-full lg:w-1/5 overflow-auto h-screen `}
     >
-      <div className="fixed top-0 bg-white z-10 hidden lg:block sticky">
+      <div className="top-0 bg-white z-10 hidden lg:block sticky">
         <Brand />
       </div>
       {!isMainscreen && (

@@ -60,6 +60,10 @@ const postcssOptions = {
   ],
 };
 
+const mailchimpOptions = {
+  endpoint: process.env.MAILCHIMP_ENDPOINT,
+};
+
 const githubAPIOptions = {
   token: process.env.GH_TOKEN,
   graphQLQuery: `
@@ -126,6 +130,10 @@ module.exports = {
     {
       resolve: "gatsby-source-github-api",
       options: githubAPIOptions,
+    },
+    {
+      resolve: "gatsby-plugin-mailchimp",
+      options: mailchimpOptions,
     },
   ],
 };

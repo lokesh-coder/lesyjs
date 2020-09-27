@@ -19,7 +19,7 @@ const Brand = ({ onSidebarToggle = () => {} }) => {
       <a className="flex" href="/" title="go to home">
         <img src="/svg/lesy-head.svg" width="30" className="mr-3" alt="brand" />
         <div className="leading-tight">
-          <h1 className="text-blue-700 text-xl font-bold text-subheading font-heading">
+          <h1 className="text-xl font-bold text-subheading font-heading">
             Lesy{" "}
             <span className="text-xs font-medium text-gray-600">
               v{site.siteMetadata.version}

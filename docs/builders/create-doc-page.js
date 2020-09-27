@@ -45,7 +45,6 @@ async function createDocPage(createPage, graphql, reporter, screenName) {
 
   pages.forEach((page) => {
     if (pageOrderMap[page.node.parent.fileName] !== false) {
-      console.log("**", pageOrderMap, page.node.parent.fileName);
       finalPageEdges[pageOrderMap[page.node.parent.fileName]] = page;
     }
   });

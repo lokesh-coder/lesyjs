@@ -4,29 +4,39 @@ const data = [
   {
     title: "Code",
     links: [
-      { name: "Github", link: "/" },
-      { name: "NPM", link: "/" },
+      { name: "Github", link: "https://github.com/lokesh-coder/lesyjs" },
+      { name: "Node package", link: "https://www.npmjs.com/package/lesy" },
     ],
   },
   {
     title: "Repository",
     links: [
-      { name: "Issues", link: "/" },
-      { name: "plugins", link: "/" },
+      { name: "Issues", link: "https://github.com/lokesh-coder/lesyjs/issues" },
+      {
+        name: "Plugins",
+        link: "https://lesyjs.io/docs/library/official-plugins",
+      },
     ],
   },
   {
     title: "Project",
     links: [
-      { name: "Changelog", link: "/" },
-      { name: "License", link: "/" },
+      {
+        name: "Releases",
+        link: "https://github.com/lokesh-coder/lesyjs/releases",
+      },
+      {
+        name: "License",
+        link:
+          "https://github.com/lokesh-coder/lesyjs/blob/master/packages/cli/LICENCE",
+      },
     ],
   },
   {
     title: "Updates",
     links: [
-      { name: "Twitter", link: "/" },
-      { name: "Spectrum", link: "/" },
+      { name: "Twitter", link: "https://twitter.com/lesyjs" },
+      { name: "Spectrum", link: "https://spectrum.chat/lesyjs" },
     ],
   },
 ];
@@ -44,12 +54,15 @@ const Footer = () => {
       </div>
       <div className="w-full lg:w-6/12 flex">
         {data.map((d) => (
-          <div className="w-4/12 lg:text-right">
-            <h5 className="uppercase text-gray-600 text-sm font-medium">
+          <div className="w-4/12">
+            <h5 className="lowercase text-primary text-xl font-heading font-bold mb-3 ">
               {d.title}
             </h5>
             {d.links.map((l) => (
-              <a href={l.link} className="text-gray-500 block">
+              <a
+                href={l.link}
+                className="text-gray-500 block text-sm leading-6"
+              >
                 {l.name}
               </a>
             ))}
