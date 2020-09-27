@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2020-09-27)
+
+
+### Bug Fixes
+
+* **lesy-plugin-pilot:** isVisible prop typo ([1aef711](https://github.com/lokesh-coder/lesyjs/commit/1aef7118c73bc73712c51d4cdace62f206ac16e3))
+
+
+
+
+
 # [1.0.0-beta.9](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2020-09-16)
 
 

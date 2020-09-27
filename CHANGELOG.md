@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2020-09-27)
+
+
+### Bug Fixes
+
+* **compiler:** default props is mutating when workspace is loaded ([e625259](https://github.com/lokesh-coder/lesyjs/commit/e625259874557c796adfe355557202cad47e863d))
+* **compiler:** merge user plugins with default plugins ([5849d0f](https://github.com/lokesh-coder/lesyjs/commit/5849d0fa984fd2f5b1202a720bade4da10f09cf7))
+* **core:** when command prop value is boolean is ignore in command ([fa79825](https://github.com/lokesh-coder/lesyjs/commit/fa79825f07c3e93f987cb6f804edac7cbc666ad7))
+* **lesy-plugin-config:** add missing setter function ([51624dd](https://github.com/lokesh-coder/lesyjs/commit/51624ddd9658061b186be1b1d5f07cb847b8bb76))
+* **lesy-plugin-pilot:** isVisible prop typo ([1aef711](https://github.com/lokesh-coder/lesyjs/commit/1aef7118c73bc73712c51d4cdace62f206ac16e3))
+* **lesy-plugin-pilot:** lookup for localstate instead of direct prop ([0fabc18](https://github.com/lokesh-coder/lesyjs/commit/0fabc184df3e00d141f6316fe94ce05bfb315705))
+
+
+### Features
+
+* **lesy-pilot-ui:** support to change console position ([8be7b36](https://github.com/lokesh-coder/lesyjs/commit/8be7b369efcf1174b223ccebc8a81e3f850123ed))
+
+
+### Performance Improvements
+
+* **compiler:** improve loading performance ([818163e](https://github.com/lokesh-coder/lesyjs/commit/818163e80e7bbcec4705e0b60439743297614847))
+* **core:** refactor to improve performance ([830198f](https://github.com/lokesh-coder/lesyjs/commit/830198f0ec2660512f9d1e5031934cf775f90378))
+* **lesy:** run with TS in dev mode ([f01ff28](https://github.com/lokesh-coder/lesyjs/commit/f01ff2870c55ec12f2710d0eba13d160e8898231))
+* **lesy-benchmark:** update results ([9aaca95](https://github.com/lokesh-coder/lesyjs/commit/9aaca95d2d0d730aa9df1b5c8f04e705c1307933))
+
+
+
+
+
 # [1.0.0-beta.9](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2020-09-16)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.10](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2020-09-27)
+
+
+### Bug Fixes
+
+* **core:** when command prop value is boolean is ignore in command ([fa79825](https://github.com/lokesh-coder/lesyjs/commit/fa79825f07c3e93f987cb6f804edac7cbc666ad7))
+
+
+
+
+
 # [1.0.0-beta.9](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2020-09-16)
 
 **Note:** Version bump only for package @lesy/core
