@@ -44,6 +44,7 @@ jobs:
               run: npm run build
               env:
                   GH_TOKEN: ${{ secrets.DOC_README_FETCH }}
+                  MAILCHIMP_ENDPOINT: ${{ secrets.MAILCHIMP_ENDPOINT }}
 
             - name: LERNA - bump version
               run: npm run bump
