@@ -1,9 +1,9 @@
-<div class=" bg-white rounded-xl border border-gray-400 overflow-hidden">
+<div class="bg-white overflow-hidden">
   <div class="flex p-6 items-center">
-    <i class="ri-fire-fill text-4xl mr-4 text-vio-100"></i>
+    <i class="ri-terminal-box-fill text-4xl mr-4 text-violet"></i>
     <div class="flex-grow leading-tight">
       <h1
-        class="text-capitalize font-bold text-vio-700 text-3xl flex items-center font-display"
+        class="text-capitalize font-bold text-violet text-3xl flex items-center font-display"
       >
         {{ command.name }}
         <ng-container *ngIf="command.main">
@@ -21,7 +21,7 @@
     </div>
     <div class="flex">
       <i
-        class="ri-terminal-window-fill text-2xl mr-3 text-gray-700 cursor-pointer  hover:text-violet"
+        class="ri-terminal-window-fill text-2xl mr-3 text-gray-700 cursor-pointer hover:text-violet"
         (click)="toggleConsole()"
         [tooltip]="'Toggle console panel'"
       ></i>

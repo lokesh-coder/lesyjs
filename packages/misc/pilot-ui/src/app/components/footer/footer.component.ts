@@ -27,8 +27,8 @@ export class FooterComponent {
 
   @Select((state) => {
     const position = state.common.consolePosition;
-    if (position === "vertical") return "ri-layout-bottom-line";
-    else return "ri-layout-right-line";
+    if (position === "vertical") return "ri-layout-right-line";
+    else return "ri-layout-bottom-line";
   })
   consolePositionClassName$: Observable<any>;
 

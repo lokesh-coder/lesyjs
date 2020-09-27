@@ -1,9 +1,14 @@
 module.exports = {
   theme: {
+    minWidth: {
+      "0": "0",
+      "42": "42rem",
+      full: "100%",
+    },
     extend: {
       colors: {
         heading: "#242b54",
-        violet: "#537adf",
+        violet: "#596aa8",
         overlay: "rgba(144, 163, 208, 0.38) !important",
         vio: {
           100: "#7C9AE7",
@@ -50,8 +55,8 @@ module.exports = {
         '"Segoe UI Symbol"',
         '"Noto Color Emoji"',
       ],
-      display: ["Gilroy", "sans-serif"],
-      mono: ["Roboto Mono", "Inconsolata"],
+      display: ["Poppins", "sans-serif"],
+      mono: ["Consolas", "Menlo", "Monaco", "Inconsolata"],
     },
   },
   variants: {

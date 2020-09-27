@@ -1,18 +1,21 @@
-<div class="container mx-auto mt-12">
-  <div class="flex flex-wrap">
-    <div class="w-full lg:w-4/12 px-6" [class.parent]="showMobileMenu">
-      <div
-        class="bg-gray-200 rounded-lg border border-gray-400 shadow-inner text-gray-600 p-3 mb-10 text-center cursor-pointer select-none lg:hidden"
-        (click)="showMobileMenu=!showMobileMenu"
-      >
-        View command list
-      </div>
-      <pilot-sidemenu
-        [commands]="commands"
-        class="hidden lg:block parent:block"
-      ></pilot-sidemenu>
+<div class="flex flex-wrap flex-1">
+  <div
+    class="w-full lg:w-4/12 px-6 md:max-w-sm bg-gray-100"
+    [class.parent]="showMobileMenu"
+  >
+    <div
+      class="bg-gray-200 rounded-lg border border-gray-400 shadow-inner text-gray-600 p-3 mb-10 text-center cursor-pointer select-none lg:hidden"
+      (click)="showMobileMenu=!showMobileMenu"
+    >
+      View command list
     </div>
-    <div class="w-full lg:w-8/12 px-6">
+    <pilot-sidemenu
+      [commands]="commands"
+      class="hidden lg:block parent:block"
+    ></pilot-sidemenu>
+  </div>
+  <div class="flex-1 px-6 flex justify-center pt-6">
+    <div class="w-full md:w-3/6 md:min-w-42">
       <pilot-command
         *ngIf="selectedCommand"
         [config]="config"
@@ -20,12 +23,13 @@
       ></pilot-command>
       <div
         *ngIf="!selectedCommand"
-        class="flex items-center  flex-col rounded-lg p-6 mt-10"
+        class="flex items-center flex-col rounded-lg p-6 mt-10"
       >
+        <pilot-heading
+          h1="Get started"
+          p="Select any command in the left sidebar to view or run"
+        ></pilot-heading>
         <img src="assets/svg/choose-cmd.svg" />
-        <h3 class="text-gray-600 text-base font-display">
-          Click on the command to run!
-        </h3>
       </div>
     </div>
   </div>

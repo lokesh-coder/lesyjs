@@ -1,40 +1,38 @@
 import { Component, OnInit } from "@angular/core";
-import { CommandsService } from "../../services/commands.service";
-import { map } from "rxjs/operators";
-import { Observable, combineLatest } from "rxjs";
-import { ActivatedRoute } from "@angular/router";
+import { Observable } from "rxjs";
+import { Router } from "@angular/router";
 import { Select, Store } from "@ngxs/store";
-import { ProjectsService } from "../../services/projects.service";
 import { LoadProjects } from "../../store/actions/projects.actions";
 import { SelectedProject } from "../../store/actions/project.actions";
 import { LoadConfig } from "../../store/actions/common.actions";
+import { PilotState, ProjectModel } from "../../pilot.models";
 
 @Component({
   selector: "pilot-projects-page",
   templateUrl: "./projects.template.html",
 })
 export class ProjectsPage implements OnInit {
-  config: object;
-  projects: any[];
-  selectedProject;
+  currentProjectName = "";
 
-  @Select((state) => state.projects)
-  projects$: Observable<string[]>;
+  @Select((state: PilotState) => state.projects)
+  projects$: Observable<ProjectModel[]>;
 
-  @Select((state) => state.common.config)
+  @Select((state: PilotState) => state.common.config)
   config$: Observable<object>;
 
-  constructor(
-    private store: Store,
-    private route: ActivatedRoute,
-    private ps: ProjectsService,
-  ) {
+  constructor(private store: Store, private router: Router) {
     this.store.dispatch(new LoadProjects());
   }
 
-  ngOnInit() {}
-  switchProject(name) {
-    this.store.dispatch(new SelectedProject(name));
+  ngOnInit() {
+    this.currentProjectName = this.store.selectSnapshot<string>(
+      (state: PilotState) => state.project.name,
+    );
+  }
+  switchProject(project: ProjectModel) {
+    this.store.dispatch(new SelectedProject(project));
     this.store.dispatch(new LoadConfig());
+
+    this.router.navigateByUrl("/");
   }
 }

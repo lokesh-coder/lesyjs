@@ -57,3 +57,15 @@ export interface LogsModel {
   logs: Array<Array<string | number>>;
   direction: LogsDirection;
 }
+
+export interface PilotState {
+  projects: ProjectModel[];
+  project: ProjectModel;
+  commands: CommandModel[];
+  command: CommandModel;
+  common: CommonModel;
+  logs: LogsModel;
+  notification: NotificationModel;
+  prompt: PromptModel;
+  runners: RunnerModel;
+}

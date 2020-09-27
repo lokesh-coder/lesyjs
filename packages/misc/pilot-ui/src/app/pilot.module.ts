@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
-import { ToppyModule } from "toppy";
 import { NgxsModule } from "@ngxs/store";
 import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
 import { NgxsStoragePluginModule } from "@ngxs/storage-plugin";
+import { ToppyModule } from "toppy";
 import { AngularSplitModule } from "angular-split";
 
 /* Components */
@@ -15,6 +15,7 @@ import { PromptComponent } from "./components/prompt/prompt.component";
 import { SearchbarComponent } from "./components/searchbar/searchbar.component";
 import { SidemenuComponent } from "./components/sidemenu/sidemenu.component";
 import { ToastComponent } from "./components/toast/toast.component";
+import { HeadingComponent } from "./components/heading/heading.component";
 
 /* Directives */
 import { TooltipDirective } from "./directives/tooltip/tooltip.directive";
@@ -40,14 +41,16 @@ import { NotificationState } from "./store/states/notification.state";
 import { PromptState } from "./store/states/prompt.state";
 import { RunnersState } from "./store/states/runners.state";
 
+/* Local modules */
 import { QueryModule } from "./modules/query/query.module";
 import { PilotRoutingModule } from "./pilot.routing.module";
 
+/* Services */
 import { SafeHtmlPipe } from "./services/safehtml.service";
 
+import { environment } from "../environments/environment.prod";
 import { PilotMain } from "./pilot.main";
 
-import { environment } from "../environments/environment.prod";
 @NgModule({
   declarations: [
     PilotMain,
@@ -56,6 +59,7 @@ import { environment } from "../environments/environment.prod";
     SearchbarComponent,
     PromptComponent,
     HeaderComponent,
+    HeadingComponent,
     CommandComponent,
     ConsoleComponent,
     FooterComponent,

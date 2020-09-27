@@ -1,16 +1,22 @@
 <div class="container mx-auto">
   <div class="w-full sm:w-2/3 mx-auto px-6 sm:px-0">
-    <h1 class="font-bold font-display text-3xl text-vio-900 my-8">
-      Projects
-    </h1>
-    <div
-      *ngFor="let project of (projects$|async)"
-      class="m-3 cursor-pointer p-5 bg-gray-200 rounded-lg text-gray-900 inline-flex items-center hover:bg-gray-300 leading-none"
-      (click)="switchProject(project)"
-    >
-      <i class="ri-folder-5-line mr-3 text-xl font-medium"></i>
-      <span>{{project.name}}</span>
-      <span class="opacity-50 ml-3 text-sm">v{{project.version}}</span>
+    <pilot-heading
+      h1="Workspace"
+      p="List of all globally installed lesy projects"
+    ></pilot-heading>
+    <div class="text-center">
+      <div
+        *ngFor="let project of (projects$|async)"
+        class="m-3 cursor-pointer p-5 bg-gray-200 rounded-lg text-gray-900 inline-flex items-center hover:bg-gray-300 leading-none"
+        (click)="switchProject(project)"
+      >
+        <i class="ri-folder-5-line mr-3 text-xl font-medium"></i>
+        <span>{{project.name}}</span>
+        <span class="opacity-50 ml-3 text-sm">v{{project.version}}</span>
+        <ng-container *ngIf="currentProjectName === project.name"
+          ><i class="ri-checkbox-circle-fill text-violet text-xl ml-2"></i
+        ></ng-container>
+      </div>
     </div>
   </div>
 </div>

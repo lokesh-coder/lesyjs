@@ -1,20 +1,21 @@
 <div class="container mx-auto">
   <div *ngIf="config">
     <div class="w-full sm:w-2/3 mx-auto px-6 sm:px-0">
-      <h1 class="font-bold font-display text-2xl text-vio-900">
-        Configurations
-      </h1>
-      <div class="bg-white shadow-md rounded my-6">
-        <table class="text-left w-full border-collapse">
+      <pilot-heading
+        h1="Configurations"
+        p="View project level pilot settings"
+      ></pilot-heading>
+      <div class="bg-white rounded my-6 flex justify-center">
+        <table class="text-left w-3/6 border-collapse">
           <thead>
-            <tr class="bg-gray-200">
+            <tr>
               <th
-                class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light"
+                class="py-4 px-6 font-semibold text-gray-700 border-b border-grey-light"
               >
                 Config name
               </th>
               <th
-                class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light"
+                class="py-4 px-6 font-semibold text-gray-700 border-b border-grey-light text-right"
               >
                 Value
               </th>
@@ -22,11 +23,13 @@
           </thead>
           <tbody>
             <tr class="hover:bg-gray-100" *ngFor="let conf of config">
-              <td class="py-4 px-6 border-b border-grey-light text-gray-600">
+              <td
+                class="py-4 px-6 border-b border-grey-light text-gray-500 font-mono"
+              >
                 {{conf[0]}}
               </td>
               <td
-                class="py-4 px-6 border-b border-grey-light font-semibold text-yellow-800"
+                class="py-4 px-6 border-b border-grey-light text-violet text-right"
               >
                 {{conf[1]}}
               </td>
