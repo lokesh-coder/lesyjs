@@ -130,7 +130,7 @@ class LesyCommand {
     } else if (this.isClass(cmd)) {
       cmdObj = new (cmd as any)() as Command;
       Object.keys(this.defaultProps).forEach((p: any) => {
-        if (cmdObj[p]) return;
+        if (cmdObj[p] != null) return;
         Object.defineProperty(cmdObj, p, {
           value: this.defaultProps[p],
           configurable: true,
