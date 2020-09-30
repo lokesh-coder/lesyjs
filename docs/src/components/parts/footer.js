@@ -52,10 +52,10 @@ const Footer = () => {
           <div>Lesy CLI Framework</div>
         </h3>
       </div>
-      <div className="w-full lg:w-6/12 flex">
+      <div className="w-full lg:w-6/12 flex flex-wrap lg:flex-no-wrap">
         {data.map((d) => (
-          <div className="w-4/12">
-            <h5 className="lowercase text-primary text-xl font-heading font-bold mb-3 ">
+          <div className="w-6/12 lg:w-4/12">
+            <h5 className="lowercase text-primary text-base lg:text-xl font-heading font-bold lg:mb-3 ">
               {d.title}
             </h5>
             {d.links.map((l) => (

@@ -80,7 +80,7 @@ We can pass the dynamic data to the templates using `data` option. It is a plain
 
 ### Templating
 
-Templates are parsed using [Handlebars](https://handlebarsjs.com/guide/). This plugin comes with a inbuild case change helper. In the template we can use,
+Templates are parsed using [Handlebars](https://handlebarsjs.com/guide/). This plugin comes with a build-in case change helper. In the template we can use,
 
 ```html
 <h1>Hello {{name|uppercase}}</h1>

@@ -130,7 +130,7 @@ Command can have multiple aliases. Please make sure you are not using the same a
 
 #### args
 
-These are the arguments schema. This has inbuild validation. [refer](foobar) Validator helper.
+These are the arguments schema. This has built-in validation. [refer](foobar) Validator helper.
 
 ```typescript
 {

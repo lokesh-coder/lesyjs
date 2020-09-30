@@ -1,5 +1,22 @@
 module.exports = {
   theme: {
+    fontFamily: {
+      sans: [
+        " -apple-system",
+        "BlinkMacSystemFont",
+        "Segoe UI",
+        "Inter",
+        "system-ui",
+        "Helvetica Neue",
+        "Arial",
+        "Noto Sans",
+        "sans-serif",
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Segoe UI Symbol",
+        "Noto Color Emoji",
+      ],
+    },
     extend: {
       colors: {
         window: {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const SectionHeadlines = ({ title, subtitle }) => {
   const heading = title.replace(
@@ -8,7 +8,7 @@ const SectionHeadlines = ({ title, subtitle }) => {
   return (
     <div className="flex flex-col items-center pt-16">
       <h2
-        className="text-heading font-heading font-extrabold text-5xl"
+        className="text-heading font-heading font-extrabold text-5xl text-center leading-tight"
         dangerouslySetInnerHTML={{ __html: heading }}
       ></h2>
       <p className="text-center text-lg my-6 lg:w-2/4">{subtitle}</p>

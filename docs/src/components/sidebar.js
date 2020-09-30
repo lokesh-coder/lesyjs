@@ -47,7 +47,7 @@ const Sidebar = ({ allContent }) => {
 
   return (
     <div
-      className={`bg-light border-r border-gray-300 fixed w-full lg:w-1/5 overflow-auto h-screen `}
+      className={`bg-light border-r border-gray-300 fixed top-0 w-full lg:w-1/5 overflow-auto min-h-screen `}
     >
       <div className="top-0 bg-white z-10 hidden lg:block sticky">
         <Brand />
@@ -60,7 +60,7 @@ const Sidebar = ({ allContent }) => {
           <i class="ri-arrow-left-line mr-2"></i> Back to main menu
         </Link>
       )}
-      <div className="py-3 px-10 flex">
+      <div className="py-3 px-10 flex max-h-screen">
         <ul className="level-0 w-full">
           {pages.map((page) => {
             return (

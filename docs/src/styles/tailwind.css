@@ -25,7 +25,7 @@ p {
 }
 
 .content h3 {
-  @apply mt-16;
+  @apply mt-8;
   @apply mb-4;
   @apply pl-5;
   @apply text-gray-800;
