@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.11](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2020-10-14)
+
+
+### Bug Fixes
+
+* **lesy-plugin-generator:** windows path escaped in  handlebars ([a3c06aa](https://github.com/lokesh-coder/lesyjs/commit/a3c06aa2350b80afdfc1b11ea747bfb18a9599ce))
+
+
+
+
+
 # [1.0.0-beta.10](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2020-09-27)
 
 **Note:** Version bump only for package @lesy/lesy-plugin-generator
