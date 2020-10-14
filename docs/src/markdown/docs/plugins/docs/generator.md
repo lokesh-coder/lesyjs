@@ -30,12 +30,13 @@ export default {
 ```typescript
 export default {
   name: "generate",
-  run: async ({ features: { generator } }) => {
-    await generator().create({
-      destination: `${process.cwd}/projects/`,
+  run: async ({ feature: { generateFiles } }) => {
+    await generateFiles({
       source: `${__dirname}/templates`,
+      destination: `${process.cwd}/projects/`,
       data: {
-        name: "John",
+        filename: "welcome",
+        name: "Scooby Doo",
       },
     });
   },
@@ -45,7 +46,7 @@ export default {
 #### Step 2: Create source templates
 
 ```html
-<!-- path/to/templates/welcome.html -->
+<!-- path/to/templates/{{filename}}.html -->
 <h1>Hello {{name}}</h1>
 ```
 
@@ -59,41 +60,41 @@ This command will create a files in the destination folder. And the output file 
 
 ```html
 <!-- path/to/estination/welcome.html -->
-<h1>Hello John</h1>
+<h1>Hello Scooby Doo</h1>
 ```
 
 ### Options
 
-Once the plugin is installed and added to index file, we can access the `generator` function from the `features`. It has only one method called `create`, which accepts the following options.
+Once the plugin is installed and added to the index file, we can access the `generator` function from the `feature` property. It has only one method named `create`, which accepts the following options.
 
 #### source
 
-The source path for the templates. Should be a absolute path.
+The source path for the templates. Should be an absolute path.
 
 #### destination
 
-The destination path for the compiled files.Should be a absolute path.
+The destination path for the compiled files.Should be an absolute path.
 
 #### data
 
-We can pass the dynamic data to the templates using `data` option. It is a plain object. All the keys will be replaced with the value in the template files.
+We can pass the dynamic data to the templates using the `data` option. It is a plain object. All the keys will be replaced with the values in the template files.
+
+#### handlebarsInstance
+
+If you wish to register any handlebars helpers or partials, you can get the instance from this function property.
+
+#### handebarsOptions
+
+You can pass handlebars options using this property.
 
 ### Templating
 
-Templates are parsed using [Handlebars](https://handlebarsjs.com/guide/). This plugin comes with a build-in case change helper. In the template we can use,
+Templates are parsed using [Handlebars](https://handlebarsjs.com/guide/). This plugin comes with a built-in case helper. In the template we can use,
 
 ```html
-<h1>Hello {{name|uppercase}}</h1>
+<h1>Hello {{uppercase name}}</h1>
 ```
 
-supports
+supported helpers:
 
-- uppercase
-- lowercase
-- capitalcase
-- snakecase
-- pascalcase
-- camelcase
-- headercase
-- constantcase
-- titlecase
+** uppercase** &middot; ** lowercase** &middot; ** capitalcase** &middot; ** snakecase** &middot; ** pascalcase** &middot; ** camelcase** &middot; ** headercase** &middot; ** constantcase** &middot; ** titlecase**
