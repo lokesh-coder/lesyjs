@@ -6,11 +6,11 @@ seoTitle: Create commands
 seoDesc: somedat
 ---
 
-Command is a core part of lesy. You can create and add commands in multiple ways. Lets see what you can actually do with commands.
+Command is the core part of Lesy. You can create and add commands in multiple ways. Let's see what you can actually do with commands.
 
 - Execute synchronous and asynchronous code
 - Run multi-level sub commands
-- Run another command programatically
+- Run another command programmatically
 - Parse and validate arguments and flags
 - Use features and utils from app or plugins
 
@@ -130,7 +130,7 @@ Command can have multiple aliases. Please make sure you are not using the same a
 
 #### args
 
-These are the arguments schema. This has inbuild validation. [refer](foobar) Validator helper.
+These are the arguments schema. This has built-in validation. [refer](foobar) Validator helper.
 
 ```typescript
 {
@@ -210,7 +210,7 @@ $ node bin/cmd generate component
 
 #### usage
 
-Sample usage code shown in the help command
+The sample usage code is shown in the help command
 
 ### Run context
 
@@ -255,7 +255,7 @@ todo
 
 ### Sub commands
 
-Commands can be nested multiple levels. If you want to make a sub-command, just add the parent name in `main` property. Other features of the command remains same for sub commands.
+Commands can be nested multiple levels. If you want to make a sub-command, just add the parent name in `main` property. Other features of the command remain same for sub commands.
 
 ```typescript
 // parent command
@@ -305,7 +305,7 @@ Please dont use parent name aliases
 
 ### Default command
 
-By default **lesy** looks for command named `default` if no args supplied in the input. If you would like to run different command as a default command, set it in the config.
+By default **lesy** looks for the command named `default` if no args supplied in the input. If you would like to run a different command as a default command, set it in the config.
 
 ```typescript
 {

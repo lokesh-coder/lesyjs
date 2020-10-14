@@ -4,9 +4,9 @@ path: /docs/get-started/overview
 icon: user-smile-fill
 ---
 
-Lesy is just a simple lightweight CLI framework helps you to build modern and performant command line apps. Thats all!
+Lesy is a **lightweight CLI framework** built with Node JS, which helps you to build modern and performant command-line apps.
 
-Whether you are building a dead simple app or more advanced app, Lesy lets you to write less code and get more. Here's the sample code for classic Hello world example.
+Whether you are building a dead-simple or a complex app, Lesy lets you write less code and get more. Here's the sample code for the classic Hello world example.
 
 ```js
 #!/usr/bin/env node
@@ -20,8 +20,8 @@ lesy({ commands }).parse();
 ### Why Lesy?
 
 - **Language**: Full support for Typescript with @types
-- **Flexibility**: Able to change complete behaviour with middlewares
-- **Boilerplate**: Write less code. whether its a dead simple project or complex one.
+- **Flexibility**: Able to change complete behavior with middlewares
+- **Boilerplate**: Write less code.
 - **Extensions**: Add cool functionalities with plugins
 - **Platform**: Write once and run in CLI or UI
 - **Performance**: It is just faster than existing libraries. Benchmark inside.
@@ -36,8 +36,8 @@ We have setup a _playground_ for you to play around with it.
 
 ### What is the meaning of Lesy?
 
-Well, there is no specific meaning for Lesy. The whole project is build with the mindset of simple and easy. Whether it is a code or documentation or name or logo, everything should be simple. **Lesy** sounds cool and short.
+Well, there is no specific meaning for Lesy. The whole project is built with the mindset of simplicity and maintainability. Thus each part of the project right from the name to code, everything is crafted carefully. **Lesy** sounds cool and short.
 
-Same way, it is not related to penguin logo. Penguin is cute right? Lets make that as a logo and name it Lesy!!
+Same way, it is not related to the penguin. I just felt Penguin is cute and so made it as a logo.
 
-Give it a try, you will like Lesy!
+Give it a try. You will like Lesy!

@@ -47,7 +47,7 @@ module.exports = {
 };
 ```
 
-### Inbuild plugins
+### Built-in plugins
 
 ### Thirdparty plugins
 

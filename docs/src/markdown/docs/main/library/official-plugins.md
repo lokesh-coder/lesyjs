@@ -36,4 +36,4 @@ Prompt for required args if it is not supplied. <Link to="/docs/plugins/arg-vali
 
 ### Essentials
 
-It is one of the inbuild plugins consist of few neccessary features and middlewares. <Link to="/docs/plugins/sidekick">View docs</Link>
+It is one of the built-in plugins consist of few neccessary features and middlewares. <Link to="/docs/plugins/sidekick">View docs</Link>

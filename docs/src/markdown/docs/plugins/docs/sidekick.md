@@ -4,7 +4,7 @@ path: /docs/plugins/sidekick
 icon: rocket-fill
 ---
 
-**@lesy/lesy-plugin-sidekick** is a inbuild plugin helps you to,
+**@lesy/lesy-plugin-sidekick** is a build-in plugin helps you to,
 
 - Load package json file
 - Allows `--version` flag globally

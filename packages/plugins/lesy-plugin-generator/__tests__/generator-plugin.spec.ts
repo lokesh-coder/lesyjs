@@ -1,4 +1,4 @@
-import generator from "../src/generator";
+import generatorFeature from "../src/generator.feature";
 import { LesyCoreClass } from "@lesy/core";
 import {
   existsSync,
@@ -38,19 +38,71 @@ describe("lesy-plugin-generator", () => {
 
   it("should generate files", (done: any) => {
     const feature = {} as any;
-    generator(feature) as any;
+    generatorFeature(feature) as any;
     feature
       .generateFiles({
         data: { filename: "abc" },
         name: "test",
-        destination: `${__dirname}/fixtures/outputfiles`,
-        source: `${__dirname}/fixtures/templates`,
+        destination: `${__dirname}/fixtures/outputfiles/`,
+        source: `${__dirname}/fixtures/dynamic`,
       })
       .then(() => {
         const data = readFileSync(
           resolve(__dirname, "./fixtures/outputfiles/abc.txt"),
         );
-        expect(data.toString()).toBe("hello abc");
+        expect(data.toString()).toBe("hello ABC");
+        done();
+      });
+  });
+
+  it("should use handlebars instance", (done: any) => {
+    const feature = {} as any;
+    generatorFeature(feature) as any;
+
+    const handlebarsIns = (hb) => {
+      hb.registerHelper("comma", (string) => {
+        return string.split("").join(",");
+      });
+    };
+
+    feature
+      .generateFiles({
+        data: { filename: "abc", user: "jim" },
+        name: "test",
+        destination: `${__dirname}/fixtures/outputfiles`,
+        source: `${__dirname}/fixtures/static`,
+        handlebarsInstance: handlebarsIns,
+      })
+      .then(() => {
+        const data = readFileSync(
+          resolve(__dirname, "./fixtures/outputfiles/ins.txt"),
+        );
+        expect(data.toString()).toBe("j,i,m");
+        done();
+      });
+  });
+
+  it("should use handlebars options", (done: any) => {
+    const feature = {} as any;
+    generatorFeature(feature) as any;
+
+    feature
+      .generateFiles({
+        data: { filename: "abc", user: "jim" },
+        name: "test",
+        destination: `${__dirname}/fixtures/outputfiles`,
+        source: `${__dirname}/fixtures/static`,
+        handebarsOptions: {
+          helpers: {
+            comma: (str: string) => str.split("").join("-,-"),
+          },
+        },
+      })
+      .then(() => {
+        const data = readFileSync(
+          resolve(__dirname, "./fixtures/outputfiles/ins.txt"),
+        );
+        expect(data.toString()).toBe("j-,-i-,-m");
         done();
       });
   });

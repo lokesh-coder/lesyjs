@@ -1,11 +1,9 @@
 import React from "react";
 import Particles from "react-particles-js";
-const isMobile =
-  typeof navigator == "function"
-    ? /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-    : false;
+import { isMobile } from "react-device-detect";
 
 const ParticlesBg = () => {
+  console.log("==>", isMobile);
   return (
     <div className="absolute top-0 left-0 w-full">
       <Particles

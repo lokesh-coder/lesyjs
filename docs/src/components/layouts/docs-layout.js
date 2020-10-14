@@ -82,6 +82,20 @@ const DocsLayout = ({ children, content, allContent }) => {
             })}
         </ul>
       </div>
+      <div className="fixed bottom-0 my-2 w-full flex justify-center z-30 lg:hidden">
+        <button
+          className="mx-auto px-5 py-1 bg-gray-200 text-primary rounded-md focus:outline-none"
+          onClick={() => {
+            toggleSidebar(!isHidden);
+          }}
+        >
+          <i
+            class={`ri-${
+              isHidden ? "menu-4-fill" : "close-circle-line"
+            } text-xl`}
+          ></i>
+        </button>
+      </div>
     </div>
   );
 };

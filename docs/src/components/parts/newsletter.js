@@ -16,7 +16,7 @@ const NewsletterSection = () => {
   };
 
   return (
-    <div className="container mx-auto px-5 py-24 pb-10 lg:pb-24 lg:flex">
+    <div className="container mx-auto px-5 py-24 lg:flex">
       <div className="w-full lg:w-6/12">
         <h2 className="text-3xl text-left inline-block font-bold text-heading font-heading">
           Sign up for latest news and updates
@@ -26,18 +26,18 @@ const NewsletterSection = () => {
         </p>
       </div>
       <form className="w-full lg:w-6/12 mt-2" onSubmit={onSubscribe}>
-        <div className="flex items-center">
+        <div className="flex items-center flex-wrap lg:flex-no-wrap">
           <input
             type="email"
             placeholder="user@email.com"
-            className="w-full px-4 py-4 mr-2  bg-gray-100  rounded-md border border-gray-400 focus:outline-none"
+            className="w-full px-4 py-2 lg:mr-2  bg-gray-100  rounded-md border border-gray-400 focus:outline-none"
             onChange={onChange}
             required
             onInvalid={(e) =>
               e.target.setCustomValidity("Please enter valid email address")
             }
           />
-          <button className="bg-secondary text-white px-5 py-4 rounded shadow w-1/4 font-bold">
+          <button className="bg-secondary text-white px-5 py-2 mt-3 lg:mt-0 rounded shadow w-full lg:w-1/4 font-semibold">
             Notify
           </button>
         </div>

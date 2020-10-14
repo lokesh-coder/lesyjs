@@ -21,7 +21,7 @@
   "dependencies": {
     "case": "^1.6.3",
     "handlebars": "^4.7.6",
-    "scaffold-generator": "^3.0.4"
+    "scaffold-generator2": "^1.0.0"
   },
   "publishConfig": {
     "access": "public"
