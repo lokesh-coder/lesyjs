@@ -1,98 +1,115 @@
-# Lesy JS
-
-Lesy js is a super simple CLI framework to build modern node based command line applications, without much boilerplate.
-
-Though there were awesome tools available for building CLI apps, the ultimate and only purpose of Lesy is to bring all cool fuctionalities to UI. Which means write code once and run it in terminal or web UI. There were other nice features in lesy that you might like.
-
+<h1 align="center">
+  <a
+    target="_blank"
+    rel="noopener noreferrer"
+    href="https://lesyjs.io"
+    ><img
+      width="300"
+      alt="The Lounge"
+      src="https://user-images.githubusercontent.com/1754676/97110133-75926f00-16fd-11eb-9a27-3d52508d51cf.png"
+      style="max-width: 100%"
+  /></a>
+</h1>
 <br/>
-
-### 𝙵𝚎𝚊𝚝𝚞𝚛𝚎𝚜
-
-✓ **Language**: Javascript and Typescript with @types
-
-✓ **Flexibility**: Able to change complete behaviour with middlewares
-
-✓ **Boilerplate**: Write less code. whether its a dead simple project or complex one.
-
-✓ **Extensions**: Add cool functionalities with plugins
-
-✓ **Platform**: Write once and run in CLI or web UI. Desktop interface is coming soon.
-
-✓ **Performance**: It is faster than existing tools. Benchmarks inside.
-
-✓ **Testing**: Dedicated testing setup for unit test and integration test
-
-✓ **Lot more**: Features, sub commands, plugins, boilerplate generator...
-
+<h3 align="center">
+	> 𝙱𝚞𝚒𝚕𝚍 𝚖𝚘𝚍𝚎𝚛𝚗 𝚌𝚘𝚖𝚖𝚊𝚗𝚍-𝚕𝚒𝚗𝚎 𝚊𝚙𝚙𝚜_
+</h3>
+<p align="center">
+	<span>
+		<a href="https://lesyjs.io/">Website</a>
+		•
+		<a href="https://lesyjs.io/docs/get-started/overview">Documentation</a>
+		•
+		<a href="https://codesandbox.io/s/lesy-pilot-playground-hzjgw?file=/src/index.js">Playground</a>
+	</span>
+</p>
 <br/>
+<h1></h1>
 
-### 𝙸𝚗𝚜𝚝𝚊𝚕𝚕𝚊𝚝𝚒𝚘𝚗
+### Features
+
+- **Language**&#8192;&#8192;&#8192;&#8192; - _Javascript and Typescript with @types_
+- **Flexibility**&#8192;&#8192;&#8192;&#8192; - _Able to change complete flow with middlewares_
+- **Boilerplate**&#8192;&#8192;&#8192; - _Write less code. whether it's a dead simple project or complex one_
+- **Extensions**&#8192;&#8192;&#8192; - _Add cool functionalities with plugins_
+- **Platform**&#8192;&#8192;&#8192;&#8192;&#8192; - _Write once and run in CLI or web UI. Desktop interface is coming soon_
+- **Performance**&#8192; - _It is faster than existing tools. Benchmarks inside_
+- **Testing**&#8192;&#8192;&#8192;&#8192;&#8192;&#8192; - _Dedicated testing setup for unit test and integration test_
+- **Lot more**&#8192;&#8192;&#8192;&#8192;&#8192; - _Features, sub-commands, boilerplate generator..._
+  <br/> <br/>
+
+### Installation
 
 Scaffold new project directly using npx command
 
 ```shell
-npx lesy new my-cli
+> npx lesy new my-cli
 ```
 
 Or, you can install lesy cli globally and generate a new project
 
 ```shell
-npm i -g lesy
-lesy new my-cli
+> npm i -g lesy
+> lesy new my-cli
 ```
 
-Also you can create your own project setup and run lesy. [Learn more](/).
+<br/> <br/>
 
-<br/>
+[![asciicast](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt.svg)](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt)
 
-### 𝚁𝚞𝚗 𝚌𝚘𝚖𝚖𝚊𝚗𝚍𝚜
+Also you can create your own project setup and run lesy. [Learn more]().
+<br/> <br/>
 
-Once you setup a project, you can create and run your first command.
+### Basic Example
 
 ```js
 #!/usr/bin/env node
 
 const lesy = require("@lesy/compiler");
-const helloCommand = { name: "hello", run: () => console.log("hello world") };
+const commands = [{ name: "hello", run: () => console.log("hello world") }];
 
-lesy({ commands: [helloCommand] }).parse();
+lesy({ commands }).parse();
 ```
 
+```shell
+./cmd hello
 ```
-./bin/cmd hello
-```
 
-It is just a tiny bit of lesy. There are lot of other cool stuffs like, advance commands, middlewares, features, configs, and plugins. [Learn more](/)
+It is just a tiny bit of lesy. There are lot of other cool stuffs like, advance commands, middlewares, features, configs, and plugins. [Learn more]()
+<br/> <br/>
 
-<br/>
+### Plugins
 
-### 𝙰𝚟𝚊𝚒𝚕𝚊𝚋𝚕𝚎 𝚘𝚏𝚏𝚒𝚌𝚒𝚊𝚕 𝙿𝚕𝚞𝚐𝚒𝚗𝚜
+- [**UI Pilot**](https://lesyjs.io/docs/plugins/pilot-ui)<br/>
+  _Run commands in Web UI. Supports input, console, workspace and more..._
+- [**Store**](https://lesyjs.io/docs/plugins/config-store)<br/>
+  _Key-value storage in the system_
+- [**Config reader**](https://lesyjs.io/docs/plugins/config-files)<br/>
+  _Setup config files like myapp.config.json, myapp.config.yml, myapp.config.js_
+- [**Scaffold generator**](https://lesyjs.io/docs/plugins/scaffold-generator)<br/>
+  _Generate projects with handlebars templating_
+- [**Prompt**](https://lesyjs.io/docs/plugins/prompt)<br/>
+  _Wrapper around inquirer plugin for prompts and questions_
+- [**Help**](https://lesyjs.io/docs/plugins/help)<br/>
+  _Automatically generate beautiful help with sub commands support. Highly customizable_
+- [**Arg validator**](https://lesyjs.io/docs/plugins/arg-validator)<br/>
+  _Prompt if required args are not supplied_
+  <br/> <br/>
 
-**@lesy/lesy-plugin-pilot**
-Run comamnds in Web UI. Supports input, console, workspace and more..
+  ### License
 
-**@lesy/lesy-plugin-store**
-Key value storage in the system
+  MIT
 
-**@lesy/lesy-plugin-config**
-Setup config files like myapp.config.json, myapp.config.yml, myapp.config.js
-
-**@lesy/lesy-plugin-generator**
-Scaffold projects with handlebars templating
-
-**@lesy/lesy-plugin-prompt**
-Wrapper around inquirer plugin for prompts and questions
-
-**@lesy/lesy-plugin-help**
-Automatically generate beautiful help with sub commands support. Highly customizable
-
-**@lesy/lesy-plugin-validator**
-Prompt if required args are not supplied
-
-<br/>
-
-### 𝚃𝚛𝚢 𝙻𝚎𝚜𝚢 𝙿𝚒𝚕𝚘𝚝 𝚋𝚎𝚏𝚘𝚛𝚎 𝚒𝚗𝚜𝚝𝚊𝚕𝚕𝚒𝚗𝚐
-
-We have a setup a _playground_ for you to play around with it.
-
-[![Edit lesy-pilot-playground](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/lesy-pilot-playground-hzjgw?fontsize=14&hidenavigation=1&view=preview)
+<!-- logo
+headline
+buttons
+docs link block
+intro
+pilot
+installation
+basic example
+features
+plugins
+contribution
+dev docs
+license -->
