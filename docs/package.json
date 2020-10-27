@@ -1,7 +1,7 @@
 {
   "name": "@lesy/docs",
   "private": true,
-  "version": "1.0.0-beta.12",
+  "version": "1.0.0-beta.13",
   "author": "Lokesh Rajendran <mexican.dirtyfellow@gmail.com>",
   "dependencies": {
     "@mdx-js/mdx": "^1.6.1",

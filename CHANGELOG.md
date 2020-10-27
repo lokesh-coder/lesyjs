@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.13](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.12...v1.0.0-beta.13) (2020-10-27)
+
+
+### Bug Fixes
+
+* **lesy-pilot-ui:** fix mobile view layout ([a130e65](https://github.com/lokesh-coder/lesyjs/commit/a130e65f3c361aefea19edbbfc67f7354bbe442b))
+
+
+
+
+
 # [1.0.0-beta.12](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.11...v1.0.0-beta.12) (2020-10-25)
 
 **Note:** Version bump only for package lesy
