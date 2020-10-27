@@ -1,13 +1,14 @@
-<div class="flex flex-wrap flex-1">
+<div class="flex flex-col flex-no-wrap lg:flex-row flex-1">
   <div
-    class="w-full lg:w-4/12 px-6 md:max-w-sm bg-gray-100"
+    class="w-full lg:max-w-sm px-6 text-center bg-gray-100"
     [class.parent]="showMobileMenu"
   >
     <div
-      class="bg-gray-200 rounded-lg border border-gray-400 shadow-inner text-gray-600 p-3 mb-10 text-center cursor-pointer select-none lg:hidden"
+      class="bg-gray-200 rounded-lg border border-gray-400 shadow-inner text-gray-600 p-3 my-10 text-center cursor-pointer select-none lg:hidden inline-flex items-center"
       (click)="showMobileMenu=!showMobileMenu"
     >
       View command list
+      <i class="ri-arrow-{{showMobileMenu?'up':'down'}}-s-line text-xl"></i>
     </div>
     <pilot-sidemenu
       [commands]="commands"
