@@ -23,7 +23,7 @@ export class CommandComponent implements OnInit, OnChanges {
   shell = "";
   questions = [];
 
-  @Select(state => state.prompt)
+  @Select((state) => state.prompt)
   prompt$: Observable<PromptModel>;
 
   constructor(
@@ -37,11 +37,11 @@ export class CommandComponent implements OnInit, OnChanges {
     this.store.dispatch(new LoadCommands());
     this.store.dispatch(new ListenForPrompt());
 
-    this.prompt$.subscribe(p => {
+    this.prompt$.subscribe((p) => {
       if (!p.messageId) {
         return;
       }
-      p.questions = p.questions.map(q => {
+      p.questions = p.questions.map((q) => {
         if (!q.default) {
           q.required = true;
         }
@@ -58,10 +58,10 @@ export class CommandComponent implements OnInit, OnChanges {
       Object.keys(this.command.args),
       Object.keys(this.command.flags),
     );
-    const argCollection = Object.keys(this.command.args).map(a => {
+    const argCollection = Object.keys(this.command.args).map((a) => {
       return { name: a, ...this.command.args[a] };
     });
-    const flagCollection = Object.keys(this.command.flags).map(a => {
+    const flagCollection = Object.keys(this.command.flags).map((a) => {
       return { name: a, ...this.command.flags[a] };
     });
     this.questions = this.qs.getQuestions([
@@ -85,20 +85,29 @@ export class CommandComponent implements OnInit, OnChanges {
     this.store.dispatch(new ToggleConsolePanel());
   }
 
-  private parseShellCommand(name, args, flags) {
-    const cmd = `<span class="text-syntax-cmd">${this.config.pilot.cmdName}</span>`;
-    const cmdName = `<span class="text-syntax-name font-bold">${name}</span>`;
+  private replaceDefault(name: string) {
+    return name.replace("default", "");
+  }
+
+  private html(text: string, cls: string, extra: string = "") {
+    return `<span class="text-syntax-${cls} ${extra}">${text}</span>`;
+  }
+
+  private parseShellCommand(name: string, args: string[], flags: string[]) {
+    const cmd = this.html(this.config.pilot.cmdName, "cmd");
+    const newCmdName = this.replaceDefault(name);
+    const cmdName = this.html(newCmdName, "name", "font-bold");
     const cmdArgs = args
-      .map(arg => {
-        const openSqBracket = `<span class="text-syntax-bracket">[</span>`;
-        const closeSqBracket = `<span class="text-syntax-bracket">]</span>`;
-        const argName = `<span class="text-syntax-arg">${arg}</span>`;
+      .map((arg: string) => {
+        const openSqBracket = this.html("[", "bracket");
+        const closeSqBracket = this.html("]", "bracket");
+        const argName = this.html(arg, "arg");
         return `${openSqBracket}${argName}${closeSqBracket}`;
       })
       .join(" ");
     const cmdFlags = flags
-      .map(flag => {
-        return `<span class="text-syntax-flag">--${flag}</span> `;
+      .map((flag: string) => {
+        return this.html(`--${flag}`, "flag") + " ";
       })
       .join("");
     return `$ ${cmd} ${cmdName} ${cmdArgs} ${cmdFlags}`;
