@@ -1,12 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
+import { helpContent } from "./help.content";
 
 @Component({
   selector: "pilot-help-page",
   templateUrl: "./help.template.html",
-  styles: [],
 })
-export class HelpPage implements OnInit {
-  constructor() {}
+export class HelpPage {
+  helpContent = helpContent;
 
-  ngOnInit() {}
+  onContentReady() {
+    console.log("content loaded");
+  }
 }

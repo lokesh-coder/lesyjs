@@ -134,4 +134,33 @@ html {
 .ansi-bright-white-bg {
   @apply bg-white text-gray-700;
 }
+
+markdown {
+  pre[class*="language-"] {
+    @apply mb-5 rounded-md;
+    background: #3a3f5e;
+    .token.string,
+    .token.char,
+    .token.attr-value,
+    .token.regex,
+    .token.variable {
+      color: #00bcd4;
+    }
+  }
+  h1 {
+    @apply text-gray-800 text-xl font-semibold font-display;
+  }
+  p {
+    @apply mb-5 text-gray-600;
+  }
+
+  p code {
+    background: #dddfee;
+    padding: 2px 5px;
+    border-radius: 3px;
+    color: #3a3f5e;
+    font-size: 13px;
+  }
+}
+
 /* purgecss end ignore */

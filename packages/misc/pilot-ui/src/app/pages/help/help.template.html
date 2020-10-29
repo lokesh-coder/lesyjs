@@ -3,10 +3,7 @@
     h1="Help"
     p="Pilot setup, configs and workspace related help"
   ></pilot-heading>
-  <div class="w-full sm:w-2/3 mx-auto px-6 sm:px-0">
-    <h3>Change config</h3>
-    <h3>Add projects to workspace</h3>
-    <h3>Hide commands in pilot</h3>
-    <h3>Group commands</h3>
+  <div class="w-full sm:w-2/3 mx-auto lg:px-24 sm:px-0">
+    <markdown [data]="helpContent" (ready)="onContentReady()"></markdown>
   </div>
 </div>

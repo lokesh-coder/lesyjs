@@ -27,8 +27,16 @@
             "tsConfig": "tsconfig.app.json",
             "aot": false,
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss", "src/tailwind.scss"],
-            "scripts": []
+            "styles": [
+              "src/styles.scss",
+              "src/tailwind.scss",
+              "node_modules/prismjs/themes/prism-tomorrow.css"
+            ],
+            "scripts": [
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-typescript.min.js",
+              "node_modules/prismjs/components/prism-json.min.js"
+            ]
           },
           "configurations": {
             "production": {

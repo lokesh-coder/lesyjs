@@ -5,6 +5,7 @@ import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
 import { NgxsStoragePluginModule } from "@ngxs/storage-plugin";
 import { ToppyModule } from "toppy";
 import { AngularSplitModule } from "angular-split";
+import { MarkdownModule } from "ngx-markdown";
 
 /* Components */
 import { CommandComponent } from "./components/command/command.component";
@@ -100,6 +101,7 @@ import { PilotMain } from "./pilot.main";
     }),
     NgxsStoragePluginModule.forRoot(),
     AngularSplitModule.forRoot(),
+    MarkdownModule.forRoot(),
   ],
   bootstrap: [PilotMain],
   entryComponents: [PromptComponent, ToastComponent],
