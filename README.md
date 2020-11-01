@@ -77,7 +77,7 @@ Once set up is done, follow the instructions that is displayed in the terminal.
   Install `@lesy/compiler` via `npm` or `yarn`
 
   ```shell
-  mkddir my-cli && cd my-cli
+  mkdir my-cli && cd my-cli
   npm install @lesy/compiler
   ```
 
@@ -131,7 +131,7 @@ Once set up is done, follow the instructions that is displayed in the terminal.
   lesy({ commands }).parse();
   ```
 
-To know more about formats, args, flags, context [https://lesyjs.io/docs/core/commands#anatomy-of-command](check here)
+To know more about formats, args, flags, context [https://lesyjs.io/docs/core/commands](check here)
 
 <br/> <br/>
 
@@ -140,20 +140,23 @@ To know more about formats, args, flags, context [https://lesyjs.io/docs/core/co
   Middlewares are sort of hooks, you can plug a middleware at multiple stages of the flow. This way you can add, change and manipulate the flow.
 
   ```js
-
   const lesy = require("@lesy/compiler");
 
   const commands = [{ name: "hello", run: () => console.log("hello world") }];
-  const middlewares =[{
-  on: "INIT",
-  run: (ctx) => {
-    console.log('hello');
-    return ctx;
-  }];
+  const middlewares = [
+    {
+      on: "END",
+      run: (ctx) => {
+        console.log("this will be printed after hello world");
+        return ctx;
+      },
+    },
+  ];
 
-  lesy({ commands, middlewares}).parse();
-
+  lesy({ commands, middlewares }).parse();
   ```
+
+  To know more about hook points, async middlewares, parsing, context [https://lesyjs.io/docs/core/middlewares](check here)
 
   <br/> <br/>
 
@@ -164,7 +167,9 @@ To know more about formats, args, flags, context [https://lesyjs.io/docs/core/co
   ```js
   const lesy = require("@lesy/compiler");
 
-  const commands = [{ name: "hello", run: () => console.log("hello world") }];
+  const commands = [
+    { name: "hello", run: ({ feature }) => feature.sayHello() },
+  ];
   const features = [
     (feature) => {
       feature.sayHello = () => console.log("hello");
@@ -174,11 +179,13 @@ To know more about formats, args, flags, context [https://lesyjs.io/docs/core/co
   lesy({ commands, features }).parse();
   ```
 
+  To know more about features [https://lesyjs.io/docs/core/features](check here)
+
   <br/> <br/>
 
 - #### Plugins
 
-  Plugins are collection of commands, middlewares and features. Can be a local plugin or any lesy plugin that can be installed from npm.
+  Plugins are collection of commands, middlewares and features. Can be a local plugin or any lesy plugin that can be installed from npm. [https://lesyjs.io/docs/core/plugins](learn more)
 
   ```js
   const lesy = require("@lesy/compiler");
@@ -190,6 +197,12 @@ To know more about formats, args, flags, context [https://lesyjs.io/docs/core/co
   ```
 
   <br/> <br/>
+
+- #### Even more
+
+To learn about global configuration, validators, testbed, performance [https://lesyjs.io/docs/get-started/overview](check the documentation more)
+
+<br/> <br/>
 
 ## Available Plugins
 
