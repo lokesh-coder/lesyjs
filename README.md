@@ -65,12 +65,11 @@ Lesy can be installed from Lesy CLI or manually.
 
 <br/>
 
-```shell
-> npm i -g lesy
-> lesy new my-cli
-```
+    [![asciicast](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt.svg)](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt)
 
-Once set up is done, follow the instructions that is displayed in the terminal.
+    Also you can create your own project setup and run lesy. [Learn more]().
+
+<br/> <br/>
 
 - #### Manual setup
 
@@ -131,7 +130,7 @@ Once set up is done, follow the instructions that is displayed in the terminal.
   lesy({ commands }).parse();
   ```
 
-To know more about formats, args, flags, context [check here](https://lesyjs.io/docs/core/commands)
+  To know more about formats, args, flags, context [check here](https://lesyjs.io/docs/core/commands)
 
 <br/>
 
