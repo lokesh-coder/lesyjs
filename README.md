@@ -63,11 +63,9 @@ Lesy can be installed from Lesy CLI or manually.
 
   Once set up is done, follow the instructions that is displayed in the terminal.
 
-<br/>
+  [![asciicast](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt.svg)](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt)
 
-    [![asciicast](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt.svg)](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt)
-
-    Also you can create your own project setup and run lesy. [Learn more]().
+  Also you can create your own project setup and run lesy. [Learn more]().
 
 <br/> <br/>
 
