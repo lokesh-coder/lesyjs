@@ -40,6 +40,11 @@ jobs:
             - name: NPM - test
               run: npm test
 
+            - name: NPM - coverage
+              uses: coverallsapp/github-action@master
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+
             - name: LERNA - build packages
               run: npm run build
               env:

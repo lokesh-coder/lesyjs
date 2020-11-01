@@ -1,5 +1,7 @@
 <div class="my-4 mx-2" *ngFor="let group of commandGroups">
-  <h6 class="uppercase text-gray-500 font-semibold mb-3 text-sm ml-10">
+  <h6
+    class="uppercase text-gray-500 font-semibold mb-3 text-sm ml-10 text-left"
+  >
     {{ group[0] }}
   </h6>
   <ul>
@@ -34,7 +36,7 @@
         </ng-container>
       </div>
       <p
-        class="text-gray-600 text-sm group-hover:text-gray-500 group-hover:opacity-75 highlight:opacity-75 highlight:text-white highlight-hover:opacity-75 highlight-hover:text-white fit"
+        class="text-gray-600 text-left text-sm group-hover:text-gray-500 group-hover:opacity-75 highlight:opacity-75 highlight:text-white highlight-hover:opacity-75 highlight-hover:text-white fit"
       >
         {{command.description||'no desc provided'}}
       </p>
