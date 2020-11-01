@@ -67,7 +67,7 @@ Lesy can be installed from Lesy CLI or manually.
 
   Also you can create your own project setup and run lesy. [Learn more]().
 
-<br/> <br/>
+<br/>
 
 - #### Manual setup
 
@@ -222,10 +222,12 @@ Lesy can be installed from Lesy CLI or manually.
 ## Contribution
 
 Any kind of contibutions are welcome. :)
+<br/> <br/>
 
 ## Development
 
 To run it in local, and to know in depth code login please [https://lesyjs.io/docs/dev/sample2](check here)
+<br/> <br/>
 
 ## License
 
