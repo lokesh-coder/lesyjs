@@ -1,5 +1,5 @@
 {
-  "name": "lesy",
+  "name": "lesyjs",
   "version": "1.0.0-monorepo",
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist && lerna run install:deps",
@@ -20,7 +20,9 @@
     "@commitlint/config-lerna-scopes": "^9.1.2",
     "@types/jest": "^22.2.3",
     "@types/node": "^13.13.5",
+    "codecov": "^3.8.0",
     "copyfiles": "^2.2.0",
+    "coveralls": "^3.1.0",
     "husky": "^4.2.5",
     "jest": "^26.4.1",
     "jest-each-object": "^1.0.0",
