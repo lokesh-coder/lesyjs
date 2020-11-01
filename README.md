@@ -133,7 +133,7 @@ Once set up is done, follow the instructions that is displayed in the terminal.
 
 To know more about formats, args, flags, context [check here](https://lesyjs.io/docs/core/commands)
 
-<br/> <br/>
+<br/>
 
 - #### Middlewares
 
@@ -158,7 +158,7 @@ To know more about formats, args, flags, context [check here](https://lesyjs.io/
 
   To know more about hook points, async middlewares, parsing, context [check here](https://lesyjs.io/docs/core/middlewares)
 
-  <br/> <br/>
+  <br/>
 
 - #### Features
 
@@ -181,7 +181,7 @@ To know more about formats, args, flags, context [check here](https://lesyjs.io/
 
   To know more about features [check here](https://lesyjs.io/docs/core/features)
 
-  <br/> <br/>
+  <br/>
 
 - #### Plugins
 
@@ -196,13 +196,13 @@ To know more about formats, args, flags, context [check here](https://lesyjs.io/
   lesy({ commands, plugins }).parse();
   ```
 
-  <br/> <br/>
+  <br/>
 
 - #### Even more
 
-  To learn about global configuration, validators, testbed, performance [check the documentation more](https://lesyjs.io/docs/get-started/overview)
+  To learn about global configuration, validators, testbed, performance [check the documentation](https://lesyjs.io/docs/get-started/overview)
 
-<br/> <br/>
+<br/>
 
 ## Available Plugins
 
