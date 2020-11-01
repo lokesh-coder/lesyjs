@@ -37,6 +37,7 @@ jobs:
 
             - name: NPM - test
               run: npm test
+
             - name: Coveralls
               uses: coverallsapp/github-action@master
               with:

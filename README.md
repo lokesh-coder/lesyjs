@@ -26,7 +26,11 @@
 <br/>
 <h1></h1>
 
-### Features
+# What is lesy
+
+Lesy is a simplified CLI framework build with NodeJS and Typescript. Main purpose of lesy is to enable web UI so that users can run commands from GUI dashboard without much complex. But lesy also shines in maintainability and flexibility focusing more on developer experience and performance.
+
+# Features
 
 - **Language**&#8192;&#8192;&#8192;&#8192; - _Javascript and Typescript with @types_
 - **Flexibility**&#8192;&#8192;&#8192;&#8192; - _Able to change complete flow with middlewares_
@@ -38,9 +42,12 @@
 - **Lot more**&#8192;&#8192;&#8192;&#8192;&#8192; - _Features, sub-commands, boilerplate generator..._
   <br/> <br/>
 
-### Installation
+# Installation and setup
 
-Scaffold new project directly using npx command
+Lesy can be installed from Lesy CLI or manually.
+
+- ## Set it up from CLI
+  Scaffold new project directly using npx command
 
 ```shell
 > npx lesy new my-cli
@@ -53,6 +60,8 @@ Or, you can install lesy cli globally and generate a new project
 > lesy new my-cli
 ```
 
+Once set up is done, follow the instructions that is displayed in the terminal.
+
 <br/> <br/>
 
 [![asciicast](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt.svg)](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt)
@@ -60,7 +69,16 @@ Or, you can install lesy cli globally and generate a new project
 Also you can create your own project setup and run lesy. [Learn more]().
 <br/> <br/>
 
-### Basic Example
+- ## Manual setup
+
+  Install `@lesy/compiler` via `npm` or `yarn`
+
+  ```shell
+  mkddir my-cli && cd my-cli
+  npm install @lesy/compiler
+  ```
+
+  Then create a index file and add the below code
 
 ```js
 #!/usr/bin/env node
@@ -72,13 +90,99 @@ lesy({ commands }).parse();
 ```
 
 ```shell
-./cmd hello
+./index hello
 ```
 
-It is just a tiny bit of lesy. There are lot of other cool stuffs like, advance commands, middlewares, features, configs, and plugins. [Learn more]()
-<br/> <br/>
+# Lesy core parts
 
-### Plugins
+- ## Commands
+  Commands can be a simple object, or a function or a class. Also, you can provide a path to file or directory where lesy can discover all commands. There are lot of things you can do with commands like, deep nested sub commands, dynamic command execution, run asyncronous code, validate args and flags, etc.,
+
+```js
+#!/usr/bin/env node
+
+const lesy = require("@lesy/compiler");
+const commands = [
+  {
+    name: "hello",
+    run: () => console.log("Hello Buddy!"),
+  },
+
+  function hello(cmd) {
+    cmd.name = "hello";
+    cmd.run = () => console.log("Hello Buddy!");
+  },
+
+  class Hello {
+    name = "hello";
+    run() {
+      console.log("Hello Buddy!");
+    }
+  },
+
+  `${__dirname}/commands/welcome.ts`,
+
+  `${__dirname}/commands`,
+];
+
+lesy({ commands }).parse();
+```
+
+To know more about formats, args, flags, context (https://lesyjs.io/docs/core/commands#anatomy-of-command)[check here]
+
+- ## Middlewares
+  Middlewares are sort of hooks, you can plug a middleware at multiple stages of the flow. This way you can add, change and manipulate the flow.
+
+```js
+
+#!/usr/bin/env node
+
+const lesy = require("@lesy/compiler");
+const commands = [{ name: "hello", run: () => console.log("hello world") }];
+const middlewares =[{
+on: "INIT",
+run: (ctx) => {
+console.log('hello');
+return ctx;
+}];
+
+lesy({ commands, middlewares}).parse();
+
+```
+
+- ## Features
+  Features are simple object, which are accesible in both commands and middlewares. It is super useful if you are dealing with third party libraries and want to share with all commands and middlewares.
+
+```js
+
+#!/usr/bin/env node
+
+const lesy = require("@lesy/compiler");
+const commands = [{ name: "hello", run: () => console.log("hello world") }];
+const features =[ (feature) => {
+feature.sayHello = () => console.log("hello");
+}];
+
+lesy({ commands, features}).parse();
+
+```
+
+- ## Plugins
+  Plugins are collection of commands, middlewares and features. Can be a local plugin or any lesy plugin that can be installed from npm.
+
+```js
+
+#!/usr/bin/env node
+
+const lesy = require("@lesy/compiler");
+const commands = [{ name: "hello", run: () => console.log("hello world") }];
+const plugins = [`${dirname}/plugins/my-custom-plugin`];
+
+lesy({ commands, plugins}).parse();
+
+```
+
+# Available Plugins
 
 - [**UI Pilot**](https://lesyjs.io/docs/plugins/pilot-ui)<br/>
   _Run commands in Web UI. Supports input, console, workspace and more..._
@@ -96,20 +200,10 @@ It is just a tiny bit of lesy. There are lot of other cool stuffs like, advance 
   _Prompt if required args are not supplied_
   <br/> <br/>
 
-  ### License
+# Contribution
 
-  MIT
+Any kind of contibutions are welcome. :)
 
-<!-- logo
-headline
-buttons
-docs link block
-intro
-pilot
-installation
-basic example
-features
-plugins
-contribution
-dev docs
-license -->
+# License
+
+MIT
