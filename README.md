@@ -63,7 +63,7 @@ Lesy can be installed from Lesy CLI or manually.
 
   Once set up is done, follow the instructions that is displayed in the terminal.
 
-<br/> <br/>
+<br/>
 
 ```shell
 > npm i -g lesy
@@ -131,7 +131,7 @@ Once set up is done, follow the instructions that is displayed in the terminal.
   lesy({ commands }).parse();
   ```
 
-To know more about formats, args, flags, context [https://lesyjs.io/docs/core/commands](check here)
+To know more about formats, args, flags, context [check here](https://lesyjs.io/docs/core/commands)
 
 <br/> <br/>
 
@@ -156,7 +156,7 @@ To know more about formats, args, flags, context [https://lesyjs.io/docs/core/co
   lesy({ commands, middlewares }).parse();
   ```
 
-  To know more about hook points, async middlewares, parsing, context [https://lesyjs.io/docs/core/middlewares](check here)
+  To know more about hook points, async middlewares, parsing, context [check here](https://lesyjs.io/docs/core/middlewares)
 
   <br/> <br/>
 
@@ -179,13 +179,13 @@ To know more about formats, args, flags, context [https://lesyjs.io/docs/core/co
   lesy({ commands, features }).parse();
   ```
 
-  To know more about features [https://lesyjs.io/docs/core/features](check here)
+  To know more about features [check here](https://lesyjs.io/docs/core/features)
 
   <br/> <br/>
 
 - #### Plugins
 
-  Plugins are collection of commands, middlewares and features. Can be a local plugin or any lesy plugin that can be installed from npm. [https://lesyjs.io/docs/core/plugins](learn more)
+  Plugins are collection of commands, middlewares and features. Can be a local plugin or any lesy plugin that can be installed from npm. [learn more](https://lesyjs.io/docs/core/plugins)
 
   ```js
   const lesy = require("@lesy/compiler");
@@ -200,7 +200,7 @@ To know more about formats, args, flags, context [https://lesyjs.io/docs/core/co
 
 - #### Even more
 
-To learn about global configuration, validators, testbed, performance [https://lesyjs.io/docs/get-started/overview](check the documentation more)
+  To learn about global configuration, validators, testbed, performance [check the documentation more](https://lesyjs.io/docs/get-started/overview)
 
 <br/> <br/>
 
