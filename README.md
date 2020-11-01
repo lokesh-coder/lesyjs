@@ -65,9 +65,10 @@ Lesy can be installed from Lesy CLI or manually.
 
 <br/>
 
-[![asciicast](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt.svg)](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt)
+    [![asciicast](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt.svg)](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt)
 
-Also you can create your own project setup and run lesy. [Learn more]().
+    Also you can create your own project setup and run lesy. [Learn more]().
+
 <br/> <br/>
 
 - #### Manual setup
@@ -129,7 +130,7 @@ Also you can create your own project setup and run lesy. [Learn more]().
   lesy({ commands }).parse();
   ```
 
-To know more about formats, args, flags, context [check here](https://lesyjs.io/docs/core/commands)
+  To know more about formats, args, flags, context [check here](https://lesyjs.io/docs/core/commands)
 
 <br/>
 
