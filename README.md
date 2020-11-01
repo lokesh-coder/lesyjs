@@ -226,7 +226,7 @@ Any kind of contibutions are welcome. :)
 
 ## Development
 
-To run it in local, and to know in depth code login please [https://lesyjs.io/docs/dev/sample2](check here)
+To run it in local, and to know in depth code login please [check here](https://lesyjs.io/docs/dev/sample2)
 <br/> <br/>
 
 ## License
