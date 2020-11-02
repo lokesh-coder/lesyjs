@@ -11,12 +11,19 @@
   "command": {
     "bootstrap": {
       "ignore": "@lesy/lesy-pilot-ui",
-      "npmClientArgs": [
-        "--no-package-lock"
-      ]
+      "npmClientArgs": ["--no-package-lock"]
     },
     "version": {
-      "message": "chore(release): 🎉 publish %s"
+      "message": "chore(release): 🎉 publish %s",
+      "ignoreChanges": [
+        "./docs/**",
+        "./benchmark/**",
+        "/coverage/**",
+        "**/__fixtures__/**",
+        "**/__tests__/**",
+        "**/*.md",
+        "**/package-lock.json"
+      ]
     }
   }
 }
