@@ -1,5 +1,6 @@
 export default {
   on: "END",
+  description: "Notify command ran status",
   run: (data: any) => {
     let message;
     if (data.error) {
