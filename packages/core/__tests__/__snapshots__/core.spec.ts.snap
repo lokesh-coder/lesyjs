@@ -89,6 +89,7 @@ Object {
     "getCommandById": [Function],
     "getCommandByName": [Function],
     "getCommands": [Function],
+    "getMiddlewares": [Function],
     "runCommand": [Function],
   },
   "root": StringContaining "/packages/core/__tests__",

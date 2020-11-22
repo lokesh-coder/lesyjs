@@ -103,17 +103,29 @@ describe("Core", () => {
     it("should get all middlewares", () => {
       expect(core["mwCtrl"].get()).toEqual({
         END: [
-          { on: "END", run: expect.any(Function) },
-          { on: "END", run: expect.any(Function) },
+          { on: "END", run: expect.any(Function), source: "__OBJ__" },
+          {
+            on: "END",
+            run: expect.any(Function),
+            source: `${__dirname}/plugin/middleware.js`,
+          },
         ],
-        INIT: [{ on: "INIT", run: expect.any(Function) }],
-        POST_PARSE: [{ on: "POST_PARSE", run: expect.any(Function) }],
+        INIT: [{ on: "INIT", run: expect.any(Function), source: "__OBJ__" }],
+        POST_PARSE: [
+          { on: "POST_PARSE", run: expect.any(Function), source: "__OBJ__" },
+        ],
         POST_RUN: [],
         POST_VALIDATE: [],
-        PRE_PARSE: [{ on: "PRE_PARSE", run: expect.any(Function) }],
-        PRE_RUN: [{ on: "PRE_RUN", run: expect.any(Function) }],
-        PRE_VALIDATE: [{ on: "PRE_VALIDATE", run: expect.any(Function) }],
-        START: [{ on: "START", run: expect.any(Function) }],
+        PRE_PARSE: [
+          { on: "PRE_PARSE", run: expect.any(Function), source: "__OBJ__" },
+        ],
+        PRE_RUN: [
+          { on: "PRE_RUN", run: expect.any(Function), source: "__OBJ__" },
+        ],
+        PRE_VALIDATE: [
+          { on: "PRE_VALIDATE", run: expect.any(Function), source: "__OBJ__" },
+        ],
+        START: [{ on: "START", run: expect.any(Function), source: "__OBJ__" }],
       });
     });
     it("should get config", () => {
