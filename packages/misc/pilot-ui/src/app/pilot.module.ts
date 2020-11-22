@@ -9,6 +9,7 @@ import { MarkdownModule } from "ngx-markdown";
 
 /* Components */
 import { CommandComponent } from "./components/command/command.component";
+import { MiddlewaresComponent } from "./components/middlewares/middlewares.component";
 import { ConsoleComponent } from "./components/console/console.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
@@ -21,6 +22,7 @@ import { HeadingComponent } from "./components/heading/heading.component";
 /* Directives */
 import { TooltipDirective } from "./directives/tooltip/tooltip.directive";
 import { PopoverDirective } from "./directives/popover/popover.directive";
+import { PanelDirective } from "./directives/panel/panel.directive";
 import { CopyDirective } from "./directives/copy/copy.directive";
 
 /* Pages */
@@ -36,6 +38,7 @@ import { ProjectsState } from "./store/states/projects.state";
 import { ProjectState } from "./store/states/project.state";
 import { CommandsState } from "./store/states/commands.state";
 import { CommandState } from "./store/states/command.state";
+import { MiddlewaresState } from "./store/states/middlewares.state";
 import { CommonState } from "./store/states/common.state";
 import { LogsState } from "./store/states/logs.state";
 import { NotificationState } from "./store/states/notification.state";
@@ -62,10 +65,12 @@ import { PilotMain } from "./pilot.main";
     HeaderComponent,
     HeadingComponent,
     CommandComponent,
+    MiddlewaresComponent,
     ConsoleComponent,
     FooterComponent,
     TooltipDirective,
     PopoverDirective,
+    PanelDirective,
     CopyDirective,
     SettingsPage,
     RunPage,
@@ -86,6 +91,7 @@ import { PilotMain } from "./pilot.main";
         ProjectState,
         CommandsState,
         CommandState,
+        MiddlewaresState,
         CommonState,
         LogsState,
         NotificationState,

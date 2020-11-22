@@ -13,7 +13,7 @@
     "directive-selector": [
       true,
       "attribute",
-      ["pilot", "copy", "popover", "tooltip"],
+      ["pilot", "copy", "popover", "tooltip", "panel"],
       "camelCase"
     ],
     "component-selector": [

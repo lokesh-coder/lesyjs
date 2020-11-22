@@ -18,6 +18,16 @@ export interface CommandModel {
   group: string;
 }
 
+export interface MiddlewareModel {
+  on: string;
+  path: string;
+  description: string;
+}
+
+export interface MiddlewaresModel {
+  [key: string]: MiddlewareModel;
+}
+
 export interface ProjectModel {
   name: string;
   path: string;
@@ -62,6 +72,7 @@ export interface PilotState {
   projects: ProjectModel[];
   project: ProjectModel;
   commands: CommandModel[];
+  middlewares: MiddlewaresModel;
   command: CommandModel;
   common: CommonModel;
   logs: LogsModel;
@@ -69,3 +80,11 @@ export interface PilotState {
   prompt: PromptModel;
   runners: RunnerModel;
 }
+
+export interface ShortcutKeyModel {
+  key: string;
+  name: string;
+  description: string;
+}
+
+export type ShortcutKeysModel = ShortcutKeyModel[];
