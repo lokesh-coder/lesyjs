@@ -22,6 +22,8 @@
 		<a href="https://lesyjs.io/docs/get-started/overview">Documentation</a>
 		•
 		<a href="https://codesandbox.io/s/lesy-pilot-playground-hzjgw?file=/src/index.js">Playground</a>
+		•
+		<a href="https://twitter.com/lesyjs">Twitter</a>
 	</span>
 </p>
 
@@ -34,7 +36,6 @@
 <img src="https://img.shields.io/npm/v/@lesy/core?color=4a5874&labelColor=d5695f&style=flat-square"/>
 <img src="https://img.shields.io/bundlephobia/minzip/@lesy/core?color=4a5874&labelColor=d5695f&label=core%20size%20&style=flat-square"/>
 <img src="https://img.shields.io/npm/dt/lesy?color=4a5874&labelColor=d5695f&style=flat-square"/>
-<img src="https://img.shields.io/twitter/follow/lesyjs?color=4a5874&labelColor=d5695f&style=flat-square"/>
 
 </p>
 
