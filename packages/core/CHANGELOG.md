@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.15](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2020-12-11)
+
+
+### Features
+
+* **core:** add middleware data in request object ([cf62dba](https://github.com/lokesh-coder/lesyjs/commit/cf62dbaf39d1e1cc02f243ccec0b6e15b8b472b0))
+
+
+
+
+
 # [1.0.0-beta.14](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2020-11-01)
 
 **Note:** Version bump only for package @lesy/core

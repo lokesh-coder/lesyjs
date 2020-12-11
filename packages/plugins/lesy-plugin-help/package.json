@@ -1,6 +1,6 @@
 {
   "name": "@lesy/lesy-plugin-help",
-  "version": "1.0.0-beta.14",
+  "version": "1.0.0-beta.15",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -21,7 +21,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@lesy/testbed": "^1.0.0-beta.14",
+    "@lesy/testbed": "^1.0.0-beta.15",
     "columnify": "^1.5.4"
   },
   "devDependencies": {

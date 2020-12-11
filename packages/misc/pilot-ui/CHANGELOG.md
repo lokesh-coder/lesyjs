@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.15](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2020-12-11)
+
+
+### Bug Fixes
+
+* **lesy-pilot-ui:** template binding fixes ([031eb19](https://github.com/lokesh-coder/lesyjs/commit/031eb1954c1411e65213e4f5142c88f5494bfb34))
+* **lesy-pilot-ui:** update help screen content ([e67a2f7](https://github.com/lokesh-coder/lesyjs/commit/e67a2f78c7eb126208c67a01b9c82b73f4613ba0))
+
+
+### Features
+
+* **lesy-pilot-ui:** add middlewares panel ([8a83097](https://github.com/lokesh-coder/lesyjs/commit/8a8309707b8318a1f3de8d2fd548540d7c8bf856))
+
+
+
+
+
 # [1.0.0-beta.14](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2020-11-01)
 
 **Note:** Version bump only for package @lesy/lesy-pilot-ui

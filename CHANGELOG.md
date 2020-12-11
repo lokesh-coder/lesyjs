@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.15](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2020-12-11)
+
+
+### Bug Fixes
+
+* **lesy-pilot-ui:** template binding fixes ([031eb19](https://github.com/lokesh-coder/lesyjs/commit/031eb1954c1411e65213e4f5142c88f5494bfb34))
+* **lesy-pilot-ui:** update help screen content ([e67a2f7](https://github.com/lokesh-coder/lesyjs/commit/e67a2f78c7eb126208c67a01b9c82b73f4613ba0))
+
+
+### Features
+
+* **artist:** add new artist library ([8eec4bd](https://github.com/lokesh-coder/lesyjs/commit/8eec4bd312bfd059150051a7a1816bd6430f8d5e))
+* **core:** add middleware data in request object ([cf62dba](https://github.com/lokesh-coder/lesyjs/commit/cf62dbaf39d1e1cc02f243ccec0b6e15b8b472b0))
+* **lesy-pilot-ui:** add middlewares panel ([8a83097](https://github.com/lokesh-coder/lesyjs/commit/8a8309707b8318a1f3de8d2fd548540d7c8bf856))
+* **lesy-plugin-artist:** add artist plugin library ([28bb3c9](https://github.com/lokesh-coder/lesyjs/commit/28bb3c9ceb52bc4bda33bcba720f75c4b0e595ba))
+* **lesy-plugin-demo:** add input command ([829d658](https://github.com/lokesh-coder/lesyjs/commit/829d658d915d23bdffca90b91990bf74f7ff5e3e))
+* **lesy-plugin-pilot:** enable middlewares in request ([2f874ec](https://github.com/lokesh-coder/lesyjs/commit/2f874ec8f49d7f622876d89b32bbc089a6c9b4a3))
+
+
+
+
+
 # [1.0.0-beta.14](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.13...v1.0.0-beta.14) (2020-11-01)
 
 **Note:** Version bump only for package lesyjs
