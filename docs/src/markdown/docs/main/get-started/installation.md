@@ -11,7 +11,7 @@ Setting up Lesy is pretty simple and straightforward. And there are two ways to 
 One easy way is using `npx` to generate project boilerplate with one command.
 
 ```shell
-npx lesy my-cli
+npx lesy new my-cli
 ```
 
 Alternatively you can install **Lesy** globally with `npm` or `yarn`.
@@ -34,10 +34,10 @@ This will ask you few questions like, is it typescript project, install pilot. I
 
 ```shell
 # with npx
-npx lesy my-cli --yes
+npx lesy new my-cli --yes
 
 # with global lesy
-lesy my-cli --yes
+lesy new my-cli --yes
 ```
 
 ### Project structure
@@ -82,18 +82,9 @@ npm install @lesy/compiler
 #!/usr/bin/env node
 
 const lesy = require("@lesy/compiler");
+const commands = [{ name: "hello", run: () => console.log("hello world") }];
 
-lesy({
-  root: __dirname,
-  commands: [
-    {
-      name: "default",
-      run: () => console.log("hello"),
-    },
-    "./src/commands",
-  ],
-  /* ...other props */
-}).parse();
+lesy({ commands }).parse();
 ```
 
 **Step 4**: Update bin property in `package.json` file

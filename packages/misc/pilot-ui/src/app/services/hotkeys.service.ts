@@ -26,8 +26,8 @@ export class Hotkeys {
     const event = `keydown.${merged.keys}`;
     this.registeredKeys.push([key, name, description]);
 
-    return new Observable(observer => {
-      const handler = e => {
+    return new Observable((observer) => {
+      const handler = (e) => {
         e.preventDefault();
         observer.next(e);
       };

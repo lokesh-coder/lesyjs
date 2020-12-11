@@ -19,7 +19,8 @@ class LesyMiddleware {
     END: [],
   };
 
-  add(mw: Middleware) {
+  add(mw: Middleware, source: string) {
+    mw.source = source;
     this.middlewares[mw.on].push(mw);
   }
 

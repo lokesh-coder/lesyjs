@@ -34,6 +34,7 @@ export type MiddlewareFn = (
 export interface Middleware {
   on: MiddlewarePlacement;
   run: MiddlewareFn;
+  source?: string;
 }
 
 export type MiddlewareContext = Record<string, any>;

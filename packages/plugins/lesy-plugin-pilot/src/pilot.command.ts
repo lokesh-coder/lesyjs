@@ -125,6 +125,9 @@ export default class PilotCommand {
       requestAllCommands: () => ({
         onRequestAllCommands: this.getSelectedProject().request.getCommands(),
       }),
+      requestAllMiddlewares: () => ({
+        onRequestAllMiddlewares: this.getSelectedProject().request.getMiddlewares(),
+      }),
       requestConfig: () => ({
         onRequestConfig: this.getConfig(),
       }),

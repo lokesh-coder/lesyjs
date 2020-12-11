@@ -14,6 +14,7 @@
 <h3 align="center">
 	> 𝙱𝚞𝚒𝚕𝚍 𝚖𝚘𝚍𝚎𝚛𝚗 𝚌𝚘𝚖𝚖𝚊𝚗𝚍-𝚕𝚒𝚗𝚎 𝚊𝚙𝚙𝚜_
 </h3>
+
 <p align="center">
 	<span>
 		<a href="https://lesyjs.io/">Website</a>
@@ -21,9 +22,23 @@
 		<a href="https://lesyjs.io/docs/get-started/overview">Documentation</a>
 		•
 		<a href="https://codesandbox.io/s/lesy-pilot-playground-hzjgw?file=/src/index.js">Playground</a>
+		•
+		<a href="https://twitter.com/lesyjs">Twitter</a>
 	</span>
 </p>
+
+<h1></h1>
 <br/>
+<p align="center">
+
+<img src="https://img.shields.io/coveralls/github/lokesh-coder/lesyjs?color=4a5874&labelColor=d5695f&style=flat-square"/>
+<img src="https://img.shields.io/github/workflow/status/lokesh-coder/lesyjs/Release?color=4a5874&labelColor=d5695f&style=flat-square"/>
+<img src="https://img.shields.io/npm/v/@lesy/core?color=4a5874&labelColor=d5695f&style=flat-square"/>
+<img src="https://img.shields.io/bundlephobia/minzip/@lesy/core?color=4a5874&labelColor=d5695f&label=core%20size%20&style=flat-square"/>
+<img src="https://img.shields.io/npm/dt/lesy?color=4a5874&labelColor=d5695f&style=flat-square"/>
+
+</p>
+
 <h1></h1>
 
 ## What is Lesy JS
@@ -74,8 +89,8 @@ Lesy can be installed from Lesy CLI or manually.
   Install `@lesy/compiler` via `npm` or `yarn`
 
   ```shell
-  mkdir my-cli && cd my-cli
-  npm install @lesy/compiler
+  > mkdir my-cli && cd my-cli
+  > npm install @lesy/compiler
   ```
 
   Then create a index file and add the below code
@@ -90,7 +105,7 @@ Lesy can be installed from Lesy CLI or manually.
   ```
 
   ```shell
-  ./index hello
+  > ./index hello
   ```
 
 ## Lesy core parts

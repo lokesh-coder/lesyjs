@@ -1,5 +1,5 @@
 {
-  "name": "@lesy/lesy-plugin-demo",
+  "name": "@lesy/lesy-plugin-artist",
   "version": "1.0.0-beta.14",
   "description": "",
   "main": "dist/index.js",
@@ -10,18 +10,17 @@
   "keywords": [
     "lesy",
     "lesy-plugin",
-    "demo",
-    "example"
+    "config"
   ],
   "author": {
     "email": "mexican.dirtyfellow@gmail.com",
     "name": "Lokesh Rajendran"
   },
   "license": "MIT",
+  "dependencies": {
+    "@lesy/artist": "^1.0.0-beta.14"
+  },
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "@lesy/lesy-plugin-prompt": "^1.0.0-beta.14"
   }
 }

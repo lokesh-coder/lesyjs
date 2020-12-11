@@ -23,7 +23,7 @@
   "dependencies": {
     "ansi_up": "^4.0.4",
     "boxen": "^4.1.0",
-    "execa": "^3.2.0",
+    "execa": "^4.0.0",
     "finalhandler": "^1.1.2",
     "intercept-stdout": "^0.1.2",
     "json-stringify-safe": "^5.0.1",

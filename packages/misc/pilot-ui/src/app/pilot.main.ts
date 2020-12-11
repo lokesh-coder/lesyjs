@@ -13,14 +13,13 @@ import {
   SetConsolePanelHeight,
   ToggleConsolePanel,
   LoadConfig,
+  ToggleConsolePosition,
 } from "./store/actions/common.actions";
 import { ToppyControl, Toppy, GlobalPosition, InsidePlacement } from "toppy";
 import { NotificationModel } from "./pilot.models";
 import { ToastComponent } from "./components";
 import { Hotkeys } from "./services/hotkeys.service";
 import { FetchDefaultProject } from "./store/actions/project.actions";
-
-const HOTKEY = "`";
 
 @Component({
   selector: "pilot-main",
@@ -67,8 +66,12 @@ export class PilotMain implements OnInit {
     });
 
     this.hotkeys$
-      .addShortcut(HOTKEY, "backquote", "Toggle console panel")
+      .addShortcut("`", "backquote", "Toggle console panel")
       .subscribe(() => this.store.dispatch(new ToggleConsolePanel()));
+
+    this.hotkeys$
+      .addShortcut("1", "one", "Toggle console position")
+      .subscribe(() => this.store.dispatch(new ToggleConsolePosition()));
   }
   onDragEnd({ sizes: [, height] }) {
     this.store.dispatch(new SetConsolePanelHeight(height));

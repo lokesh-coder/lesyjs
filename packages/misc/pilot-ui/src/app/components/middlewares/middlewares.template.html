@@ -1,0 +1,23 @@
+<!-- <pre>{{middlewares|json}}</pre> -->
+<h3 class="font-display text-violet text-3xl mb-2">
+  Middlewares
+</h3>
+
+<ng-container *ngFor="let mw of middlewares">
+  <ng-container *ngIf="mw.hooks.length">
+    <div class="py-4">
+      <h3 class="font-display text-gray-600 text-lg lowercase mb-2">
+        {{mw.hookName}} ({{mw.hooks.length}})
+      </h3>
+      <div
+        *ngFor="let hook of mw.hooks"
+        class="bg-gray-100 p-2 mb-2 rounded-md"
+      >
+        <div class="text-lg text-gray-600">
+          {{hook.description||'no desc'}}
+        </div>
+        <div class="ellipsize-left text-gray-700 text-sm">{{hook.source}}</div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>

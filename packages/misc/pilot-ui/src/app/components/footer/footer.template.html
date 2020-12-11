@@ -53,7 +53,17 @@
       <i class="{{consolePosClassName}} leading-none text-xl"></i>
     </li>
   </ng-container>
+
   <li class="flex items-center ml-auto">
+    <a
+      class="flex items-center p-3 cursor-pointer"
+      [panel]="middlewareTpl"
+      [popoverOn]="'CLICK'"
+    >
+      <i class="ri-mind-map leading-none text-xl mr-2"></i>
+    </a>
+  </li>
+  <li class="flex items-center">
     <a
       class="flex items-center p-3 cursor-pointer"
       [popover]="shortcutsTpl"
@@ -75,6 +85,22 @@
   </li>
 </ul>
 
+<ng-template #middlewareTpl let-toppy>
+  <div class="bg-white h-full p-4 flex flex-col overflow-scroll">
+    <div class="flex-1">
+      <pilot-middlewares></pilot-middlewares>
+    </div>
+    <div class="flex justify-center">
+      <button
+        class="bg-gray-200 rounded-md p-5 text-center text-gray-800"
+        (click)="toppy.close()"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</ng-template>
+
 <ng-template #shortcutsTpl>
   <div class="p-5">
     <div class="bg-white p-4 shadow-lg rounded-lg">
@@ -86,7 +112,7 @@
       <ul class="list-inline">
         <li
           *ngFor="let keys of getRegisteredHotKeys()"
-          class="flex items-center"
+          class="flex items-center mt-2"
         >
           <span
             class="font-bold text-yellow-900 bg-yellow-500 text-xs rounded px-2 py-1 mr-2 uppercase"

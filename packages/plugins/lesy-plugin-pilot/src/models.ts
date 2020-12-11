@@ -8,6 +8,7 @@ export interface SocketInputData {
   requestProject: () => any;
   requestAllProjects: () => any;
   requestAllCommands: () => any;
+  requestAllMiddlewares: () => any;
   requestConfig: () => any;
 }
 

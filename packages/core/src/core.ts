@@ -107,6 +107,7 @@ class LesyCoreClass {
       getCommandById: this.cmdCtrl.getCommandById.bind(this.cmdCtrl),
       getCommandByName: this.cmdCtrl.getCommandByName.bind(this.cmdCtrl),
       getCommands: this.cmdCtrl.getCommands.bind(this.cmdCtrl),
+      getMiddlewares: this.mwCtrl ? this.mwCtrl.get.bind(this.mwCtrl) : {},
     };
   }
 

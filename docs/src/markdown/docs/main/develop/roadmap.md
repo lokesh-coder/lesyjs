@@ -9,4 +9,9 @@ icon: lightbulb-flash-fill
 - Autocorrect mispelled args
 - Notification
 
+### Others
+
+- Support for desktop app
+- Allow pilot to show registered middlewares
+
 <!-- ### Improvement for Pilot plugin-->

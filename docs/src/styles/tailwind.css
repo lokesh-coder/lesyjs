@@ -64,7 +64,7 @@ p {
   @apply leading-none;
 }
 
-.content h4 a {
+.content h4 a.anchor {
   @apply hidden;
 }
 
