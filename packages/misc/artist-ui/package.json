@@ -12,15 +12,24 @@
   "license": "MIT",
   "dependencies": {
     "@fabiospampinato/store": "^1.10.0",
+    "boxen": "^4.2.0",
     "cli-spinners": "^2.5.0",
     "cliui": "^7.0.4",
     "handlebars": "^4.7.6",
     "himalaya": "^1.1.0",
     "html-minifier": "^4.0.0",
     "html-parse-stringify": "^2.0.0",
-    "log-update": "^4.0.0"
+    "lodash.isequal": "^4.5.0",
+    "lodash.throttle": "^4.1.1",
+    "log-update": "^4.0.0",
+    "memoize-one": "^5.1.1",
+    "progress-string": "^1.2.2"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@types/html-minifier": "^4.0.0",
+    "@types/lodash.isequal": "^4.5.5"
   }
 }
