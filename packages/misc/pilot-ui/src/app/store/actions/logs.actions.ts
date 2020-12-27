@@ -4,7 +4,7 @@ export class LoadLogs {
 
 export class AddLog {
   static readonly type = "[Logs] Add logs";
-  constructor(public log: string) {}
+  constructor(public log: any) {}
 }
 
 export class ClearLogs {

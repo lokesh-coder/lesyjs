@@ -32,7 +32,17 @@ export class LogsState {
   addLog(ctx: StateContext<LogsModel>, action: AddLog) {
     const state = ctx.getState();
     const pushStratergy = state.direction === "DESC" ? "push" : "unshift";
-    state.logs[pushStratergy]([Date.now(), action.log]);
+    const pointer = state.direction === "DESC" ? state.logs.length - 1 : 0;
+    const lastLog = state.logs[pointer];
+    const isDynamicLog = action.log.rewriteLastLog ? "isDynamicLog" : "";
+    const logData = [Date.now(), action.log.message, isDynamicLog];
+
+    if (action.log.rewriteLastLog && lastLog[2] === "isDynamicLog") {
+      state.logs[pointer] = logData;
+    } else {
+      state.logs[pushStratergy](logData);
+    }
+
     ctx.setState(state);
   }
 

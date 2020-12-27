@@ -9,9 +9,9 @@ export class LogsService {
 
   getLogs(): Observable<any> {
     return this.wsService.listen().pipe(
-      filter(log => log && log.type),
-      filter(log => log.type === "log"),
-      map(log => log.message),
+      filter((log) => log && log.type),
+      filter((log) => log.type === "log"),
+      filter((log) => log.message),
     );
   }
 }
