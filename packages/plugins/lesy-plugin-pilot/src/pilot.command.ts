@@ -105,7 +105,7 @@ export default class PilotCommand {
     };
   }
 
-  private getSocketData(): SocketInputData {
+  private getSocketData(feature: any): SocketInputData {
     const selectedProject = () =>
       this.getAllProjects().find(
         (p: any) => p.name === global.lesySelectedProject,
@@ -114,6 +114,7 @@ export default class PilotCommand {
     return {
       requestSwitchProject: this.switchProject,
       requestRunCommand: (x: any): void => {
+        if (feature.artistDispose) feature.artistDispose(true);
         return this.getSelectedProject().request.runCommand(x);
       },
       requestProject: () => ({
@@ -144,6 +145,7 @@ export default class PilotCommand {
     const cb = (text: any) => {
       this.socket.sendMessage({
         type: "log",
+        rewriteLastLog: /(\[([0-9]+)K)/.test(text),
         message: ansiUp.ansi_to_html(text),
       });
     };
@@ -185,7 +187,7 @@ export default class PilotCommand {
   private establishSocket(flags: AnyObject, feature: AnyObject): void {
     this.socket = feature.socket
       .startServer(flags.socketHost, flags.socketPort)
-      .init(this.getSocketData());
+      .init(this.getSocketData(feature));
   }
 
   private startServer(flags: AnyObject) {
