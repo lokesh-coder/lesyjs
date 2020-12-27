@@ -8,6 +8,7 @@ module.exports = {
     "./packages/compiler/src/**",
     "./packages/plugins/**/src/**",
     "./packages/helpers/**/src/**",
+    "./packages/misc/artist-ui/src/**",
   ],
   coverageDirectory: "coverage",
   coveragePathIgnorePatterns: [

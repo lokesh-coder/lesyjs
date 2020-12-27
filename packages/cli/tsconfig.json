@@ -24,6 +24,10 @@
         "../plugins/lesy-plugin-generator/src/index.ts"
       ],
       "@lesy/lesy-plugin-store": ["../plugins/lesy-plugin-store/src/index.ts"],
+      "@lesy/artist": ["../misc/artist-ui/src/index.ts"],
+      "@lesy/lesy-plugin-artist": [
+        "../plugins/lesy-plugin-artist/src/index.ts"
+      ],
       "@lesy/lesy-plugin-prompt": [
         "../plugins/lesy-plugin-prompt/src/index.ts"
       ],

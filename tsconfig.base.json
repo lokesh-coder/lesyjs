@@ -18,7 +18,9 @@
         "plugins/lesy-plugin-generator/src/index.ts"
       ],
       "@lesy/testbed": ["testbed/src/index.ts"],
-      "@lesy/compiler": ["compiler/src/index.ts"]
+      "@lesy/compiler": ["compiler/src/index.ts"],
+      "@lesy/artist": ["../misc/artist-ui/src/index.ts"],
+      "@lesy/lesy-plugin-artist": ["../plugins/lesy-plugin-artist/src/index.ts"]
     },
     "diagnostics": false
   },
