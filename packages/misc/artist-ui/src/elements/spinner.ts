@@ -3,7 +3,7 @@ let i = 0;
 
 export const spinner = (_: any, ctx: any) => {
   const { frames, interval } = cliSpinners.dots;
-  const cb = ctx.timer(
+  ctx.timer(
     "joo",
     () => {
       ctx.store.spinner = frames[i % frames.length];
@@ -11,8 +11,6 @@ export const spinner = (_: any, ctx: any) => {
     },
     interval,
   );
-  ctx.disposer(() => {
-    // clearInterval(cb);
-  });
+  ctx.disposer(() => {});
   return ` ${ctx.store.spinner || "..."} `;
 };
