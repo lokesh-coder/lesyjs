@@ -114,7 +114,7 @@ export interface FeatureObj {
   [key: string]: any;
 }
 
-export type Feature = (feature: FeatureObj, opts: any) => void;
+export type Feature = (feature: FeatureObj, opts: any, utils: any) => void;
 
 export interface Constructor<T> extends Function {
   new (...args: any[]): T;

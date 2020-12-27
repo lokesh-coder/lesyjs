@@ -104,5 +104,15 @@ export default (flavor: string, root: string) => {
           () => {}
         ],
     }`,
+
+    [tsp(
+      "pluginsplugindir/package.json",
+    )]: `{"name":"testpluginsplugin","main":"index.js"}`,
+    [tsp(
+      "pluginsplugindir/index.ts",
+    )]: `export default { code:"PLUGINS_PLUGIN_CONTENT", id:2 }`,
+    [tsp(
+      "pluginsplugindir/hello.ts",
+    )]: `export default { code:"PLUGINS_PLUGIN_HELLO", id:1 }`,
   };
 };

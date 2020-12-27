@@ -354,6 +354,38 @@ describe("LESY:Loader", () => {
             },
           });
         });
+
+        it("should load plugins plugin if provided in config", () => {
+          jest.spyOn(loader, "loadPluginFromFile");
+          loader["root"] = d``;
+          loader.loadPlugins([
+            [
+              "plugindir",
+              { plugins: ["pluginsplugindir", p`pluginsplugindir/hello`] },
+            ],
+          ]);
+          expect(loader.pluginConfigs).toEqual({
+            plugindir: {
+              plugins: [
+                {
+                  module: {
+                    code: "PLUGINS_PLUGIN_CONTENT",
+                    id: 2,
+                  },
+                  src: "pluginsplugindir",
+                },
+                {
+                  module: {
+                    code: "PLUGINS_PLUGIN_HELLO",
+                    id: 1,
+                  },
+                  src: p`pluginsplugindir/hello`,
+                },
+              ],
+            },
+          });
+        });
+
         it("should show error if plugin source in invalid", () => {
           const logSpy = jest.spyOn(console, "log");
           loader.loadPlugins(["abc"]);

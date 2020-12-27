@@ -74,9 +74,10 @@ class LesyLoader {
   loadPlugins(paths: Plugin[]): void {
     paths.forEach((pluginSource: any) => {
       if (Array.isArray(pluginSource)) {
-        this.pluginConfigs[pluginSource[0]] = pluginSource[1] || {};
+        const [pluginPath, pluginConfig = {}] = pluginSource;
+        this.pluginConfigs[pluginPath] = this.loadPluginsPlugins(pluginConfig);
         // tslint:disable-next-line: no-parameter-reassignment
-        pluginSource = pluginSource[0];
+        pluginSource = pluginPath;
       }
       try {
         const isObject = typeof pluginSource === "object";
@@ -171,6 +172,41 @@ class LesyLoader {
     if (isFile) return this.loadFromFile(fileOrDir, name);
     const isDir = lstatSync(fileOrDir).isDirectory();
     if (isDir) return this.loadFromDir(fileOrDir, name);
+  }
+
+  private loadPluginsPlugins(pluginConfig = {}) {
+    const pluginsPlugins = pluginConfig["plugins"];
+    if (!pluginsPlugins || !Array.isArray(pluginsPlugins)) return pluginConfig;
+    const pluginsPluginsData = [];
+    pluginsPlugins.forEach((pluginSource: string) => {
+      try {
+        const isFile = lstatSync(pluginSource).isFile();
+        if (isFile) {
+          pluginsPluginsData.push({
+            src: pluginSource,
+            module: this.getModuleFromFile(pluginSource),
+          });
+          return;
+        }
+      } catch (e) {}
+
+      try {
+        const paths = [this.root];
+        pluginsPluginsData.push({
+          src: pluginSource,
+          module: this.getModuleFromFile(
+            require.resolve(pluginSource, { paths }),
+          ),
+        });
+      } catch (e) {
+        console.log(`${pluginSource} is not loaded`);
+        console.log(`Error: ${e.message}`);
+      }
+    });
+    return {
+      ...pluginConfig,
+      plugins: pluginsPluginsData,
+    };
   }
 }
 
