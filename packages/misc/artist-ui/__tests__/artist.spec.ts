@@ -11,13 +11,13 @@ describe("artist ui", () => {
 
   it("should load default elements", () => {
     expect(Object.keys(artist["elements"])).toEqual([
-      "text",
-      "newline",
-      "row",
       "column",
       "div",
-      "span",
+      "newline",
+      "row",
       "space",
+      "span",
+      "text",
       "spinner",
       "progress",
       "unknown",

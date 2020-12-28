@@ -87,4 +87,41 @@ describe("artist elements", () => {
 
     artist.paint("<spinner></spinner>");
   });
+
+  it("should render the row when no column is defined", () => {
+    const row = "";
+    artist.paint("<row>hello</row>");
+    expect(output).toEqual(row);
+  });
+
+  it("should render the row when columns are defined", () => {
+    artist.paint(`
+    <row>
+        <column>Name</column>
+        <column>Kevin</column>
+    </row>
+    `);
+    expect(/Name(\s+)Kevin/.test(output)).toBeTruthy();
+  });
+
+  it("should render the column", () => {
+    artist.paint("<column>hello</column>");
+    expect(output).toEqual("hello");
+  });
+
+  it("should render the space", () => {
+    artist.paint("<space length='5'></space>");
+    expect(output).toEqual(" ".repeat(5));
+  });
+
+  it("should render the list", () => {
+    const names = ["Peter", "Kevin", "John"];
+    artist.createStore({ names });
+    artist.paint(`
+    {{#list names}}
+        <text>{{this}}</text>
+    {{/list}}
+    `);
+    expect(output).toEqual("PeterKevinJohn");
+  });
 });
