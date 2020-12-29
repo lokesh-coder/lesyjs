@@ -41,6 +41,7 @@ module.exports = {
       fontFamily: {
         heading: ["Gilroy"],
         icon: ["remixicon"],
+        banner: ["Miriam Libre"],
       },
     },
   },

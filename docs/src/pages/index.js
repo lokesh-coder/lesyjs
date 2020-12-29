@@ -39,7 +39,7 @@ const IndexPage = ({ data }) => {
       <ParticlesBg />
       <div className="container lg:flex mx-auto min-h-screen relative z-10">
         <div className="w-full lg:w-8/12 flex items-center py-12 lg:py-0">
-          <div className="px-4 lg:px-24 text-center">
+          <div className="px-4 lg:px-24">
             <div className="lg:absolute top-0 flex justify-center">
               <img
                 src="/images/lesy-head.png"
@@ -48,20 +48,20 @@ const IndexPage = ({ data }) => {
               />
             </div>
 
-            <h1 className="text-center text-heading text-4xl lg:text-5xl font-extrabold tracking-tight font-heading leading-none">
+            <h1 className="text-heading text-4xl lg:text-6xl font-extrabold tracking-tighter font-banner leading-none">
               Build modern command line apps with{" "}
               <span className="text-primary">Lesy js</span>
             </h1>
-            <p className="mb-8 text-center lg:px-10">
+            <p className="mb-8 text-xl">
               Lesy is a super flexible and lightweight CLI framework to build
               damn good command line apps without too much boilerplate.
             </p>
-            <section className="text-sm text-subtext mb-8 lg:px-10">
+            <section className="text-sm text-subtext mb-8">
               {features.map((f) => (
                 <span key={f}>{f} &middot; </span>
               ))}
             </section>
-            <div className="text-center">
+            <div>
               <Link
                 className="bg-secondary text-white py-2 px-4 rounded-md font-medium inline-flex text-sm items-center mr-3 hover:bg-secondary"
                 to="/docs/get-started/overview"
