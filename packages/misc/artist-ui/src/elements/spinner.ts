@@ -12,5 +12,5 @@ export const spinner = (_: any, ctx: any) => {
     interval,
   );
   ctx.disposer(() => {});
-  return ` ${ctx.store.spinner || "..."} `;
+  return ` ${ctx.store.spinner || frames[0]} `;
 };

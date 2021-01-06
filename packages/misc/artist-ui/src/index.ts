@@ -17,6 +17,7 @@ class ArtistClass {
   private chalk = {};
   private disposers = [];
   private timers = {};
+  private invokedTimers = [];
 
   constructor(chalk = {}) {
     this.registerElements(uiElements);
@@ -61,6 +62,9 @@ class ArtistClass {
     handlebars.registerHelper("eq", function (arg1, arg2, options) {
       return arg1 === arg2 ? options.fn(this) : options.inverse(this);
     });
+    handlebars.registerHelper("neq", function (arg1, arg2, options) {
+      return arg1 !== arg2 ? options.fn(this) : options.inverse(this);
+    });
     handlebars.registerHelper("list", (context, options) => {
       let ret = "";
 
@@ -87,6 +91,7 @@ class ArtistClass {
   }
 
   registerAndInvokeTimer(id, name, func, ms) {
+    this.invokedTimers.push(id);
     if (this.timers[id]?.[name]) {
       return;
     }
@@ -105,6 +110,14 @@ class ArtistClass {
     const diposableItems = this.getChangedStore();
     this.disposers.forEach((dis) => {
       if (diposableItems.includes(dis.id) || all) dis.func();
+    });
+  }
+
+  clearUnusedTimers() {
+    Object.keys(this.timers).forEach((t) => {
+      if (!this.invokedTimers.includes(t)) {
+        clearInterval(this.timers[t]["intervalId"]);
+      }
     });
   }
 
@@ -185,6 +198,8 @@ class ArtistClass {
   }
 
   render(tplStr: string) {
+    this.clearUnusedTimers();
+    this.invokedTimers = [];
     const minifiedStr = this.minifyTpl(tplStr);
     const compiledStr = this.compileTpl(minifiedStr);
     const elements = this.parseTpl(compiledStr);
