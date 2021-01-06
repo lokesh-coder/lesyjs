@@ -21,7 +21,7 @@ strong {
 .preview:after {
   content: "";
   background-color: transparent;
-  background: linear-gradient(90deg, #edf2f7, transparent),
+  background: linear-gradient(90deg, #ffffff, transparent),
     url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d6dadf' fill-opacity='1' fill-rule='evenodd'%3E%3Ccircle cx='9' cy='9' r='4'/%3E%3Ccircle cx='39' cy='39' r='9'/%3E%3C/g%3E%3C/svg%3E");
   position: absolute;
   width: 160px;
@@ -36,7 +36,7 @@ strong {
 .preview:before {
   content: "";
   background-color: transparent;
-  background: linear-gradient(90deg, transparent, #edf2f7),
+  background: linear-gradient(90deg, transparent, #ffffff),
     url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d6dadf' fill-opacity='1' fill-rule='evenodd'%3E%3Ccircle cx='9' cy='9' r='4'/%3E%3Ccircle cx='39' cy='39' r='9'/%3E%3C/g%3E%3C/svg%3E");
   position: absolute;
   width: 160px;

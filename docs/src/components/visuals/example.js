@@ -8,7 +8,7 @@ codes["2"] = `export default {
   name: "hello",
   run:() => console.log("Hello world!")
 }`;
-codes["3"] = `$ node ./bin/cmd hello`;
+codes["3"] = `$ ./bin/cmd hello`;
 
 const Frame = ({ role, children }) => {
   if (role === "editor")

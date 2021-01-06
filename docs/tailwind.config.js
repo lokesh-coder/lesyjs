@@ -42,6 +42,7 @@ module.exports = {
         heading: ["Gilroy"],
         icon: ["remixicon"],
         banner: ["Miriam Libre"],
+        subheading: ["Poppins"],
       },
     },
   },

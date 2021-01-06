@@ -5,7 +5,7 @@ const version = require("./package.json").version;
 const tailwindConfig = require("./tailwind.config.js");
 
 const siteMetadata = {
-  title: "Lesy | CLI framework | Documentation",
+  title: "Lesy CLI framework | Documentation",
   description: "Lesy CLI Framework",
   author: "Lokesh Rajendran",
   version,

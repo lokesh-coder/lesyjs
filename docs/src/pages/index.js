@@ -16,6 +16,14 @@ import Stats from "../components/parts/stats";
 import Footer from "../components/parts/footer";
 import NewsletterSection from "../components/parts/newsletter";
 import SectionHeadlines from "../components/visuals/section-headlines";
+import CommandsSection from "../components/home-sections/commands";
+import MiddlewaresSection from "../components/home-sections/middlewares";
+import PluginsSection from "../components/home-sections/plugins";
+import PilotSection from "../components/home-sections/pilot";
+import ArtistSection from "../components/home-sections/artist";
+import FlavorSection from "../components/home-sections/flavor";
+import TestingSection from "../components/home-sections/testing";
+import PerformanceSection from "../components/home-sections/performance";
 
 const features = [
   "Sub commands",
@@ -35,7 +43,7 @@ const IndexPage = ({ data }) => {
   });
   return (
     <div className="text-body">
-      <SEO title="Home" />
+      <SEO title="Lesy - Build damn good modern CLI apps without too much boilerplate" />
       <ParticlesBg />
       <div className="container lg:flex mx-auto min-h-screen relative z-10">
         <div className="w-full lg:w-8/12 flex items-center py-12 lg:py-0">
@@ -63,16 +71,16 @@ const IndexPage = ({ data }) => {
             </section>
             <div>
               <Link
-                className="bg-secondary text-white py-2 px-4 rounded-md font-medium inline-flex text-sm items-center mr-3 hover:bg-secondary"
+                className="bg-secondary text-white py-2 px-4 rounded-md font-medium inline-flex text-md items-center mr-3 hover:bg-primary"
                 to="/docs/get-started/overview"
               >
-                <i className="ri-book-mark-fill text-lg mr-2"></i> Documentation
+                Get started <i className="ri-arrow-right-line text-lg ml-2"></i>
               </Link>
               <Link
-                className="bg-gray-200 text-gray-600 py-2 px-4 rounded-md font-medium inline-flex text-sm items-center hover:bg-gray-300"
+                className=" text-gray-600 py-2 px-4 rounded-md font-medium inline-flex text-md items-center hover:bg-gray-200 border border-gray-300"
                 to="https://github.com/lokesh-coder/lesyjs"
               >
-                <i className="ri-github-fill mr-2 text-lg"></i> Repository
+                Github repo
               </Link>
             </div>
           </div>
@@ -96,6 +104,16 @@ const IndexPage = ({ data }) => {
           </div>
         </div>
       </div>
+
+      <CommandsSection />
+      <MiddlewaresSection />
+      <PluginsSection />
+      <PilotSection />
+      <ArtistSection />
+      <FlavorSection />
+      <TestingSection />
+      <PerformanceSection />
+
       <div className="bg-gray-200 overflow-hidden">
         <SectionHeadlines
           title="Run commands from _Pilot_ UI"

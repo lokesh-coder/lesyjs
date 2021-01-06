@@ -51,7 +51,7 @@ const Features = () => {
     <div className="container mx-auto py-10 pb-10 lg:pb-24 mt-12">
       <div className="flex flex-wrap">
         {data.map((d) => (
-          <div className="lg:w-2/6 mb-12 px-6">
+          <div className="lg:w-2/6 px-6">
             <Blade {...d} />
           </div>
         ))}
