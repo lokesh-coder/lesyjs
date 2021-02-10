@@ -13,6 +13,7 @@
   "dependencies": {
     "@fabiospampinato/store": "^1.10.0",
     "boxen": "^4.2.0",
+    "chalk": "^4.1.0",
     "cli-spinners": "^2.5.0",
     "cliui": "^7.0.4",
     "handlebars": "^4.7.6",

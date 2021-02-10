@@ -1,12 +1,21 @@
-// tslint:disable: import-name
+// tslint:disable-next-line: import-name
 import Artist from "../src";
 
+const delay = (ms: number) => new Promise((r: Function) => setTimeout(r, ms));
 describe("artist ui", () => {
   let artist: Artist;
+  let output: any;
 
   beforeEach(() => {
     artist = new Artist();
-    artist.createStore({});
+    artist.rewriteScreen = jest.fn().mockImplementation((input) => {
+      output = input;
+    });
+  });
+
+  afterAll(() => {
+    artist.clearAllTimers();
+    artist = null;
   });
 
   it("should load default elements", () => {
@@ -21,120 +30,174 @@ describe("artist ui", () => {
       "spinner",
       "progress",
       "unknown",
-      "key",
       "box",
     ]);
   });
-  it("should memoize the elements function", () => {
-    let count = 0;
-    const dummyElement = () => {
-      count += 1;
-      return `dummy-text - ${count}`;
-    };
-    artist["registerElements"]({ dummyElement });
-    const items = Array(2).fill("");
-    const elemFn = artist["elements"]["dummyElement"];
-    items.forEach(() => expect(elemFn()).toEqual("dummy-text - 1"));
-  });
-  it("should add random ids to elements", () => {
-    let count = 0;
-    const tpl = `
-        <div>
-            <span>hello</span>
-            <div name="john"></div>
-            <row>
-                <dummy/>
-                <dummy2 name="peter"/>
-            </row>
-        </div>`;
-    const tplWithIds = `
-        <div id="div-one">
-            <span id="span-two">hello</span>
-            <div name="john" id="div-three"></div>
-            <row id="row-four">
-                <dummy id="dummy-five"/>
-                <dummy2 name="peter" id="dummy2-six"/>
-            </row>
-        </div>`;
+  it("should preserve whitespace", () => {
+    const tpl = `line1
 
-    const idGenerator = () => {
-      const ids = ["one", "two", "three", "four", "five", "six"];
-      const id = ids[count];
-      count += 1;
-      return id;
-    };
-    const templateStr = artist.addElementID(tpl, idGenerator);
-    expect(templateStr).toEqual(tplWithIds);
+    line2`;
+    artist.render(() => tpl);
+    expect(output).toEqual(tpl);
   });
-  it("should not add id if it already exists", () => {
-    let count = 0;
-    const tpl = `
-        <div id="one">
-            <span id="two">hello</span>
-            <div name="john"></div>
-            <row>
-                <dummy/>
-                <dummy2 name="peter"/>
-            </row>
-        </div>`;
-    const tplWithIds = `
-        <div id="one">
-            <span id="two">hello</span>
-            <div name="john" id="div-three"></div>
-            <row id="row-four">
-                <dummy id="dummy-five"/>
-                <dummy2 name="peter" id="dummy2-six"/>
-            </row>
-        </div>`;
+  it("should remove whitespace", () => {
+    artist["config"].collapseWhitespace = true;
+    const tpl = `line1
 
-    const idGenerator = () => {
-      const ids = ["three", "four", "five", "six"];
-      const id = ids[count];
-      count += 1;
-      return id;
+    line2`;
+    const expected = `line1 line2`;
+    artist.render(() => tpl);
+    expect(output).toEqual(expected);
+  });
+  it("should preserve line breaks", () => {
+    artist["config"].preserveLineBreaks = true;
+    const tpl = `line1
+
+    line2`;
+    artist.render(() => tpl);
+    expect(output).toEqual(tpl);
+  });
+  it("should register new elements", () => {
+    const tagEl = {
+      name: "tag",
+      render: () => `I am tag!`,
     };
-    const templateStr = artist.addElementID(tpl, idGenerator);
-    expect(templateStr).toEqual(tplWithIds);
+    artist.registerEls({ tagEl });
+    artist.render(() => `<tag></tag>`);
+    expect(output).toEqual("I am tag!");
   });
-  it("should get element store", () => {
-    artist.createStore({
-      month: { name: "march" },
+  it("should run init hook for elements", () => {
+    const tagEl = {
+      name: "tag",
+      init: ({ store }) => {
+        if (!store.tags) store.tags = ["one", "two"];
+      },
+      render: ({ store }) => `I am tag!- ${store.tags}`,
+    };
+    artist.registerEls({ tagEl });
+    artist.render(() => `<tag></tag>`);
+    expect(output).toEqual("I am tag!- one,two");
+  });
+  it("should convert element data to object", () => {
+    const tagEl = {
+      name: "tag",
+      init: ({ store }) => {
+        if (!store.tags) store.tags = ["one", "two"];
+      },
+      render: (_: any, data: any) => JSON.stringify(data),
+    };
+    artist.registerEls({ tagEl });
+    artist.render(() => `<tag name="hi">one</tag>`);
+    expect(output).toEqual(
+      JSON.stringify({
+        type: "element",
+        tagName: "tag",
+        attributes: [{ key: "name", value: "hi" }],
+        children: [{ type: "text", content: "one" }],
+      }),
+    );
+  });
+  it("should get element props", () => {
+    const tagEl = {
+      name: "tag",
+      render: (ctx: any) => `props: ${Object.entries(ctx.props)}`,
+    };
+    artist.registerEls({ tagEl });
+    artist.render(() => `<tag name="doe" age="21" bool="false">one</tag>`);
+    expect(output).toEqual("props: name,doe,age,21,bool,false");
+  });
+  it("should recursively load elements", () => {
+    const tagEl = {
+      name: "tag",
+      render: () => `<text>hello</text>`,
+    };
+    artist.registerEls({ tagEl });
+    artist.render(() => `@<div><tag></tag> ##</div>@`);
+    expect(output).toEqual(`@
+hello ##
+@`);
+  });
+  it("should run global init", () => {
+    artist.onInit((store: any) => {
+      if (store.count === undefined) store.count = 0;
     });
-    expect(
-      artist.getElementStore({ attributes: [{ key: "id", value: "month" }] }),
-    ).toEqual({ name: "march" });
+    artist.render((store: any) => `<text>counter ${store.count}</text>`);
+    expect(output).toEqual("counter 0");
   });
-  it("should minify the template", () => {
-    const tpl = `<div id="one">
-            <span id="two">hello</span>
-            <div name="john"> content </div>
-            <div></div>
-        </div>`;
-    const minifiedTpl =
-      '<div id="one"><span id="two">hello</span><div name="john">content</div><div></div></div>';
-    expect(artist.minifyTpl(tpl)).toEqual(minifiedTpl);
-  });
-  it("should compile the template", () => {
-    const tpl = `<div id="one">
-            <span id="two">{{name}}</span>
-            <div name="john"> {{content}} </div>
-            <div></div>`;
-    artist.createStore({
-      name: "vylson",
-      content: "hello",
+  it("should run global init timer", async () => {
+    artist.onInit((store: any, timer: Function) => {
+      if (store.count === undefined) store.count = 0;
+      timer(() => {
+        store.count += 1;
+      }, 500);
     });
-    const expected = `<div id="one">
-            <span id="two">vylson</span>
-            <div name="john"> hello </div>
-            <div></div>`;
-    expect(artist.compileTpl(tpl)).toEqual(expected);
+
+    artist.render((store: any) => `<text>counter ${store.count}</text>`);
+    await delay(1000);
+    expect(output).toEqual("counter 1");
+    artist.clearAllTimers();
   });
-  it.skip("should pass only sliced store to element", () => {});
-  it.skip("should update display text on store change", () => {});
-  it.skip("should dispose all timers", () => {});
-  it.skip("should recursively load elements", () => {});
-  it.skip("should update the template with store data", () => {});
-  it.skip("should parse the templates to object", () => {});
-  it.skip("should register new elements", () => {});
-  it.skip("should get changed store elements", () => {});
+  it("should run internal timer", async () => {
+    const tagEl = {
+      name: "tag",
+      init: ({ store, timer }) => {
+        if (store.num === undefined) store.num = 0;
+        timer(
+          () => {
+            store.num += 1;
+          },
+          100,
+          "someid",
+        );
+      },
+      render: ({ store }) => `I am tag!- ${store.num}`,
+    };
+    artist.registerEls({ tagEl });
+    artist.render(() => `<tag></tag>`);
+    await delay(200);
+    artist.clearAllTimers();
+    expect(output).toEqual("I am tag!- 1");
+  });
+  it("should clear all unsued timers", () => {
+    jest.useFakeTimers();
+    artist.onInit(async (store: any) => {
+      store.dotsSpinner = true;
+      store.arcSpinner = false;
+      await delay(200);
+      store.dotsSpinner = true;
+      store.arcSpinner = false;
+    });
+    artist.render(
+      (store: any) =>
+        `${store.dotsSpinner ? `<spinner type="dots"/>` : ""}${
+          store.arcSpinner ? `<spinner type="arc"/>` : ""
+        }`,
+    );
+    expect(artist["runningElTimers"]).toEqual(["dots"]);
+    artist.clearAllTimers();
+    jest.useRealTimers();
+  });
+  xit("should dispose all timers", () => {
+    jest.useFakeTimers();
+    artist.onInit((store: any, timer: Function) => {
+      if (store.count === undefined) store.count = 0;
+      timer(() => (store.count += 1), 100, "count");
+    });
+    artist.render(() => `1<spinner/>`);
+    expect(artist["timers"]).toEqual({
+      global: { count: true },
+      internal: { dots: true },
+    });
+    artist.clearAllTimers();
+    expect(artist["timers"]).toEqual({ global: {}, internal: {} });
+    jest.useRealTimers();
+  });
+
+  xit("should update display text on store change", async () => {
+    artist.render((store: any) => `name - ${store.name}`);
+    expect(output).toEqual("name - undefined");
+    artist["store"].name = "foobar";
+    await delay(10);
+    expect(output).toEqual("name - foobar");
+  });
 });

@@ -1,3 +1,7 @@
-export const column = (data: any, ctx: any) => {
-  return ctx.visitElements(data.children);
+export default {
+  name: "column",
+  render: (ctx: any, data: any) => {
+    // tslint:disable-next-line: prefer-template
+    return ctx.renderEl(data.children) + "::";
+  },
 };

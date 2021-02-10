@@ -1,3 +1,6 @@
-export const div = (data: any, ctx: any) => {
-  return [null, ctx.visitElements(data.children).join("\n"), null].join("\n");
+export default {
+  name: "div",
+  render: (ctx, data) => {
+    return [null, ctx.renderEl(data.children), null].join("\n");
+  },
 };

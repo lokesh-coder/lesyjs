@@ -114,7 +114,7 @@ export default class PilotCommand {
     return {
       requestSwitchProject: this.switchProject,
       requestRunCommand: (x: any): void => {
-        if (feature.artistDispose) feature.artistDispose(true);
+        if (feature.artistInstance) feature.artistInstance.clearAllTimers();
         return this.getSelectedProject().request.runCommand(x);
       },
       requestProject: () => ({

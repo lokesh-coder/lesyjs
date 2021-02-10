@@ -1,3 +1,6 @@
-export const unknown = (_: any, ctx: any) => {
-  return `UNKNOWN ERROR:${ctx.tagName} is not defined!`;
+export default {
+  name: "unknown",
+  render: (ctx) => {
+    return `Element ${ctx.tagName} is unknown`;
+  },
 };

@@ -1,8 +1,11 @@
-export const space = (data: any, ctx: any) => {
-  const defaultProps = {
-    length: "1",
-  };
+export default {
+  name: "space",
+  render: (ctx: any, data: any) => {
+    const defaultProps = {
+      length: "1",
+    };
 
-  const props = ctx.getProps(defaultProps);
-  return `${" ".repeat(Number(props.length))}`;
+    const props = { ...defaultProps, ...ctx.props };
+    return `${" ".repeat(Number(props.length))}`;
+  },
 };

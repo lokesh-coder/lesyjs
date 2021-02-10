@@ -1,3 +1,4 @@
-export const newline = () => {
-  return "\n";
+export default {
+  name: "newline",
+  render: () => "\n",
 };

@@ -1,232 +1,244 @@
-// tslint:disable import-name
+import { store, onChange } from "@fabiospampinato/store";
 import { parse as htmlparse } from "himalaya";
-import { minify } from "html-minifier";
-import { store as storeDate, onChange } from "@fabiospampinato/store";
-import handlebars from "handlebars";
 import logUpdate from "log-update";
-import memoizeOne from "memoize-one";
-import isDeepEqual from "lodash.isequal";
-import * as uiElements from "./elements";
+import { minify } from "html-minifier";
 import { flattenToStr } from "./utils";
+import * as uiElements from "./elements";
 
-class ArtistClass {
-  private localStore: any = {};
-  private previousStores = [];
-  private updatedStore = null;
+interface Config {
+  collapseWhitespace?: boolean;
+  keepClosingSlash?: boolean;
+  preserveLineBreaks?: boolean;
+}
+
+interface ElementDef {
+  name: string;
+  render: Function;
+  onInit?: Function;
+}
+
+interface Element {
+  [key: string]: ElementDef;
+}
+
+interface ElProp {
+  key: string;
+  value: string;
+}
+
+const defaultConfig = {
+  collapseWhitespace: false,
+  keepClosingSlash: true,
+  preserveLineBreaks: false,
+};
+
+export default class Artist {
+  private store: { [key: string]: any };
+  private config: Config = defaultConfig;
+  private onInitHook: Function = () => {};
   private elements = {};
-  private chalk = {};
-  private disposers = [];
-  private timers = {};
-  private invokedTimers = [];
+  private timers = {
+    internal: {},
+    global: {},
+  };
+  private timerIDs = {
+    internal: {},
+    global: {},
+  };
+  private runningElTimers = [];
 
-  constructor(chalk = {}) {
-    this.registerElements(uiElements);
-    this.registerTemplateHelpers();
-    this.chalk = chalk;
+  constructor(config: Config = {}) {
+    this.store = store({});
+    this.config = { ...this.config, ...config };
+    this.registerEls(uiElements);
   }
 
-  createStore(data: any) {
-    this.localStore = {
-      store: storeDate(data),
-    };
-  }
-
-  get store() {
-    return this.localStore.store;
-  }
-
-  minifyTpl(tplStr: string) {
-    return minify(tplStr, { collapseWhitespace: true });
-  }
-
-  compileTpl(tplStr: string) {
-    const currentStore = this.updatedStore || this.localStore.store;
-    return handlebars.compile(tplStr)(currentStore);
-  }
-
-  parseTpl(tplStr: string) {
-    return htmlparse(tplStr);
-  }
-
-  getElementsStr(elements: any) {
-    return this.visitElements(elements)
-      .filter((x: any) => x !== "")
-      .join("");
-  }
-
-  watchStoreChanges(cb: any) {
-    onChange(this.localStore.store, cb);
-  }
-
-  registerTemplateHelpers() {
-    handlebars.registerHelper("eq", function (arg1, arg2, options) {
-      return arg1 === arg2 ? options.fn(this) : options.inverse(this);
-    });
-    handlebars.registerHelper("neq", function (arg1, arg2, options) {
-      return arg1 !== arg2 ? options.fn(this) : options.inverse(this);
-    });
-    handlebars.registerHelper("list", (context, options) => {
-      let ret = "";
-
-      // tslint:disable-next-line: no-increment-decrement
-      for (let i = 0, j = context.length; i < j; i++) {
-        ret += `<key index="${i}">${options.fn(context[i])}</key>`;
-      }
-
-      return ret;
+  registerEls(elements: Element) {
+    const allElements = { ...this.elements, ...elements };
+    Object.keys(allElements).forEach((key) => {
+      const { name, ...data } = allElements[key];
+      this.elements[name] = data;
     });
   }
 
-  updateDisplay(displayStr: string) {
-    logUpdate(displayStr);
-  }
-
-  getProps(passedPropsArray = [], defaultProps = {}) {
-    const passedProps = {};
-    passedPropsArray.forEach(({ key, value }) => {
-      passedProps[key] = value;
+  private runElHook(hook: Function, props: { [key: string]: any }) {
+    if (!hook) return;
+    hook({
+      props,
+      store: this.store,
+      timer: this.registerInternalTimer.bind(this),
     });
-
-    return { ...defaultProps, ...passedProps };
   }
 
-  registerAndInvokeTimer(id, name, func, ms) {
-    this.invokedTimers.push(id);
-    if (this.timers[id]?.[name]) {
+  private registerGlobalTimer(
+    timerFunc: Function,
+    interval: number,
+    name: string,
+  ) {
+    this.timerIDs.global[name] = setInterval(timerFunc, interval);
+    this.timers.global[name] = true;
+  }
+
+  private registerInternalTimer(
+    timerFunc: Function,
+    interval: number,
+    name: string,
+  ) {
+    this.runningElTimers.push(name);
+    if (this.timers.internal[name]) {
       return;
     }
-    this.timers[id] = {
-      [name]: func,
-    };
-    const intervalId = setInterval(func, ms);
-    this.timers[id]["intervalId"] = intervalId;
+
+    this.timerIDs.internal[name] = setInterval(timerFunc, interval);
+    this.timers.internal[name] = true;
   }
 
-  collectDisposer(id: string, disposerFn: Function) {
-    this.disposers.push({ id, func: disposerFn });
+  private clearUnusedTimers() {
+    const allTimers = Object.keys(this.timers.internal);
+    const runningElTimers = this.runningElTimers;
+    const unusedTimers = allTimers.reduce((acc, item) => {
+      if (!runningElTimers.includes(item)) acc.push(item);
+      return acc;
+    }, []);
+
+    unusedTimers.forEach((name: string) => this.disposeTimer(name, "internal"));
+    this.runningElTimers = [];
   }
 
-  dispose(all: boolean = false) {
-    const diposableItems = this.getChangedStore();
-    this.disposers.forEach((dis) => {
-      if (diposableItems.includes(dis.id) || all) dis.func();
-    });
+  clearAllTimers() {
+    Object.keys(this.timers.internal).forEach((name: string) =>
+      this.disposeTimer(name, "internal"),
+    );
+    Object.keys(this.timers.global).forEach((name: string) =>
+      this.disposeTimer(name, "global"),
+    );
+    this.runningElTimers = [];
   }
 
-  clearUnusedTimers() {
-    Object.keys(this.timers).forEach((t) => {
-      if (!this.invokedTimers.includes(t)) {
-        clearInterval(this.timers[t]["intervalId"]);
-      }
-    });
+  disposeTimer(name: string, scope: string) {
+    clearInterval(this.timerIDs[scope][name]);
+    delete this.timers[scope][name];
   }
 
-  clearTimers() {
-    Object.keys(this.timers).forEach((key: any) => {
-      clearInterval(this.timers[key].intervalId);
-    });
-  }
-
-  getMemoizedFn(func: any) {
-    return memoizeOne(func, (newArgs, oldArgs) => {
-      return isDeepEqual(newArgs, oldArgs);
-    });
-  }
-
-  addElementID(tplStr: string, idGenerator = null) {
-    const id = idGenerator
-      ? idGenerator
-      : () => Math.round(Math.random() * 1000);
-    return tplStr.replace(
-      /<(([a-z0-9\-]+)(((\s?(?!id\=\"([a-z0-9\-]+)\"))([a-z0-9\-\=\"]*))+))(\/?)>/g,
-      (_, ...g) => `<${g[0]} id="${g[1]}-${id()}"${g[7]}>`,
+  private getProps(propsArr: ElProp[]) {
+    return propsArr.reduce(
+      (acc, prop) => Object.assign(acc, { [prop.key]: prop.value }),
+      {},
     );
   }
 
-  getElementStore(el: any) {
-    if (!el.attributes || !Array.isArray(el.attributes)) return {};
-    const idItem = el.attributes.find((attr: any) => attr.key === "id");
-    let id = null;
-    if (idItem) id = idItem.value;
-    if (!idItem) return {};
-    if (!this.localStore.store[id]) this.localStore.store[id] = {};
-    return this.localStore.store[id];
-  }
-
-  getChangedStore() {
-    const changedStoreItems = [];
-    const lastItemIndex = this.previousStores.length - 1;
-    const prevStoreSnapshot = this.previousStores[lastItemIndex];
-    const storeKeys = Object.keys(this.store);
-    storeKeys.forEach((key) => {
-      if (!isDeepEqual(this.store[key], prevStoreSnapshot[key])) {
-        changedStoreItems.push(key);
-      }
-    });
-    return changedStoreItems;
-  }
-
-  visitElements(elements: any[]) {
-    const strData = [];
+  private renderEl(elements: any[]) {
+    const output = [];
     elements.forEach((el) => {
       if (Array.isArray(el)) {
-        strData.push(this.visitElements(el));
+        output.push(this.renderEl(el));
         return;
       }
-
-      const elProps = this.getProps(el.attributes);
-      const elementCtx = {
-        visitElements: this.visitElements.bind(this),
-        store: this.getElementStore(el),
-        getProps: this.getProps.bind(this, el.attributes),
-        color: this.chalk,
-        tagName: el.tagName,
-        disposer: this.collectDisposer.bind(this, elProps["id"]),
-        timer: this.registerAndInvokeTimer.bind(this, elProps["id"]),
+      const { attributes, tagName, type, content } = el;
+      const props = this.getProps(attributes || []);
+      const ctx = {
+        tagName,
+        props,
+        renderEl: this.renderEl.bind(this),
+        store: this.store,
       };
 
-      if (el.type === "text" && el.content !== "\n") {
-        const textData = this.elements["text"](el, elementCtx);
-        if (textData) strData.push(textData);
-      } else if (el.tagName) {
-        const elemFnDef = this.elements[el.tagName];
-        const elemFn = elemFnDef ? elemFnDef : this.elements["unknown"];
-        strData.push(elemFn(el, elementCtx));
+      if (type === "text" && content !== "") {
+        const textEl = this.elements["text"];
+        this.runElHook(textEl.init, props);
+        const textRes = textEl.render(ctx, el);
+        if (textRes) output.push(textRes);
+      } else if (tagName) {
+        const elFnDef = this.elements[tagName] || this.elements["unknown"];
+        this.runElHook(elFnDef?.init, props);
+        output.push(this.renderEl([htmlparse(elFnDef.render(ctx, el))]));
       }
     });
-    return flattenToStr(strData);
+
+    return flattenToStr(output).join("");
   }
 
-  render(tplStr: string) {
-    this.clearUnusedTimers();
-    this.invokedTimers = [];
-    const minifiedStr = this.minifyTpl(tplStr);
-    const compiledStr = this.compileTpl(minifiedStr);
-    const elements = this.parseTpl(compiledStr);
-    const elementsStr = this.getElementsStr(elements);
-    this.updateDisplay(elementsStr);
+  rewriteScreen(output: string) {
+    logUpdate(`[2K${output}`);
   }
 
-  registerElements(elements: any) {
-    const allElements = { ...this.elements, ...elements };
-    this.elements = {};
-    Object.keys(allElements).forEach((name) => {
-      this.elements[name] = this.getMemoizedFn(allElements[name]);
+  private updateScreen(tplFn: Function, init = true) {
+    const tpl = tplFn(this.store);
+    const tplsminified = minify(tpl, this.config);
+    const elements = htmlparse(tplsminified);
+    const output = this.renderEl(elements);
+    if (!init) this.clearUnusedTimers();
+    this.rewriteScreen(output);
+  }
+
+  onInit(fn: Function) {
+    this.onInitHook = fn;
+  }
+
+  render(tplFn: Function) {
+    this.onInitHook(this.store, this.registerGlobalTimer.bind(this));
+    this.updateScreen(tplFn);
+    onChange(this.store, () => {
+      this.updateScreen(tplFn, false);
     });
-  }
-
-  paint(tplStr: string) {
-    const updatedTplStr = this.addElementID(tplStr);
-    const cb = (updatedStore: any) => {
-      this.dispose();
-      this.updatedStore = updatedStore;
-      this.render(updatedTplStr);
-      this.previousStores.push(JSON.parse(JSON.stringify(updatedStore)));
-    };
-    this.previousStores.push(JSON.parse(JSON.stringify(this.store)));
-    this.watchStoreChanges(cb);
-    this.render(updatedTplStr);
   }
 }
 
-export default ArtistClass;
+// const customElem = {
+//   name: "custom",
+//   render: () => `hello # <spinner type="moon"/> #`,
+// };
+
+// // USAGE
+
+// const artist = new Artist();
+
+// artist.registerEls({ customElem });
+
+// let showSpinner = true;
+// let showSpinner2 = false;
+
+// artist.onInit((store, timer) => {
+//   if (!store.count) store.count = 1;
+//   timer(
+//     () => {
+//       store.count += 1;
+//     },
+//     1000,
+//     "hello",
+//   );
+
+//   setTimeout(() => {
+//     showSpinner = false;
+//     showSpinner2 = true;
+//   }, 1000);
+// });
+
+// artist.render((store) => {
+//   return `
+//   my name is <custom/> <text>hi</text> and ${store.count}
+
+//   another spinner2: ${showSpinner2 && "<spinner/>"}
+
+//   <text bold color='red'>another</text> spinner: ${showSpinner && "<spinner/>"}
+//   // im a commebt
+// /* me to */
+// <box>
+// <progress score="20"/>
+//   </box>
+
+// <text color="green"><row border>
+//     <column>one</column>
+//     <column>two</column>
+//     <column>3</column>
+//     </row></text>
+
+// <div>hello</div><div>how are you</div>
+// <span>hello</span><span>how are you</span>
+// <div>you are <space length="300"/> yes <newline/> awesome </text>
+// `;
+// });
+
+// setTimeout(() => {
+//   artist.clearAllTimers();
+// }, 2000);

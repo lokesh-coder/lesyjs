@@ -1,3 +1,6 @@
-export const span = (data: any, ctx: any) => {
-  return ctx.visitElements(data.children).join("");
+export default {
+  name: "span",
+  render: (ctx: any, data: any) => {
+    return ctx.renderEl(data.children);
+  },
 };

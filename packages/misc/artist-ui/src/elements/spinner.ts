@@ -1,16 +1,22 @@
 import cliSpinners from "cli-spinners";
-let i = 0;
-
-export const spinner = (_: any, ctx: any) => {
-  const { frames, interval } = cliSpinners.dots;
-  ctx.timer(
-    "joo",
-    () => {
-      ctx.store.spinner = frames[i % frames.length];
-      i += 1;
-    },
-    interval,
-  );
-  ctx.disposer(() => {});
-  return ` ${ctx.store.spinner || frames[0]} `;
+export default {
+  name: "spinner",
+  init: ({ store, props, timer }) => {
+    const { type = "dots" } = props;
+    const { interval } = cliSpinners[type];
+    if (!store.spinner) store.spinner = {};
+    if (!store.spinner[type]) store.spinner[type] = 0;
+    timer(
+      () => {
+        store.spinner[type] += 1;
+      },
+      interval,
+      type,
+    );
+  },
+  render: ({ store, props }) => {
+    const { type = "dots" } = props;
+    const { frames } = cliSpinners[type];
+    return `${frames[store.spinner[type] % frames.length]}`;
+  },
 };

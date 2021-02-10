@@ -1,5 +1,8 @@
 const boxen = require("boxen");
 
-export const box = (data: any, ctx: any) => {
-  return boxen(ctx.visitElements(data.children).join(""));
+export default {
+  name: "box",
+  render: (ctx: any, data: any) => {
+    return boxen(ctx.renderEl(data.children));
+  },
 };
