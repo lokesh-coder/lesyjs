@@ -14,6 +14,7 @@ class LesyLoader {
   commands: any[] = [];
   middlewares: any[] = [];
   features: any[] = [];
+  validators: any[] = [];
 
   constructor(
     {
@@ -21,16 +22,18 @@ class LesyLoader {
       features = [],
       middlewares = [],
       plugins = [],
+      validators = [],
     }: {
       commands?: Command[] | string[];
       features?: string[];
       middlewares?: string[];
+      validators?: any[];
       plugins?: Plugin[];
     },
     root: string,
   ) {
     this.root = root;
-    const corePlugin = { commands, middlewares, features };
+    const corePlugin = { commands, middlewares, features, validators };
     this.loadPlugins([corePlugin, ...plugins]);
   }
 
@@ -57,10 +60,12 @@ class LesyLoader {
     commands = [],
     middlewares = [],
     features = [],
+    validators = [],
   }): void {
     this.commands = this.commands.concat(commands);
     this.middlewares = this.middlewares.concat(middlewares);
     this.features = this.features.concat(features);
+    this.validators = this.validators.concat(validators);
   }
   loadPluginFromFile(path: string): void {
     let plugin = this.getModuleFromFile(path);
