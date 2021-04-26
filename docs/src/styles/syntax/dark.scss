@@ -1,0 +1,40 @@
+@import "./base";
+
+.dark,
+.light .gatsby-highlight {
+  --base-color: #f9f8f6;
+  --selection-color: #8b5704;
+  --code-bg-color: #1f2a37;
+  --inline-bg-color: #1f2a37;
+  --inline-text-color: #c3bebe;
+  --header-color: #949dbf;
+  --punc-color: #adb7ce;
+  --prop-color: #eb75a2;
+  --selector-color: #f3cd91;
+  --id-color: #858799;
+  --str-color: #7da8d6;
+  --keyword-color: #93ece0;
+  --declaration-color: #eb75a2;
+  --variable-color: #6577ec;
+  --line-hl-color: #d2cdc6;
+  --line-hl-left-bg-color: #9a918454;
+  --line-highlight-color: #433f3754;
+  --line-hl-start-color: #433f3754;
+  --line-hl-end-color: #433f3700;
+
+  --chart-lines: #525f70;
+  --chart-ticks: #969da6;
+  --chart-label: rgba(255, 255, 255, 0.8);
+  --chart-text: #fff;
+
+  @extend %base;
+}
+
+.dark {
+  --bg-color: #1f2a37;
+  --inline-bg-color: #1f2a37;
+}
+
+.dark._override {
+  --code-bg-color: transparent;
+}

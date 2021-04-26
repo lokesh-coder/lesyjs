@@ -1,0 +1,29 @@
+@import "./base";
+.light {
+  --base-color: #0d0b07;
+  --selection-color: #f3cd91;
+  --code-bg-color: #f5f7fa;
+  --inline-bg-color: #f4f7fa;
+  --inline-text-color: #2c5281;
+  --header-color: #b2b8bd;
+  --punc-color: #a39b8f;
+  --prop-color: #007a6a;
+  --selector-color: #931f4c;
+  --id-color: #4a4c59;
+  --str-color: #364ddd;
+  --keyword-color: #955d04;
+  --declaration-color: #007a6a;
+  --variable-color: #4b60e7;
+  --line-hl-color: #d2cdc6;
+  --line-hl-left-bg-color: #9a918454;
+  --line-highlight-color: #9a918454;
+  --line-hl-start-color: #9a918454;
+  --line-hl-end-color: #9a918400;
+
+  --chart-lines: #dde0e6;
+  --chart-ticks: #718096;
+  --chart-label: rgba(255, 255, 255, 0.8);
+  --chart-text: #374151;
+
+  @extend %base;
+}

@@ -8,7 +8,7 @@ jobs:
         runs-on: ubuntu-16.04
         strategy:
             matrix:
-                node: ["10"]
+                node: ["12"]
         name: Node ${{ matrix.node }}
         steps:
             - name: GIT - checkout

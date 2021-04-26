@@ -139,8 +139,7 @@ class LesyCommand {
         });
       });
     } else {
-      cmdObj = { ...this.defaultProps, ...cmd };
-      cmd(cmdObj);
+      cmdObj = { ...this.defaultProps, ...cmd() };
     }
 
     return this.formatNames(cmdObj);

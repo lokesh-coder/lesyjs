@@ -1,112 +1,248 @@
+import { store, onChange } from "@fabiospampinato/store";
 import { parse as htmlparse } from "himalaya";
-import { minify } from "html-minifier";
-import { store as storeDate, onChange } from "@fabiospampinato/store";
-import handlebars from "handlebars";
 import logUpdate from "log-update";
-import * as displayElements from "./elements";
-import * as customElements from "./custom-elements";
+import { minify } from "html-minifier";
 import { flattenToStr } from "./utils";
+import * as uiElements from "./elements";
 
-class ArtistClass {
-  private localStore: any = {};
-  private updatedStore = null;
+interface Config {
+  collapseWhitespace?: boolean;
+  keepClosingSlash?: boolean;
+  preserveLineBreaks?: boolean;
+}
+
+interface ElementDef {
+  name: string;
+  render: Function;
+  onInit?: Function;
+}
+
+interface Element {
+  [key: string]: ElementDef;
+}
+
+interface ElProp {
+  key: string;
+  value: string;
+}
+
+type Timer = (cb: () => void, interval: number, key: string) => void;
+
+type InitHook = (store: { [key: string]: any }, timer: Timer) => void;
+
+const defaultConfig = {
+  collapseWhitespace: false,
+  keepClosingSlash: true,
+  preserveLineBreaks: false,
+};
+
+export default class Artist {
+  private store: { [key: string]: any };
+  private config: Config = defaultConfig;
+  private onInitHook: InitHook = () => {};
   private elements = {};
+  private timers = {
+    internal: {},
+    global: {},
+  };
+  private timerIDs = {
+    internal: {},
+    global: {},
+  };
+  private runningElTimers = [];
 
-  constructor() {
-    this.registerElements(displayElements);
-    this.registerElements(customElements);
+  constructor(config: Config = {}) {
+    this.store = store({});
+    this.config = { ...this.config, ...config };
+    this.registerEls(uiElements);
   }
 
-  createStore(data: any) {
-    this.localStore = {
-      store: storeDate(data),
-    };
-  }
-
-  get store() {
-    return this.localStore.store;
-  }
-
-  minifyTpl(tplStr: string) {
-    return minify(tplStr);
-  }
-
-  compileTpl(tplStr: string) {
-    const currentStore = this.updatedStore || this.localStore.store;
-    return handlebars.compile(minify(tplStr))(currentStore);
-  }
-
-  parseTpl(tplStr: string) {
-    return htmlparse(tplStr);
-  }
-
-  getElementsStr(elements: any) {
-    return this.visitElements(elements)
-      .filter((x: any) => x !== "")
-      .join("");
-  }
-
-  watchStoreChanges(cb: any) {
-    onChange(this.localStore.store, cb);
-  }
-
-  registerTemplateHelpers() {
-    handlebars.registerHelper("eq", function (arg1, arg2, options) {
-      return arg1 === arg2 ? options.fn(this) : options.inverse(this);
+  registerEls(elements: Element) {
+    const allElements = { ...this.elements, ...elements };
+    Object.keys(allElements).forEach((key) => {
+      const { name, ...data } = allElements[key];
+      this.elements[name] = data;
     });
   }
 
-  updateDisplay(displayStr: string) {
-    logUpdate(displayStr);
+  private runElHook(hook: Function, props: { [key: string]: any }) {
+    if (!hook) return;
+    hook({
+      props,
+      store: this.store,
+      timer: this.registerInternalTimer.bind(this),
+    });
   }
 
-  visitElements(elements: any[]) {
-    const strData = [];
+  private registerGlobalTimer(
+    timerFunc: Function,
+    interval: number,
+    name: string,
+  ) {
+    this.timerIDs.global[name] = setInterval(timerFunc, interval);
+    this.timers.global[name] = true;
+  }
+
+  private registerInternalTimer(
+    timerFunc: Function,
+    interval: number,
+    name: string,
+  ) {
+    this.runningElTimers.push(name);
+    if (this.timers.internal[name]) {
+      return;
+    }
+
+    this.timerIDs.internal[name] = setInterval(timerFunc, interval);
+    this.timers.internal[name] = true;
+  }
+
+  private clearUnusedTimers() {
+    const allTimers = Object.keys(this.timers.internal);
+    const runningElTimers = this.runningElTimers;
+    const unusedTimers = allTimers.reduce((acc, item) => {
+      if (!runningElTimers.includes(item)) acc.push(item);
+      return acc;
+    }, []);
+
+    unusedTimers.forEach((name: string) => this.disposeTimer(name, "internal"));
+    this.runningElTimers = [];
+  }
+
+  clearAllTimers() {
+    Object.keys(this.timers.internal).forEach((name: string) =>
+      this.disposeTimer(name, "internal"),
+    );
+    Object.keys(this.timers.global).forEach((name: string) =>
+      this.disposeTimer(name, "global"),
+    );
+    this.runningElTimers = [];
+  }
+
+  disposeTimer(name: string, scope: string) {
+    clearInterval(this.timerIDs[scope][name]);
+    delete this.timers[scope][name];
+  }
+
+  private getProps(propsArr: ElProp[]) {
+    return propsArr.reduce(
+      (acc, prop) => Object.assign(acc, { [prop.key]: prop.value }),
+      {},
+    );
+  }
+
+  private renderEl(elements: any[]) {
+    const output = [];
     elements.forEach((el) => {
       if (Array.isArray(el)) {
-        strData.push(this.visitElements(el));
+        output.push(this.renderEl(el));
         return;
       }
+      const { attributes, tagName, type, content } = el;
+      const props = this.getProps(attributes || []);
+      const ctx = {
+        tagName,
+        props,
+        renderEl: this.renderEl.bind(this),
+        store: this.store,
+      };
 
-      // todo: pass disposer
-      if (el.tagName) {
-        strData.push(
-          this.elements[el.tagName](
-            el,
-            this.visitElements.bind(this),
-            this.localStore.store,
-          ),
-        );
-      }
-
-      if (el.type === "text" && el.content !== "\n") {
-        const textData = this.elements["text"](el);
-        if (textData) strData.push(textData);
+      if (type === "text" && content !== "") {
+        const textEl = this.elements["text"];
+        this.runElHook(textEl.init, props);
+        const textRes = textEl.render(ctx, el);
+        if (textRes) output.push(textRes);
+      } else if (tagName) {
+        const elFnDef = this.elements[tagName] || this.elements["unknown"];
+        this.runElHook(elFnDef?.init, props);
+        output.push(this.renderEl([htmlparse(elFnDef.render(ctx, el))]));
       }
     });
-    return flattenToStr(strData);
+
+    return flattenToStr(output).join("");
   }
 
-  render(tplStr: string) {
-    const minifiedStr = this.minifyTpl(tplStr);
-    const compiledStr = this.compileTpl(minifiedStr);
-    const elements = this.parseTpl(compiledStr);
-    const elementsStr = this.getElementsStr(elements);
-    this.updateDisplay(elementsStr);
+  rewriteScreen(output: string) {
+    logUpdate(`[2K${output}`);
   }
 
-  registerElements(elements: any) {
-    this.elements = { ...this.elements, ...elements };
+  private updateScreen(tplFn: Function, init = true) {
+    const tpl = tplFn(this.store);
+    const tplsminified = minify(tpl, this.config);
+    const elements = htmlparse(tplsminified);
+    const output = this.renderEl(elements);
+    if (!init) this.clearUnusedTimers();
+    this.rewriteScreen(output);
   }
 
-  paint(tplStr: string) {
-    const cb = (updatedStore: any) => {
-      this.updatedStore = updatedStore;
-      this.render(tplStr);
-    };
-    this.render(tplStr);
-    this.watchStoreChanges(cb);
+  onInit(fn: InitHook) {
+    this.onInitHook = fn;
+  }
+
+  render(tplFn: Function) {
+    this.onInitHook(this.store, this.registerGlobalTimer.bind(this));
+    this.updateScreen(tplFn);
+    onChange(this.store, () => {
+      this.updateScreen(tplFn, false);
+    });
   }
 }
 
-export default ArtistClass;
+// const customElem = {
+//   name: "custom",
+//   render: () => `hello # <spinner type="moon"/> #`,
+// };
+
+// // USAGE
+
+// const artist = new Artist();
+
+// artist.registerEls({ customElem });
+
+// let showSpinner = true;
+// let showSpinner2 = false;
+
+// artist.onInit((store, timer) => {
+//   if (!store.count) store.count = 1;
+//   timer(
+//     () => {
+//       store.count += 1;
+//     },
+//     1000,
+//     "hello",
+//   );
+
+//   setTimeout(() => {
+//     showSpinner = false;
+//     showSpinner2 = true;
+//   }, 1000);
+// });
+
+// artist.render((store) => {
+//   return `
+//   my name is <custom/> <text>hi</text> and ${store.count}
+
+//   another spinner2: ${showSpinner2 && "<spinner/>"}
+
+//   <text bold color='red'>another</text> spinner: ${showSpinner && "<spinner/>"}
+//   // im a commebt
+// /* me to */
+// <box>
+// <progress score="20"/>
+//   </box>
+
+// <text color="green"><row border>
+//     <column>one</column>
+//     <column>two</column>
+//     <column>3</column>
+//     </row></text>
+
+// <div>hello</div><div>how are you</div>
+// <span>hello</span><span>how are you</span>
+// <div>you are <space length="300"/> yes <newline/> awesome </text>
+// `;
+// });
+
+// setTimeout(() => {
+//   artist.clearAllTimers();
+// }, 2000);

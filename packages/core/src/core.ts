@@ -1,5 +1,4 @@
 import { LesyCommand } from "./command";
-import { LesyFeature } from "./feature";
 import { LesyLoader } from "./loader";
 import { LesyMiddleware } from "./middleware";
 import { MiddlewareContext, MiddlewarePlacement as $, State } from "./model";
@@ -23,13 +22,16 @@ class LesyCoreClass {
     config = {},
   }): Promise<LesyCoreClass> {
     this.loader = new LesyLoader(
-      { commands, features, middlewares, plugins },
+      { commands, features, middlewares, validators, plugins },
       root,
     );
     // todo: store plugin config under config.plugins
     for (const prop in this.loader.pluginConfigs) {
       config[prop] = this.loader.pluginConfigs[prop];
     }
+
+    // tslint:disable-next-line: no-parameter-reassignment
+    validators = this.loader.validators;
 
     this.mwCtrl = this.loader.mwCtrl;
     this.state = { root, utils, validators, config };

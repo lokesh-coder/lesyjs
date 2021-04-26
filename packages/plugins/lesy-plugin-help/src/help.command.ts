@@ -36,7 +36,7 @@ export default class Help {
       columnSplitter: this.color.gray(this.config.sectionSeperator),
     };
 
-    console.log(this.render().join(""));
+    console.log(this.renderOutput().join(""));
     return;
   }
 
@@ -47,10 +47,8 @@ export default class Help {
     };
   }
 
-  render() {
-    if (this.isRoot) {
-      return this.renderAppHelp();
-    }
+  renderOutput() {
+    if (this.isRoot) return this.renderAppHelp();
     return this.renderCommandHelp();
   }
 

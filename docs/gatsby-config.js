@@ -1,28 +1,48 @@
-if (!process.env.GH_TOKEN) {
-  require("dotenv").config();
-}
+if (process.env.NODE_ENV !== `production`) require("dotenv").config();
+const { getAlgoliaQueries, getGithubGraphQL } = require("./builder/doc/utils");
+
 const version = require("./package.json").version;
 const tailwindConfig = require("./tailwind.config.js");
 
 const siteMetadata = {
-  title: "Lesy | CLI framework | Documentation",
-  description: "Lesy CLI Framework",
-  author: "Lokesh Rajendran",
+  siteUrl: "https://lesyjs.io",
+  name: "Lesy CLI framework",
+  description:
+    "Build modern and advanced CLI apps for multiple platforms without much boilerplate",
+  short_name: "Lesy CLI framework",
+  start_url: "/",
+  background_color: "#d5695f",
+  theme_color: "#d5695f",
+  display: "minimal-ui",
+  icon: "src/images/lesy-head.png",
+  author: "Lokesh rajendran",
   version,
 };
 
-const sourceFilesystemOptions = {
-  name: "docs",
-  path: `${__dirname}/src/markdown/docs`,
+const filesystemDocOptions = {
+  name: `documentation`,
+  path: `${__dirname}/src/content`,
+};
+
+const filesystemImgOptions = {
+  name: `images`,
+  path: `${__dirname}/src/images`,
 };
 
 const remarkImagesOptions = {
-  maxWidth: 1035,
+  maxWidth: 590,
   sizeByPixelDensity: true,
+  linkImagesToOriginal: false,
 };
 
 const remarkPrismjsOptions = {
-  showLineNumbers: true,
+  showLineNumbers: false,
+  prompt: {
+    user: "root",
+    host: "localhost",
+    global: false,
+  },
+  aliases: { sh: "bash" },
 };
 
 const remarkPlugins = [
@@ -42,14 +62,8 @@ const mdxOptions = {
   gatsbyRemarkPlugins: remarkPlugins,
 };
 
-const manifestOptions = {
-  name: "Lesy | CLI framework | Documentation",
-  short_name: "Lesy doc",
-  start_url: "/",
-  background_color: "#d5695f",
-  theme_color: "#d5695f",
-  display: "minimal-ui",
-  icon: "src/images/lesy-head.png",
+const mailchimpOptions = {
+  endpoint: process.env.MAILCHIMP_ENDPOINT,
 };
 
 const postcssOptions = {
@@ -60,46 +74,30 @@ const postcssOptions = {
   ],
 };
 
-const mailchimpOptions = {
-  endpoint: process.env.MAILCHIMP_ENDPOINT,
+const manifestOptions = {
+  name: `Lesy CLI Framework`,
+  short_name: `Lesy`,
+  start_url: `/`,
+  background_color: `#d5695f`,
+  theme_color: `#d5695f`,
+  display: `standalone`,
+  icon: `static/images/logo.png`,
 };
 
+const algoliaOptions = {
+  appId: process.env.GATSBY_ALGOLIA_APP_ID,
+  apiKey: process.env.ALGOLIA_API_KEY,
+  indexName: process.env.GATSBY_ALGOLIA_INDEX_NAME,
+  queries: getAlgoliaQueries(),
+  chunkSize: 10000,
+};
 const githubAPIOptions = {
   token: process.env.GH_TOKEN,
-  graphQLQuery: `
-    query {
-			repository(name: "lesyjs", owner: "lokesh-coder") {
-				id
-				forkCount
-				issues {
-					totalCount
-				}
-				stargazers {
-					totalCount
-				}
-				collaborators(first: 100) {
-					edges {
-						node {
-							id
-							url
-							avatarUrl
-						}
-					}
-				}
-				updatedAt
-				releases(first: 100, orderBy: { field: CREATED_AT, direction: DESC }) {
-					edges {
-						node {
-							id
-							author {
-								id
-							}
-							descriptionHTML
-						}
-					}
-				}
-			}
-    }`,
+  graphQLQuery: getGithubGraphQL(),
+};
+
+const googleAnalyticsOptions = {
+  trackingId: "G-EB0CVWTKXY",
 };
 
 module.exports = {
@@ -110,10 +108,21 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-remark-copy-linked-files",
     "gatsby-plugin-offline",
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-postcss",
     "gatsby-plugin-sass",
+    "gatsby-plugin-image",
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: googleAnalyticsOptions,
+    },
     {
       resolve: `gatsby-source-filesystem`,
-      options: sourceFilesystemOptions,
+      options: filesystemDocOptions,
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: filesystemImgOptions,
     },
     {
       resolve: "gatsby-plugin-mdx",
@@ -124,16 +133,20 @@ module.exports = {
       options: manifestOptions,
     },
     {
-      resolve: "gatsby-plugin-postcss",
+      resolve: "gatsby-plugin-mailchimp",
+      options: mailchimpOptions,
+    },
+    {
+      resolve: `gatsby-plugin-postcss`,
       options: postcssOptions,
+    },
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: algoliaOptions,
     },
     {
       resolve: "gatsby-source-github-api",
       options: githubAPIOptions,
-    },
-    {
-      resolve: "gatsby-plugin-mailchimp",
-      options: mailchimpOptions,
     },
   ],
 };

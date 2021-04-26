@@ -8,6 +8,7 @@ module.exports = {
     "./packages/compiler/src/**",
     "./packages/plugins/**/src/**",
     "./packages/helpers/**/src/**",
+    "./packages/misc/artist-ui/src/**",
   ],
   coverageDirectory: "coverage",
   coveragePathIgnorePatterns: [
@@ -25,7 +26,7 @@ module.exports = {
       diagnostics: false,
     },
   },
-  moduleFileExtensions: ["js", "ts", "tsx"],
+  moduleFileExtensions: ["js", "ts", "tsx", "json"],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: "<rootDir>/packages/",
   }),

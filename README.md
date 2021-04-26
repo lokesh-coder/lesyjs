@@ -220,6 +220,8 @@ Lesy can be installed from Lesy CLI or manually.
 
 - [**UI Pilot**](https://lesyjs.io/docs/plugins/pilot-ui)<br/>
   _Run commands in Web UI. Supports input, console, workspace and more..._
+- [**Artist**](https://lesyjs.io/docs/plugins/artist-ui)<br/>
+  _Format and add state, dynamic elements like spinner, column, colorful text..._
 - [**Store**](https://lesyjs.io/docs/plugins/config-store)<br/>
   _Key-value storage in the system_
 - [**Config reader**](https://lesyjs.io/docs/plugins/config-files)<br/>

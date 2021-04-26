@@ -10,7 +10,8 @@
     "{{cmdName}}": "bin/cmd"
   },
   "dependencies": {
-    "@lesy/compiler": "^{{version}}"
+    "@lesy/compiler": "^{{version}}",
+    "@lesy/lesy-plugin-pilot": "^{{version}}"
   },
   "devDependencies": {
     "jest": "^24.9.0",

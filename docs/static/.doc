@@ -1,0 +1,271 @@
+# Introduction
+
+## what is lesy?
+
+## how it is different?
+
+    - simpler API
+    - built-in modern tools
+    - multi purpose
+    - improved dx
+
+## what are the features?
+
+## further info on repo/community
+
+# Installation
+
+## requirements
+
+## scaffold new project with lesy cli
+
+    - directly scaffold using npx
+    - install lesy globally via npm/yarn and then scaffold
+
+## manual setup
+
+    - javascript project
+    - typescript project
+
+## troubleshooting
+
+# Overview
+
+## lesy compiler
+
+## options and configuration
+
+## parse
+
+# Quick start tutorial
+
+## install and setup lesy
+
+## write your first command
+
+## add middleware
+
+## add new toolkit
+
+## install and add plugins
+
+    - help plugin
+    - artist
+    - pilot
+
+## build and run app
+
+## typescript toggle
+
+## see full source code
+
+# Command
+
+## overview
+
+    - what is a command
+    - features
+
+## creating commands
+
+    - multiple formats
+    - file discovery
+    - exclude files in directory
+
+## properties
+
+    - default command and command name
+    - arguments and flags
+    - command logic and run function
+    - sub commands
+    - group
+    - is visible
+    - description
+    - footerNotes
+    - aliases
+
+## run context
+
+    - root path
+    - in-built utils
+    - arg validators
+    - configuration
+    - toolkit
+    - requests
+    - all commands
+    - argv
+    - arguments and flags
+
+## global flags
+
+    - version
+    - typescript
+
+## tyescript @types
+
+## reserved names
+
+## recap and cool facts
+
+    - no name is required for global
+    - dynamic command execution
+    - flag types --flag -f
+
+# Middleware
+
+## what is middleware?
+
+## what we can do with middlewares
+
+    - async operations
+    - programatically run command
+    - change command
+    - change args and flags
+    - terminate the flow
+    - intercept and change the output
+    - modify running command competely
+    - print additional info at any stages
+    - capture and send logs to other services
+    - include additional data in command context data
+    - and much more
+
+## create middleware
+
+    - middleware structure
+    - file discovery
+    - asynchronous calls
+
+## hooks
+
+    - init
+    - start
+    - pre_validate
+    - post_validate
+    - pre_parse
+    - post_parse
+    - pre_run
+    - end
+
+## example
+
+## gotcha
+
+    - always return the context in run to continue to flow
+    - order of middleware execution is not guaranteed
+
+## use cases
+
+    - used in help plugin, to send all commands info as a context data. so that you can create your own help command with the data
+    - used in artist plugin, to run a render function instead of run function in command.
+
+# Tool
+
+## what is a tool
+
+## purpose
+
+    - singleton
+    - share btw commands and middlewares
+    - add features
+    - used inside plugins to add functionalities
+
+## create a tool
+
+## example
+
+## performance
+
+# Plugin
+
+## what is plugin
+
+## create a local plugin
+
+## plugin config
+
+## plugins of plugin
+
+## install and use third party plugin
+
+## example
+
+## built-in plugins
+
+## official plugins
+
+## community plugins
+
+## write and publish a lesy plugin
+
+# configuration
+
+## add new config
+
+## related official plugins
+
+# arg validator
+
+## what is arg validator
+
+## create a validator
+
+## example
+
+# testing
+
+## testbed overview
+
+## integration test
+
+## unit test
+
+## gotcha
+
+# official plugins
+
+## help
+
+## pilot
+
+## artist
+
+## generator
+
+## store
+
+## config files
+
+## prompt
+
+## essentials
+
+## validator
+
+# standalone libraries
+
+## artist ui
+
+## validator
+
+# development guide
+
+## project overview
+
+## run lesy locally
+
+## indepth concepts
+
+## tech used
+
+## roadmap
+
+## release notes
+
+<!-- overview
+1: Create DB - toolkit
+2: Add and update todo - command
+3: Show footer info - middleware
+4: Display help - plugin
+5: Web interface - Pilot
+6: Dynamic todos - Artist
+7: wrap up -->

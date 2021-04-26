@@ -3,12 +3,12 @@ export const newCmdObj = (name, props = {}) => ({
   run: () => {},
   ...props,
 });
-export const newCmdFn = (name, props = {}) => (cmd: any) => {
-  cmd.name = name;
-  cmd.run = () => {};
-  Object.keys(props).forEach((k: string) => {
-    cmd[k] = props[k];
-  });
+export const newCmdFn = (name, props = {}) => () => {
+  return {
+    name,
+    run: () => {},
+    ...props,
+  };
 };
 export const newCmdClass = (name, props = {}) => {
   return class CustomCommand {

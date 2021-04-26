@@ -1,0 +1,58 @@
+# getting started
+
+    - introduction
+    - installation
+    - overview
+
+# quick start tutorial
+
+    - overview
+    - step1: setup
+    - step2: write command
+    - step3: create middleware
+    - step4: add tool
+    - step5: create plugin
+    - step6: install pilot plugin
+    - step7: install help plugin
+    - step8: testing
+    - step9: build and warp up
+
+# core concepts
+
+    - command
+    - middleware
+    - toolkit
+    - plugin
+    - configuration
+    - validator
+
+# testing
+
+    - testbed
+
+# official plugins
+
+    - help
+    - pilot
+    - artist
+    - generator
+    - store
+    - config files
+    - prompt
+    - essentials
+    - validator
+
+# standalone libraries
+
+    - artist ui
+    - validator
+
+# dev guide
+
+    - project overview
+    - install locally
+    - tech used
+    - indepth concepts
+    - roadmap
+    - release notes
+    - contibution
