@@ -26,7 +26,7 @@ module.exports = {
       diagnostics: false,
     },
   },
-  moduleFileExtensions: ["js", "ts", "tsx"],
+  moduleFileExtensions: ["js", "ts", "tsx", "json"],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: "<rootDir>/packages/",
   }),
