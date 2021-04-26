@@ -1,1 +1,1 @@
-# Lesy docs
+# Lesy JS documentation

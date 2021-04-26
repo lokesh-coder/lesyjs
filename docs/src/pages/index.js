@@ -1,34 +1,18 @@
 import React, { useEffect } from "react";
-import { Link, graphql } from "gatsby";
-
-import SEO from "../components/seo";
 import Prism from "prismjs";
 
-import "../styles/main.scss";
-import "../styles/tailwind.css";
-
-import Example from "../components/visuals/example";
-import ParticlesBg from "../components/visuals/particles-bg";
-import Preview from "../components/parts/preview";
-import Highlights from "../components/parts/highlights";
-import Features from "../components/parts/features";
-import Stats from "../components/parts/stats";
-import Footer from "../components/parts/footer";
-import NewsletterSection from "../components/parts/newsletter";
-import SectionHeadlines from "../components/visuals/section-headlines";
-import CommandsSection from "../components/home-sections/commands";
-import MiddlewaresSection from "../components/home-sections/middlewares";
-import PluginsSection from "../components/home-sections/plugins";
-import PilotSection from "../components/home-sections/pilot";
-import ArtistSection from "../components/home-sections/artist";
-import FlavorSection from "../components/home-sections/flavor";
-import TestingSection from "../components/home-sections/testing";
-import PerformanceSection from "../components/home-sections/performance";
+import GeneralLayout from "../layouts/general.layout";
+import Example from "../components/home/example";
+import { Link } from "gatsby";
+import Ft from "../components/home/features";
+import OtherFeatures from "../components/home/others-features";
+// import MiddlewareFeature from "../components/home/features/middlewares";
 
 const features = [
   "Sub commands",
   "Plugin support",
   "Auto help",
+  "Web interface",
   "Typescript",
   "Middleware architecture",
   "Better testing",
@@ -37,130 +21,95 @@ const features = [
   "Even more",
 ];
 
-const IndexPage = ({ data }) => {
+const IndexPage = props => {
   useEffect(() => {
     Prism.highlightAll();
   });
+
   return (
-    <div className="text-body">
-      <SEO title="Lesy - Build damn good modern CLI apps without too much boilerplate" />
-      <ParticlesBg />
-      <div className="container lg:flex mx-auto min-h-screen relative z-10">
-        <div className="w-full lg:w-8/12 flex items-center py-12 lg:py-0">
-          <div className="px-4 lg:px-24">
-            <div className="lg:absolute top-0 flex justify-center">
-              <img
-                src="/images/lesy-head.png"
-                className="w-8 py-5"
-                alt="lesy icon"
+    <GeneralLayout title="Lesy JS | CLI Framework">
+      <section className="container lg:my-24">
+        <div className="lg:flex">
+          <div className="flex items-center w-full py-12 lg:w-8/12 lg:py-0">
+            <div className="px-4 lg:pr-48">
+              <h1 className="text-4xl font-extrabold leading-none tracking-tighter text-gray-700 text-heading lg:text-6xl dark:text-gray-300">
+                Build modern command line apps with{" "}
+                <span className="text-primary">Lesy js</span>
+              </h1>
+              <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
+                Lesy is a super flexible and lightweight CLI framework to build
+                damn good command line apps without too much boilerplate.
+              </p>
+              <section className="mb-8 text-sm text-gray-400 dark:text-gray-500">
+                {features.map(f => (
+                  <span key={f}>{f} &middot; </span>
+                ))}
+              </section>
+              <div>
+                <Link
+                  className="inline-flex items-center px-4 py-2 mr-3 font-medium text-white rounded-md bg-secondary text-md hover:bg-primary"
+                  to="/docs/getting-started/introduction"
+                >
+                  Get started{" "}
+                  <i className="ml-2 text-lg ri-arrow-right-line"></i>
+                </Link>
+                <Link
+                  className="inline-flex items-center px-4 py-2 font-medium text-gray-600 border border-gray-300 rounded-md text-md hover:bg-gray-200 dark:border-gray-500 dark:text-gray-400 dark:hover:text-gray-600 dark:hover:border-transparent"
+                  to="https://github.com/lokesh-coder/lesyjs"
+                >
+                  Github repo
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center justify-center w-full px-4 lg:w-4/12">
+            <div className="w-full">
+              <Example
+                icon="terminal-window-line"
+                step="1"
+                title="Generate a new project"
+                lang="shell"
+                role="~/terminal"
+              />
+              <Example
+                icon="terminal-box-line"
+                step="2"
+                title="Write your first command"
+                lang="js"
+                role="editor"
+                role="~/my-cli/src/hello.js"
+              />
+              <Example
+                icon="fire-line"
+                step="3"
+                title="Execute the command"
+                role="~/my-cli"
+                lang="shell"
               />
             </div>
-
-            <h1 className="text-heading text-4xl lg:text-6xl font-extrabold tracking-tighter font-banner leading-none">
-              Build modern command line apps with{" "}
-              <span className="text-primary">Lesy js</span>
-            </h1>
-            <p className="mb-8 text-xl">
-              Lesy is a super flexible and lightweight CLI framework to build
-              damn good command line apps without too much boilerplate.
-            </p>
-            <section className="text-sm text-subtext mb-8">
-              {features.map((f) => (
-                <span key={f}>{f} &middot; </span>
-              ))}
-            </section>
-            <div>
-              <Link
-                className="bg-secondary text-white py-2 px-4 rounded-md font-medium inline-flex text-md items-center mr-3 hover:bg-primary"
-                to="/docs/get-started/overview"
-              >
-                Get started <i className="ri-arrow-right-line text-lg ml-2"></i>
-              </Link>
-              <Link
-                className=" text-gray-600 py-2 px-4 rounded-md font-medium inline-flex text-md items-center hover:bg-gray-200 border border-gray-300"
-                to="https://github.com/lokesh-coder/lesyjs"
-              >
-                Github repo
-              </Link>
-            </div>
           </div>
         </div>
-        <div className="w-full lg:w-4/12 flex items-center justify-center">
-          <div>
-            <Example
-              icon="terminal-window-line"
-              step="1"
-              title="Generate a new project"
-              lang="shell"
-            />
-            <Example
-              icon="terminal-box-line"
-              step="2"
-              title="Write your first command"
-              lang="js"
-              role="editor"
-            />
-            <Example icon="fire-line" step="3" title="Execute the command" />
-          </div>
-        </div>
-      </div>
+      </section>
 
-      <CommandsSection />
-      <MiddlewaresSection />
-      <PluginsSection />
-      <PilotSection />
-      <ArtistSection />
-      <FlavorSection />
-      <TestingSection />
-      <PerformanceSection />
+      {/* <section className="container">
+        <Reel />
+      </section> */}
 
-      <div className="bg-gray-200 overflow-hidden">
-        <SectionHeadlines
-          title="Run commands from _Pilot_ UI"
-          subtitle="Pilot is a plugin for lesy, which lets you to view and run commands from any lesy projects. It is a fully functional dashboard with console viewer, prompt modal and runner"
-        />
-        <Preview />
-      </div>
+      <section className="mb-20">
+        <Ft.Command />
+        <Ft.Middlware />
+        <Ft.Plugin />
+        <Ft.Pilot />
+        <Ft.Artist />
+        <Ft.Testing />
+        <Ft.Perf />
+      </section>
 
-      <div>
-        <Highlights />
-      </div>
-      <div>
-        <SectionHeadlines
-          title="Easy, Classy, Bossy, _Lesy_"
-          subtitle="Whether you are building a tiny teeny app or complex one, process shouldn't be hard."
-        />
-        <Features />
-      </div>
-      <div className="bg-gray-200">
-        <NewsletterSection />
-      </div>
-      <div className="bg-dark-200">
-        <Stats />
-      </div>
-      <div className="bg-dark-100">
-        <Footer />
-      </div>
-    </div>
+      <section>
+        <OtherFeatures className="mb-20" />
+      </section>
+    </GeneralLayout>
   );
 };
-
-export const query = graphql`
-  query HomePageQuery {
-    githubData {
-      github: data {
-        repository {
-          releases {
-            edges {
-              node {
-                descriptionHTML
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
 
 export default IndexPage;

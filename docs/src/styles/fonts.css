@@ -1,0 +1,14 @@
+@font-face {
+  font-family: "bsmono";
+  src: url("/webfonts/basier-square-mono-regular/basiersquaremono-regular-webfont.eot");
+  src: url("/webfonts/basier-square-mono-regular/basiersquaremono-regular-webfont.eot?#iefix")
+      format("embedded-opentype"),
+    url("/webfonts/basier-square-mono-regular/basiersquaremono-regular-webfont.woff2")
+      format("woff2"),
+    url("/webfonts/basier-square-mono-regular/basiersquaremono-regular-webfont.woff")
+      format("woff"),
+    url("/webfonts/basier-square-mono-regular/basiersquaremono-regular-webfont.ttf")
+      format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}

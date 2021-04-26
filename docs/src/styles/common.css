@@ -1,0 +1,217 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+@import "~@docsearch/css/dist/style.css";
+
+* {
+  -webkit-font-feature-settings: "liga" on, "calt" on;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.page-header h1 {
+  @apply text-4xl;
+  -webkit-font-smoothing: initial;
+}
+
+body {
+  @apply leading-7 dark:bg-gray-800;
+}
+
+p {
+  @apply my-5;
+}
+
+.container {
+  @apply px-2 mx-auto max-w-7xl sm:px-6 lg:px-8;
+}
+
+.doc-content p a,
+.doc-content li a,
+.doc-content .content-link {
+  @apply text-gray-800 border-b-2 border-primary dark:text-gray-100;
+}
+
+.doc-content p a:hover,
+.doc-content li a:hover,
+.doc-content .content-link:hover {
+  @apply text-primary;
+}
+
+.doc-content h2 {
+  @apply relative flex flex-row-reverse items-center justify-between pt-12 pb-4 pl-5 text-2xl font-bold leading-tight tracking-tighter text-gray-600 dark:text-gray-300;
+}
+
+.doc-content h2:before {
+  content: "\EDFC";
+  left: -8px;
+  @apply absolute leading-none text-primary font-icon;
+}
+
+.doc-content h2 + p {
+  @apply m-0;
+}
+
+.doc-content h3 {
+  @apply mt-20 mb-4 text-xl font-medium leading-none tracking-tighter text-gray-800 dark:border-gray-400 dark:text-gray-300;
+}
+
+.doc-content h3 a.anchor {
+  @apply hidden;
+}
+
+.doc-content li {
+  @apply relative pl-8;
+}
+
+.doc-content li:before {
+  content: "\F1AF";
+  @apply absolute left-0 mr-2 text-lg align-middle opacity-25 font-icon;
+}
+
+.doc-content .anchor {
+  @apply mr-3 opacity-50;
+}
+
+.gatsby-highlight {
+  @apply mt-8;
+}
+
+blockquote {
+  @apply flex items-center p-4 my-6 text-sm font-medium text-gray-800 bg-transparent border border-gray-200 rounded-md dark:border-gray-500 dark:text-gray-400;
+}
+
+blockquote:before {
+  content: "\EE59";
+  @apply self-center mr-5 text-2xl font-icon text-primary;
+}
+
+blockquote p {
+  @apply inline m-0;
+}
+
+blockquote code.language-text.language-text {
+  @apply font-normal bg-transparent;
+}
+
+.theme-icon2 {
+  @apply w-8 h-8 mr-2 text-base text-gray-500 bg-gray-100 rounded-lg focus:outline-none dark:text-primary dark:bg-gray-800 font-icon;
+}
+
+.theme-icon {
+  @apply font-icon;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+.theme-icon.app:after {
+  content: "\EF72";
+}
+.dark .theme-icon.app:after {
+  content: "\F1BF";
+}
+
+.nav-link-active {
+  position: relative;
+}
+
+.nav-link-active:after {
+  content: "";
+}
+
+/* copy code to clipboard */
+
+.gatsby-highlight pre {
+  pointer-events: none;
+  position: relative;
+}
+
+.gatsby-highlight pre::after {
+  content: "\ECD5";
+  font-family: remixicon;
+  line-height: 1;
+  pointer-events: all;
+  display: block;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  padding: 14px;
+  @apply text-gray-400;
+}
+
+.gatsby-highlight:hover pre.copied::after {
+  content: "Copied!";
+  pointer-events: none;
+  @apply font-mono;
+}
+
+.gatsby-highlight:hover pre::after {
+  @apply text-primary;
+}
+
+.light .tsparticles-canvas-el {
+  opacity: 0.2;
+}
+
+/* checkbox */
+
+.doc-content input[type="checkbox"][disabled]:after {
+  content: "\EB7E";
+  position: absolute;
+  margin-top: -4px;
+  opacity: 1 !important;
+  margin-left: -4px;
+  font-family: "remixicon";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  font-size: 21px;
+  @apply text-gray-200;
+}
+.doc-content input[type="checkbox"][disabled][checked]:after {
+  content: "\EB82";
+  @apply text-green-500;
+}
+
+body {
+  --docsearch-primary-color: #d5695f;
+  --docsearch-text-color: #1c1e21;
+  --docsearch-spacing: 26px;
+  --docsearch-icon-stroke-width: 1.4;
+  --docsearch-highlight-color: var(--docsearch-primary-color);
+  --docsearch-muted-color: #969faf;
+  --docsearch-container-background: rgba(0, 0, 0, 0.23);
+  --docsearch-logo-color: #d5695f;
+  --docsearch-modal-width: 560px;
+  --docsearch-modal-height: 600px;
+  --docsearch-modal-background: #fff;
+  --docsearch-modal-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --docsearch-searchbox-height: 45px;
+  --docsearch-searchbox-background: #ebedf0;
+  --docsearch-searchbox-focus-background: #fff;
+  --docsearch-searchbox-shadow: inset 0 0 0 1px #cdd4df;
+  --docsearch-hit-height: 56px;
+  --docsearch-hit-color: #444950;
+  --docsearch-hit-active-color: #fff;
+  --docsearch-hit-background: #fff;
+  --docsearch-hit-shadow: 0 1px 3px 0 #d4d9e1;
+  --docsearch-key-gradient: linear-gradient(-225deg, #d5dbe4, #f8f8f8);
+  --docsearch-key-shadow: inset 0 -2px 0 0 #cdcde6, inset 0 0 1px 1px #fff,
+    0 1px 2px 1px rgba(30, 35, 90, 0.4);
+  --docsearch-footer-height: 44px;
+  --docsearch-footer-background: #fff;
+  --docsearch-footer-shadow: none;
+}
+
+.dark body {
+  --docsearch-modal-background: #2a333e;
+  --docsearch-container-background: rgb(255, 255, 255, 0.3);
+  --docsearch-searchbox-focus-background: #1b2127;
+  --docsearch-searchbox-shadow: inset 0 0 0 1px #3f4d5b;
+  --docsearch-hit-background: #1b2226;
+  --docsearch-text-color: #fff;
+  --docsearch-hit-color: #dcdcdc;
+  --docsearch-hit-shadow: none;
+  --docsearch-footer-background: #1b2226;
+  color: #c4c4c4;
+}

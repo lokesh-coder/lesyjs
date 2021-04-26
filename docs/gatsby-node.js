@@ -1,9 +1,8 @@
-const { createDocNodes, createDocPages } = require("./builders");
+// Documentation pages and schema
+const { createPages } = require("./builder/doc/create-pages");
+const { createSchemaCustomization } = require("./builder/doc/create-schema");
 
-exports.createPages = (pageTools) => {
-  return createDocPages(pageTools);
-};
-
-exports.onCreateNode = (nodeTools) => {
-  createDocNodes(nodeTools);
+module.exports = {
+  createPages,
+  createSchemaCustomization,
 };

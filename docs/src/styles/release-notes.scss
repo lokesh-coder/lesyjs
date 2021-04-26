@@ -1,0 +1,67 @@
+.releases {
+  h1,
+  h2 {
+    margin-bottom: 10px;
+    font-size: 11px;
+    color: #a2a9ca;
+    display: flex;
+    align-items: center;
+    a {
+      font-size: 18px;
+      color: #d5695f;
+      margin-right: 10px;
+    }
+  }
+  h1 a {
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+    font-weight: 700;
+  }
+
+  h3 {
+    flex-direction: inherit;
+    font-size: 18px;
+    margin-bottom: 19px;
+    margin-top: 33px;
+  }
+
+  .release {
+    padding: 33px 0;
+    position: relative;
+    p {
+      margin-bottom: 0;
+    }
+    strong {
+      background: #dee2ec;
+      color: #fff;
+      font-size: 13px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      line-height: 1;
+      margin-right: 10px;
+      font-weight: 500;
+      color: #82869c;
+    }
+    li {
+      margin-bottom: 6px;
+      padding-left: 0;
+      &:before {
+        content: none;
+      }
+    }
+    li a {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-left: 10px;
+    }
+    &:after {
+      content: "";
+      border-bottom: 2px solid #e4e6f4;
+      left: 0;
+      width: 10%;
+      height: 1px;
+      position: absolute;
+      bottom: 1px;
+    }
+  }
+}
