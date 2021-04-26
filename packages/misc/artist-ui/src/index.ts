@@ -26,6 +26,10 @@ interface ElProp {
   value: string;
 }
 
+type Timer = (cb: () => void, interval: number, key: string) => void;
+
+type InitHook = (store: { [key: string]: any }, timer: Timer) => void;
+
 const defaultConfig = {
   collapseWhitespace: false,
   keepClosingSlash: true,
@@ -35,7 +39,7 @@ const defaultConfig = {
 export default class Artist {
   private store: { [key: string]: any };
   private config: Config = defaultConfig;
-  private onInitHook: Function = () => {};
+  private onInitHook: InitHook = () => {};
   private elements = {};
   private timers = {
     internal: {},
@@ -171,7 +175,7 @@ export default class Artist {
     this.rewriteScreen(output);
   }
 
-  onInit(fn: Function) {
+  onInit(fn: InitHook) {
     this.onInitHook = fn;
   }
 
