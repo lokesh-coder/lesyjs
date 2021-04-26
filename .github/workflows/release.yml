@@ -50,6 +50,9 @@ jobs:
               env:
                   GH_TOKEN: ${{ secrets.DOC_README_FETCH }}
                   MAILCHIMP_ENDPOINT: ${{ secrets.MAILCHIMP_ENDPOINT }}
+                  GATSBY_ALGOLIA_APP_ID: ${{ secrets.GATSBY_ALGOLIA_APP_ID }}
+                  ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+                  GATSBY_ALGOLIA_INDEX_NAME: ${{ secrets.GATSBY_ALGOLIA_INDEX_NAME }}
 
             - name: LERNA - bump version
               run: npm run bump
