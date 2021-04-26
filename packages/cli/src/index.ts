@@ -5,7 +5,10 @@ const plugins = [
   "@lesy/lesy-plugin-help",
   [
     "@lesy/lesy-plugin-pilot",
-    { docTitle: "Lesy | Dashboard", appName: "Lesy Dashboard" },
+    {
+      docTitle: "Lesy CLI | Dashboard",
+      appName: "Lesy CLI",
+    },
   ],
 ];
 

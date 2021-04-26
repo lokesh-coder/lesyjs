@@ -62,16 +62,6 @@ export default class Init {
         },
       },
       {
-        name: "sample-commands",
-        message: "Load sample code",
-        type: "confirm",
-        default: true,
-        when: (answers: any) => {
-          answers["sample-commands"] = true;
-          return !flags.force;
-        },
-      },
-      {
         name: "current-directory",
         message: "Select directory (relative path)",
         type: "input",
