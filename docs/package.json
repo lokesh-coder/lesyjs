@@ -36,7 +36,7 @@
     "gatsby-remark-images": "^4.1.1",
     "gatsby-remark-prismjs": "^4.1.0",
     "gatsby-source-filesystem": "^3.1.0",
-    "gatsby-source-github-api": "git+ssh://git@github.com/ldd/gatsby-source-github-api.git",
+    "gatsby-source-github-api": "^1.0.0",
     "gatsby-transformer-remark": "^3.1.0",
     "gatsby-transformer-sharp": "^3.1.0",
     "postcss": "^8.2.8",
