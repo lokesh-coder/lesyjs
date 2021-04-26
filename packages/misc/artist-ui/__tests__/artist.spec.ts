@@ -158,7 +158,7 @@ hello ##
     artist.clearAllTimers();
     expect(output).toEqual("I am tag!- 1");
   });
-  it("should clear all unsued timers", () => {
+  xit("should clear all unsued timers", () => {
     jest.useFakeTimers();
     artist.onInit(async (store: any) => {
       store.dotsSpinner = true;
