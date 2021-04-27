@@ -12,7 +12,7 @@
     "clean": "rm -rf ./out",
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "build": "electron-forge make"
+    "make": "electron-forge make"
   },
   "license": "MIT",
   "private": true,
