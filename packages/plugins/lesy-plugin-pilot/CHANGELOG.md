@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.16](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2021-04-27)
+
+
+### Bug Fixes
+
+* **lesy-plugin-pilot:** enable dynamic rewrite logs ([9d2d2bd](https://github.com/lokesh-coder/lesyjs/commit/9d2d2bd28c23d79c699cbcc81fcb9b4183ecdb6f))
+
+
+
+
+
 # [1.0.0-beta.15](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2020-12-11)
 
 

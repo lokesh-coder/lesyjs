@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.16](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2021-04-27)
+
+
+### Bug Fixes
+
+* **lesy-pilot-ui:** update log for dynamic change ([c0ef6ea](https://github.com/lokesh-coder/lesyjs/commit/c0ef6ea1eb9877a97575331e364ace8c3e88f461))
+
+
+
+
+
 # [1.0.0-beta.15](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2020-12-11)
 
 

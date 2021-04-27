@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.16](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2021-04-27)
+
+
+### Bug Fixes
+
+* **artist:** clear unused timers ([4a4ef55](https://github.com/lokesh-coder/lesyjs/commit/4a4ef55760ad536f8d97e424cbf2870375d3eb0a))
+* **artist:** setInterval clear on re-render and add elements ([bc48a8d](https://github.com/lokesh-coder/lesyjs/commit/bc48a8d7259d1c1d1fdd109de73491ad305ea70a))
+* **lesy:** remove unused code ([986864b](https://github.com/lokesh-coder/lesyjs/commit/986864bddf80ce3518541b693700b038e4052e89))
+* **lesy-pilot-ui:** update log for dynamic change ([c0ef6ea](https://github.com/lokesh-coder/lesyjs/commit/c0ef6ea1eb9877a97575331e364ace8c3e88f461))
+* **lesy-plugin-artist:** attach clear timers func and enable plugins support ([7902313](https://github.com/lokesh-coder/lesyjs/commit/790231308e01cabb0d800961ddb4c4e2575c5c17))
+* **lesy-plugin-pilot:** enable dynamic rewrite logs ([9d2d2bd](https://github.com/lokesh-coder/lesyjs/commit/9d2d2bd28c23d79c699cbcc81fcb9b4183ecdb6f))
+
+
+### Features
+
+* **captain:** pilot desktop version ([5ca0339](https://github.com/lokesh-coder/lesyjs/commit/5ca0339f047d46d8580d30b3c904a876f04962a0))
+* **core:** add support for plugins plugin in config ([5cea5f1](https://github.com/lokesh-coder/lesyjs/commit/5cea5f11bd29d49890117bdd2575173e9f7890c7))
+
+
+
+
+
 # [1.0.0-beta.15](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2020-12-11)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.16](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2021-04-27)
+
+
+### Features
+
+* **core:** add support for plugins plugin in config ([5cea5f1](https://github.com/lokesh-coder/lesyjs/commit/5cea5f11bd29d49890117bdd2575173e9f7890c7))
+
+
+
+
+
 # [1.0.0-beta.15](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2020-12-11)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@lesy/lesy-plugin-demo",
-  "version": "1.0.0-beta.15",
+  "version": "1.0.0-beta.16",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -22,6 +22,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@lesy/lesy-plugin-prompt": "^1.0.0-beta.15"
+    "@lesy/lesy-plugin-prompt": "^1.0.0-beta.16"
   }
 }

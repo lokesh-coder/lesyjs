@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.16](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2021-04-27)
+
+
+### Bug Fixes
+
+* **lesy-plugin-artist:** attach clear timers func and enable plugins support ([7902313](https://github.com/lokesh-coder/lesyjs/commit/790231308e01cabb0d800961ddb4c4e2575c5c17))
+
+
+
+
+
 # [1.0.0-beta.15](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2020-12-11)
 
 

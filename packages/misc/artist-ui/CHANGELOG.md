@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.16](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.15...v1.0.0-beta.16) (2021-04-27)
+
+
+### Bug Fixes
+
+* **artist:** clear unused timers ([4a4ef55](https://github.com/lokesh-coder/lesyjs/commit/4a4ef55760ad536f8d97e424cbf2870375d3eb0a))
+* **artist:** setInterval clear on re-render and add elements ([bc48a8d](https://github.com/lokesh-coder/lesyjs/commit/bc48a8d7259d1c1d1fdd109de73491ad305ea70a))
+
+
+
+
+
 # [1.0.0-beta.15](https://github.com/lokesh-coder/lesyjs/compare/v1.0.0-beta.14...v1.0.0-beta.15) (2020-12-11)
 
 
