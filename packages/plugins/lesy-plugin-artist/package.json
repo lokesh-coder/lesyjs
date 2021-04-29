@@ -1,6 +1,6 @@
 {
   "name": "@lesy/lesy-plugin-artist",
-  "version": "1.0.0-beta.16",
+  "version": "1.0.0-beta.17",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@lesy/artist": "^1.0.0-beta.16"
+    "@lesy/artist": "^1.0.0-beta.17"
   },
   "publishConfig": {
     "access": "public"
