@@ -1,6 +1,6 @@
 {
   "name": "@lesy/lesy-plugin-store",
-  "version": "1.0.0-beta.17",
+  "version": "1.0.0-beta.18",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "configstore": "^5.0.1"
   },
   "devDependencies": {
-    "@lesy/testbed": "^1.0.0-beta.17"
+    "@lesy/testbed": "^1.0.0-beta.18"
   },
   "publishConfig": {
     "access": "public"

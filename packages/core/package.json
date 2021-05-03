@@ -1,6 +1,6 @@
 {
   "name": "@lesy/core",
-  "version": "1.0.0-beta.17",
+  "version": "1.0.0-beta.18",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -21,8 +21,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@lesy/test-utils": "^1.0.0-beta.17",
-    "@lesy/validator": "^1.0.0-beta.17",
+    "@lesy/test-utils": "^1.0.0-beta.18",
+    "@lesy/validator": "^1.0.0-beta.18",
     "argh": "^1.0.0",
     "chalk": "^4.0.0",
     "ora": "^4.0.4",
