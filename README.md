@@ -1,15 +1,16 @@
-<h1 align="center">
+<h3 align="center">
   <a
     target="_blank"
     rel="noopener noreferrer"
     href="https://lesyjs.io"
     ><img
-      width="300"
+      width="50"
       alt="The Lounge"
-      src="https://user-images.githubusercontent.com/1754676/97110133-75926f00-16fd-11eb-9a27-3d52508d51cf.png"
+      src="https://user-images.githubusercontent.com/1754676/116806447-a808a300-ab4a-11eb-9805-e774c9c36931.png"
       style="max-width: 100%"
-  /></a>
-</h1>
+  /></a> <br/>
+<a>Lesy js</a>
+</h3>
 <br/>
 <h3 align="center">
 	> 𝙱𝚞𝚒𝚕𝚍 𝚖𝚘𝚍𝚎𝚛𝚗 𝚌𝚘𝚖𝚖𝚊𝚗𝚍-𝚕𝚒𝚗𝚎 𝚊𝚙𝚙𝚜_
@@ -19,11 +20,11 @@
 	<span>
 		<a href="https://lesyjs.io/">Website</a>
 		•
-		<a href="https://lesyjs.io/docs/get-started/overview">Documentation</a>
+		<a href="https://lesyjs.io/docs/getting-started/introduction">Documentation</a>
 		•
 		<a href="https://codesandbox.io/s/lesy-pilot-playground-hzjgw?file=/src/index.js">Playground</a>
 		•
-		<a href="https://twitter.com/lesyjs">Twitter</a>
+		<a href="https://twitter.com/lesyjs">@lesyjs</a>
 	</span>
 </p>
 
@@ -40,211 +41,240 @@
 </p>
 
 <h1></h1>
+ <br/>
 
-## What is Lesy JS
+A developer friendly Node js based CLI framework to build modern command line applications.
 
-Lesy is a simplified CLI framework build with NodeJS and Typescript. Main purpose of lesy is to enable web UI so that users can run commands from GUI dashboard without much complex. But lesy also shines in maintainability and flexibility focusing more on developer experience and performance.
+Whether you are building a tiny teeny app or large complex one, Lesy provides you all the necessary tools out of box. That means, write less and get more with no additional cost to you and your users.
 
-## Features
+## Why Lesy
 
-- **Language**&#8192;&#8192;&#8192;&#8192; - _Javascript and Typescript with @types_
-- **Flexibility**&#8192;&#8192;&#8192;&#8192; - _Able to change complete flow with middlewares_
-- **Boilerplate**&#8192;&#8192;&#8192; - _Write less code. whether it's a dead simple project or complex one_
-- **Extensions**&#8192;&#8192;&#8192; - _Add cool functionalities with plugins_
-- **Platform**&#8192;&#8192;&#8192;&#8192;&#8192; - _Write once and run in CLI or web UI. Desktop interface is coming soon_
-- **Performance**&#8192; - _It is faster than existing tools. Benchmarks inside_
-- **Testing**&#8192;&#8192;&#8192;&#8192;&#8192;&#8192; - _Dedicated testing setup for unit test and integration test_
-- **Lot more**&#8192;&#8192;&#8192;&#8192;&#8192; - _Features, sub-commands, boilerplate generator..._
-  <br/> <br/>
+- **Typescript support** <br/>
+  First class typescript support with types and compiler <br/><br/>
+- **Middleware architecture** <br/> Change the flow at any stage or competely alter the behaviour without touching your core code <br/><br/>
+- **Plugins system** <br/> Bring in more features on demand with official/community plugins. <br/><br/>
+- **Powerful commands** <br/> Smart args/flags parsing, multi level sub commands, validators, multiple types, programatically running commands <br/><br/>
+- **Reusable features** <br/> Global data that can be accessed everywhere, whether it is a simple piece of code or 3rd part module <br/><br/>
+- **Configuration** <br/> App level configuration object to customize the settings <br/><br/>
+- **Full-fledged Test suite** <br/> write simple unit level testing or complete app level integration testing with simple API <br/><br/>
+- **Lesy CLI** <br/> Scaffold new project with just one simple command <br/><br/>
+- **Performance** <br/> Lesy core is lightweight and smart enough to run just what it needs. Benchmark inside <br/><br/>
+- **Dynamic interface** <br/> Rewrite terminal screen content on data change with bunch of inbuilt elements <br/><br/>
+- **Web UI** <br/> Lesy's Pilot server brings all your commands to web ui, so your users can happily run commands from web UI <br/><br/>
+- **Desktop UI** <br/> installable desktop app, that runs all globally installed lesy projects, and users can run apps from their app <br/><br/>
+- **Utilities** <br/> Built-in lazy utilities to work with colors and spinner <br/><br/>
+- **Serverless mode** <br/> With Lesy's simple API, write a bot like app and run it in server
 
-## Installation and setup
+## Installation
 
-Lesy can be installed from Lesy CLI or manually.
+To ease the setiup process, Lesy comes with own CLI which scaffolds the project with all necessary tools included.
 
-- #### Set it up from CLI
+In your terminal run this command:
 
-  Scaffold new project directly using npx command
+```shell
+npx lesy new my-cli
+```
 
-  ```shell
-  > npx lesy new my-cli
-  ```
+For detailed installation guide and manual set up refer this [installation docs](https://lesyjs.io/docs/getting-started/installation).
 
-  Or, you can install lesy cli globally and generate a new project
+## Basic example
 
-  ```shell
-  > npm i -g lesy
-  > lesy new my-cli
-  ```
+```js
+const lesy = require("@lesy/compiler");
 
-  Once set up is done, follow the instructions that is displayed in the terminal.
+const commands = [{ run: () => console.log("hello") }];
+lesy({ commands }).parse();
+```
 
-  [![asciicast](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt.svg)](https://asciinema.org/a/cByzQns8RTNs5I117XolHSgAt)
+## Lesy core
 
-  Also you can create your own project setup and run lesy. [Learn more]().
+### Commands
 
-<br/>
+Command is a simple object with a `run` function which will be executed on running the command.
 
-- #### Manual setup
+```js
+const lesy = require("@lesy/compiler");
 
-  Install `@lesy/compiler` via `npm` or `yarn`
-
-  ```shell
-  > mkdir my-cli && cd my-cli
-  > npm install @lesy/compiler
-  ```
-
-  Then create a index file and add the below code
-
-  ```js
-  #!/usr/bin/env node
-
-  const lesy = require("@lesy/compiler");
-  const commands = [{ name: "hello", run: () => console.log("hello world") }];
-
-  lesy({ commands }).parse();
-  ```
-
-  ```shell
-  > ./index hello
-  ```
-
-## Lesy core parts
-
-- #### Commands
-
-  Commands can be a simple object, or a function or a class. Also, you can provide a path to file or directory where lesy can discover all commands. There are lot of things you can do with commands like, deep nested sub commands, dynamic command execution, run asyncronous code, validate args and flags, etc.,
-
-  ```js
-  const lesy = require("@lesy/compiler");
-
-  const commands = [
-    {
-      name: "hello",
-      run: () => console.log("Hello Buddy!"),
-    },
-
-    function hello(cmd) {
-      cmd.name = "hello";
-      cmd.run = () => console.log("Hello Buddy!");
-    },
-
-    class Hello {
-      name = "hello";
-      run() {
-        console.log("Hello Buddy!");
-      }
-    },
-
-    `${__dirname}/commands/welcome.ts`,
-
-    `${__dirname}/commands`,
-  ];
-
-  lesy({ commands }).parse();
-  ```
-
-  To know more about formats, args, flags, context [check here](https://lesyjs.io/docs/core/commands)
-
-<br/>
-
-- #### Middlewares
-
-  Middlewares are sort of hooks, you can plug a middleware at multiple stages of the flow. This way you can add, change and manipulate the flow.
-
-  ```js
-  const lesy = require("@lesy/compiler");
-
-  const commands = [{ name: "hello", run: () => console.log("hello world") }];
-  const middlewares = [
-    {
-      on: "END",
-      run: (ctx) => {
-        console.log("this will be printed after hello world");
-        return ctx;
+const commands = [
+  {
+    name: "hello",
+    args: {
+      name: {
+        required: true,
       },
     },
-  ];
+    run: ({ args }) => console.log(`Hello ${args.name}`),
+  },
+];
 
-  lesy({ commands, middlewares }).parse();
-  ```
+lesy({ commands }).parse();
+```
 
-  To know more about hook points, async middlewares, parsing, context [check here](https://lesyjs.io/docs/core/middlewares)
+- Command can also be a `function` or `class`
+- You can also provide the command `file path` or the `directory path`
+- Run multi-level sub commands
+- Parse and validate args and flags
+- Run command programmatically
+- In-built lazy utilities that can be accessed from command context
+- Execute synchronous and asynchronous code
 
-  <br/>
+Check out [commands API guide](https://lesyjs.io/docs/components/commands) to know more about it.
 
-- #### Features
+### Middlewares
 
-  Features are simple object, which are accesible in both commands and middlewares. It is super useful if you are dealing with third party libraries and want to share with all commands and middlewares.
+Middlewares are simple functions which will be executed during the lifecyle of command flow. With this, you will be able to add new functionallity, tweak and change the entire behaviour of the command at any point of the flow without changing the command logic.
 
-  ```js
-  const lesy = require("@lesy/compiler");
+```js
+const lesy = require("@lesy/compiler");
 
-  const commands = [
-    { name: "hello", run: ({ feature }) => feature.sayHello() },
-  ];
-  const features = [
-    (feature) => {
-      feature.sayHello = () => console.log("hello");
+const commands = [{ name: "hello", run: () => console.log("hello world") }];
+const middlewares = [
+  {
+    on: "END",
+    run: (ctx) => {
+      console.log("this will be printed after hello world");
+      return ctx;
     },
-  ];
+  },
+];
 
-  lesy({ commands, features }).parse();
-  ```
+lesy({ commands, middlewares }).parse();
+```
 
-  To know more about features [check here](https://lesyjs.io/docs/core/features)
+With middleware you can do:
 
-  <br/>
+- Async calls
+- Programatically change running command
+- Modify args and flags
+- Terminate the flow
+- Intercept and change the output
+- Print additional info at any stages
+- Capture and send logs to other services
+- Include data in command context data
+- And much more..
 
-- #### Plugins
+To know more about hook points, async operations, parsing, context check [middleware docs](https://lesyjs.io/docs/components/middlewares)
 
-  Plugins are collection of commands, middlewares and features. Can be a local plugin or any lesy plugin that can be installed from npm. [learn more](https://lesyjs.io/docs/core/plugins)
+### Features
 
-  ```js
-  const lesy = require("@lesy/compiler");
+Features are simple global object, which are accesible in both commands and middlewares. It is super useful if you are dealing with third party libraries and want to share with all commands and middlewares.
 
-  const commands = [{ name: "hello", run: () => console.log("hello world") }];
-  const plugins = [`${dirname}/plugins/my-custom-plugin`];
+```js
+const lesy = require("@lesy/compiler");
 
-  lesy({ commands, plugins }).parse();
-  ```
+const commands = [{ name: "hello", run: ({ feature }) => feature.sayHello() }];
+const features = [
+  (feature) => {
+    feature.sayHello = () => console.log("hello");
+  },
+];
 
-  <br/>
+lesy({ commands, features }).parse();
+```
 
-- #### Even more
+To know more about features [check here](https://lesyjs.io/docs/components/features)
 
-  To learn about global configuration, validators, testbed, performance [check the documentation](https://lesyjs.io/docs/get-started/overview)
+### Plugins
 
-<br/>
+Plugin is a collection of commands, middlewares, features and validators. Can be a local plugin or any lesy plugin that can be installed from npm. [learn more](https://lesyjs.io/docs/components/features)
 
-## Available Plugins
+```js
+const lesy = require("@lesy/compiler");
 
-- [**UI Pilot**](https://lesyjs.io/docs/plugins/pilot-ui)<br/>
-  _Run commands in Web UI. Supports input, console, workspace and more..._
-- [**Artist**](https://lesyjs.io/docs/plugins/artist-ui)<br/>
-  _Format and add state, dynamic elements like spinner, column, colorful text..._
-- [**Store**](https://lesyjs.io/docs/plugins/config-store)<br/>
-  _Key-value storage in the system_
-- [**Config reader**](https://lesyjs.io/docs/plugins/config-files)<br/>
-  _Setup config files like myapp.config.json, myapp.config.yml, myapp.config.js_
-- [**Scaffold generator**](https://lesyjs.io/docs/plugins/scaffold-generator)<br/>
-  _Generate projects with handlebars templating_
-- [**Prompt**](https://lesyjs.io/docs/plugins/prompt)<br/>
-  _Wrapper around inquirer plugin for prompts and questions_
-- [**Help**](https://lesyjs.io/docs/plugins/help)<br/>
-  _Automatically generate beautiful help with sub commands support. Highly customizable_
-- [**Arg validator**](https://lesyjs.io/docs/plugins/arg-validator)<br/>
-  _Prompt if required args are not supplied_
-  <br/> <br/>
+const commands = [{ name: "hello", run: () => console.log("hello world") }];
+const plugins = [
+  `${dirname}/plugins/my-custom-plugin`,
+  "@lesy/lesy-plugin-generator",
+];
+
+lesy({ commands, plugins }).parse();
+```
+
+- Pass config object to a plugin
+- Support for plugins for a plugin
+
+### More
+
+- [Configuration](https://lesyjs.io/docs/components/configuration) - App level config object that can be accessed globally even with in plugins
+- [Validators](https://lesyjs.io/docs/components/validators) - Args and flag validations
+
+## Testing
+
+Generally commands, middlewares, features can be tested independently with Jest. But however, to test them with the app or to test a plugin **testbed** can be used
+
+```js
+import { resolve } from "path";
+import { LesyTestBed } from "@lesy/testbed";
+const HelloCommand from "../src/commands/hello";
+
+describe("CLI", () => {
+  let app;
+
+  beforeEach(() => {
+    app = new LesyTestBed({
+      root: resolve(__dirname, "./"),
+      commands: [HelloCommand],
+    });
+  });
+
+  it("should log proper output", async () => {
+    let response = await app.run(["greet"]);
+    expect(response).toContain("hello yoyo!");
+  });
+});
+```
+
+Check out [Testbed docs](https://lesyjs.io/docs/testing/testbed) for more info.
+
+## Arist UI
+
+Artist UI is an another cool plugin which helps you to render dynamic elements by updating the screen content on data change.
+
+Artist can also be used independently without lesy, and it comes with commonly used interface elements like, spinner, progress bar, log, colors, layout, and much more. Also, Artist can be extended with plugins! [View docs](https://lesyjs.io/plugins/official/artist)
+
+![image](https://lesyjs.io/images/render1612453288681.gif)
+
+## Pilot web dashboard
+
+Pilot Dashboard is one of the lesy plugins which allows you to view and run commands of any lesy projects from web UI. Pilot comes with inbuild customizable console panel, config viewer, prompt modal support, responsive layout and more. [View docs](https://lesyjs.io/plugins/official/pilot-dashboard)
+
+![image](https://user-images.githubusercontent.com/1754676/116905452-9f07f680-ac5c-11eb-882f-1ae35e84244a.png)
+
+## Plugins
+
+- [**Pilot dashboard**](https://lesyjs.io/plugins/official/pilot-dashboard)
+  Run commands in Web UI. Supports input, console, workspace and more...
+- [**Artist UI**](https://lesyjs.io/plugins/official/artist)
+  Update console screen on data change with in build elements
+- [**Store**](https://lesyjs.io/plugins/official/local-store)
+  Key-value storage in the system
+- [**Config reader**](https://lesyjs.io/plugins/official/config-files)
+  Setup config files like myapp.config.json, myapp.config.yml, myapp.config.js
+- [**Scaffold generator**](https://lesyjs.io/plugins/official/scaffold-generator)
+  Generate projects with handlebars templating
+- [**Prompt**](https://lesyjs.io/plugins/official/prompt)
+  Wrapper around inquirer plugin for prompts and questions
+- [**Help**](https://lesyjs.io/plugins/official/auto-help)
+  Automatically generate beautiful help with sub commands support. Highly customizable
+- [**Arg validator**](https://lesyjs.io/plugins/official/arg-validator)
+  Prompt if required args are not supplied
+
+## Standalone libraries
+
+There are few components which can be used without Lesy.
+
+- [**Artist**](https://lesyjs.io/libraries/standalone/artist-UI)
+  Artist is an independent library which helps you to update console screen on data change. And not just that, Artist also comes bundled with all necessary elements like spinner, colums, tables, progress bar and more to spice up the visuals.
+- [**Object Validator**](https://lesyjs.io/libraries/standalone/object-validator)
+  A lightweight bare minimum core library to validate simple objects with your own custom rules and conditions. This also lets you to use async rules, custom response messages.
 
 ## Contribution
 
 Any kind of contibutions are welcome. :)
-<br/> <br/>
 
-## Development
+## Developement
 
-To run it in local, and to know in depth code login please [check here](https://lesyjs.io/docs/dev/sample2)
-<br/> <br/>
+Refer this [local setup](https://lesyjs.io/docs/development/local-setup) guide for installing lesy in your local machine. And to know more indepth concepts check [project overiew](https://lesyjs.io/docs/development/project-overview) and [concepts](https://lesyjs.io/docs/development/indepth-concepts) page.
 
 ## License
 
