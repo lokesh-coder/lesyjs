@@ -11,18 +11,17 @@
   /></a> <br/>
 <a>Lesy js</a>
 </h3>
-<br/>
 <h3 align="center">
-	> 𝙱𝚞𝚒𝚕𝚍 𝚖𝚘𝚍𝚎𝚛𝚗 𝚌𝚘𝚖𝚖𝚊𝚗𝚍-𝚕𝚒𝚗𝚎 𝚊𝚙𝚙𝚜_
+	> 𝙱𝚞𝚒𝚕𝚍 𝚖𝚘𝚍𝚎𝚛𝚗 𝚌𝚘𝚖𝚖𝚊𝚗𝚍-𝚕𝚒𝚗𝚎 𝚊𝚙𝚙𝚜 _
 </h3>
 
 <p align="center">
 	<span>
-		<a href="https://lesyjs.io/">Website</a>
+		<a href="https://lesyjs.io/">website</a>
 		•
-		<a href="https://lesyjs.io/docs/getting-started/introduction">Documentation</a>
+		<a href="https://lesyjs.io/docs/getting-started/introduction">documentation</a>
 		•
-		<a href="https://codesandbox.io/s/lesy-pilot-playground-hzjgw?file=/src/index.js">Playground</a>
+		<a href="https://codesandbox.io/s/lesy-pilot-playground-hzjgw?file=/src/index.js">playground</a>
 		•
 		<a href="https://twitter.com/lesyjs">@lesyjs</a>
 	</span>
@@ -32,20 +31,22 @@
 <br/>
 <p align="center">
 
-<img src="https://img.shields.io/coveralls/github/lokesh-coder/lesyjs?color=4a5874&labelColor=d5695f&style=flat-square"/>
-<img src="https://img.shields.io/github/workflow/status/lokesh-coder/lesyjs/Release?color=4a5874&labelColor=d5695f&style=flat-square"/>
-<img src="https://img.shields.io/npm/v/@lesy/core?color=4a5874&labelColor=d5695f&style=flat-square"/>
-<img src="https://img.shields.io/bundlephobia/minzip/@lesy/core?color=4a5874&labelColor=d5695f&label=core%20size%20&style=flat-square"/>
-<img src="https://img.shields.io/npm/dt/lesy?color=4a5874&labelColor=d5695f&style=flat-square"/>
+<img src="https://img.shields.io/coveralls/github/lokesh-coder/lesyjs?color=4a5874&labelColor=bc5251&style=flat-square"/>
+<img src="https://img.shields.io/github/workflow/status/lokesh-coder/lesyjs/Release?color=4a5874&labelColor=bc5251&style=flat-square"/>
+<img src="https://img.shields.io/npm/v/@lesy/core?color=4a5874&labelColor=bc5251&style=flat-square"/>
+<img src="https://img.shields.io/bundlephobia/minzip/@lesy/core?color=4a5874&labelColor=bc5251&label=core%20size%20&style=flat-square"/>
+<img src="https://img.shields.io/npm/dt/lesy?color=4a5874&labelColor=bc5251&style=flat-square"/>
 
 </p>
 
 <h1></h1>
  <br/>
 
-A developer friendly Node js based CLI framework to build modern command line applications.
+A developer friendly **Node js based CLI framework** to build modern command line applications.
 
 Whether you are building a tiny teeny app or large complex one, Lesy provides you all the necessary tools out of box. That means, write less and get more with no additional cost to you and your users.
+
+ <br/>
 
 ## Why Lesy
 
@@ -65,26 +66,37 @@ Whether you are building a tiny teeny app or large complex one, Lesy provides yo
 - **Utilities** <br/> Built-in lazy utilities to work with colors and spinner <br/><br/>
 - **Serverless mode** <br/> With Lesy's simple API, write a bot like app and run it in server
 
+ <br/>
+
 ## Installation
 
-To ease the setiup process, Lesy comes with own CLI which scaffolds the project with all necessary tools included.
+To ease the setup process, Lesy comes with own CLI which scaffolds the project with all necessary tools included.
 
 In your terminal run this command:
 
-```shell
+```bash
 npx lesy new my-cli
 ```
 
 For detailed installation guide and manual set up refer this [installation docs](https://lesyjs.io/docs/getting-started/installation).
+
+ <br/>
 
 ## Basic example
 
 ```js
 const lesy = require("@lesy/compiler");
 
-const commands = [{ run: () => console.log("hello") }];
+const commands = [{ name: "greet", run: () => console.log("hello") }];
 lesy({ commands }).parse();
 ```
+
+```sh
+$ ./my-cli greet
+"hello"
+```
+
+ <br/>
 
 ## Lesy core
 
@@ -119,6 +131,8 @@ lesy({ commands }).parse();
 - Execute synchronous and asynchronous code
 
 Check out [commands API guide](https://lesyjs.io/docs/components/commands) to know more about it.
+
+ <br/>
 
 ### Middlewares
 
@@ -155,6 +169,8 @@ With middleware you can do:
 
 To know more about hook points, async operations, parsing, context check [middleware docs](https://lesyjs.io/docs/components/middlewares)
 
+ <br/>
+
 ### Features
 
 Features are simple global object, which are accesible in both commands and middlewares. It is super useful if you are dealing with third party libraries and want to share with all commands and middlewares.
@@ -173,6 +189,8 @@ lesy({ commands, features }).parse();
 ```
 
 To know more about features [check here](https://lesyjs.io/docs/components/features)
+
+ <br/>
 
 ### Plugins
 
@@ -193,10 +211,14 @@ lesy({ commands, plugins }).parse();
 - Pass config object to a plugin
 - Support for plugins for a plugin
 
+ <br/>
+
 ### More
 
 - [Configuration](https://lesyjs.io/docs/components/configuration) - App level config object that can be accessed globally even with in plugins
 - [Validators](https://lesyjs.io/docs/components/validators) - Args and flag validations
+
+ <br/>
 
 ## Testing
 
@@ -226,6 +248,8 @@ describe("CLI", () => {
 
 Check out [Testbed docs](https://lesyjs.io/docs/testing/testbed) for more info.
 
+ <br/>
+
 ## Arist UI
 
 Artist UI is an another cool plugin which helps you to render dynamic elements by updating the screen content on data change.
@@ -234,11 +258,15 @@ Artist can also be used independently without lesy, and it comes with commonly u
 
 ![image](https://lesyjs.io/images/render1612453288681.gif)
 
+ <br/>
+
 ## Pilot web dashboard
 
 Pilot Dashboard is one of the lesy plugins which allows you to view and run commands of any lesy projects from web UI. Pilot comes with inbuild customizable console panel, config viewer, prompt modal support, responsive layout and more. [View docs](https://lesyjs.io/plugins/official/pilot-dashboard)
 
 ![image](https://user-images.githubusercontent.com/1754676/116905452-9f07f680-ac5c-11eb-882f-1ae35e84244a.png)
+
+ <br/>
 
 ## Plugins
 
@@ -259,6 +287,8 @@ Pilot Dashboard is one of the lesy plugins which allows you to view and run comm
 - [**Arg validator**](https://lesyjs.io/plugins/official/arg-validator)
   Prompt if required args are not supplied
 
+   <br/>
+
 ## Standalone libraries
 
 There are few components which can be used without Lesy.
@@ -268,14 +298,20 @@ There are few components which can be used without Lesy.
 - [**Object Validator**](https://lesyjs.io/libraries/standalone/object-validator)
   A lightweight bare minimum core library to validate simple objects with your own custom rules and conditions. This also lets you to use async rules, custom response messages.
 
+   <br/>
+
 ## Contribution
 
-Any kind of contibutions are welcome. :)
+Any Contributions are welcome!
+
+ <br/>
 
 ## Developement
 
 Refer this [local setup](https://lesyjs.io/docs/development/local-setup) guide for installing lesy in your local machine. And to know more indepth concepts check [project overiew](https://lesyjs.io/docs/development/project-overview) and [concepts](https://lesyjs.io/docs/development/indepth-concepts) page.
 
+ <br/>
+
 ## License
 
-MIT
+This project is licensed under the **MIT License**
